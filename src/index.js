@@ -6,14 +6,24 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <img src="/sn_logo_6.png" alt="Santulan Neurotherapy" style={{ maxWidth: '100%', height: 'auto' }} />
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      textAlign: 'center'
+    }}>
+      <img
+        src="/sn_logo_6.png"
+        alt="Santulan Neurotherapy"
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+      <h1 style={{ marginTop: '20px', fontSize: '2.5rem' }}>
+        Coming Soon...
+      </h1>
     </div>
-    <h1>Coming soon...</h1>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
