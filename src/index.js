@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>
-      <h1>Santulan Neurotherapy</h1>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <img src="/sn_logo_6.png" alt="Santulan Neurotherapy" style={{ maxWidth: '100%', height: 'auto' }} />
     </div>
+    <h1>Coming soon...</h1>
   </React.StrictMode>
 );
 
