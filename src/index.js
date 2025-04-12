@@ -15,7 +15,7 @@ root.render(
       textAlign: 'center'
     }}>
       <img
-        src="/sn_logo_6.png"
+        src="/shs_logo_3.png"
         alt="Santulan Neurotherapy"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
