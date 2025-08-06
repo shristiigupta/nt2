@@ -16,11 +16,8 @@ root.render(
       padding: '20px',
       boxSizing: 'border-box'
     }}>
-      <img
-        src="/shs_logo_3.png"
-        alt="Santulan Neurotherapy"
-        style={{ maxWidth: '100%', height: 'auto' }}
-      />
+      
+      
       
       {/* Visiting Card Images Section */}
       <div style={{
