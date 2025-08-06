@@ -12,16 +12,36 @@ root.render(
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: '20px',
+      boxSizing: 'border-box'
     }}>
       <img
         src="/shs_logo_3.png"
         alt="Santulan Neurotherapy"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
-      <h1 style={{ marginTop: '20px', fontSize: '2.5rem' }}>
-        Coming Soon...
-      </h1>
+      
+      {/* Visiting Card Images Section */}
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '20px',
+        marginTop: '40px'
+      }}>
+        <img
+          src="/visiting_card_eng.png"
+          alt="Visiting Card 1"
+          style={{ width: '600px', height: '400px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
+        />
+        <img
+          src="/visiting_card_hindi.png"
+          alt="Visiting Card 2"
+          style={{ width: '600px', height: '400px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
+        />
+      </div>
     </div>
   </React.StrictMode>
 );
