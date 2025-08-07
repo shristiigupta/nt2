@@ -8,7 +8,7 @@ root.render(
   <React.StrictMode>
     <div className="container">
       <img
-        src="/logo.jpg"
+        src="/logo.png"
         alt="Santulan Neurotherapy"
         className="main-logo"
       />
