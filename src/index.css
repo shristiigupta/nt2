@@ -1,22 +1,7 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* Base styling */
+/* Base styles */
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
   font-family: Arial, sans-serif;
 }
 
@@ -31,21 +16,37 @@ body, html {
   box-sizing: border-box;
 }
 
-.main-logo {
-  max-width: 80%;
-  height: 70%;
-  object-fit: contain;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
 }
 
-/* Media query for small screens */
+.visiting-card {
+  max-width: 100%;
+  width: 450px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Tablet screens */
+@media (max-width: 1024px) {
+  .visiting-card {
+    width: 400px;
+  }
+}
+
+/* Mobile screens */
 @media (max-width: 768px) {
-  .container {
-    padding: 10px;
+  .card-container {
+    flex-direction: column;
   }
 
-  .main-logo {
-    max-width: 95%;
-    height: auto;
+  .visiting-card {
+    width: 90%;
   }
 }
-
