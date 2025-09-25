@@ -7,30 +7,26 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <div className="container">
-      <div className="card-layout">
-        {/* Left: Sticker */}
-        <div className="sticker-section">
-          <img
-            src="/nt_sticker.jpg"
-            alt="Sticker"
-            className="sticker"
-          />
-        </div>
+      {/* Sticker */}
+      <img
+        src="/nt_sticker.jpg"
+        alt="Sticker"
+        className="sticker-card"
+      />
 
-        {/* Right: Visiting Cards */}
-        <div className="cards-section">
-          <img
-            src="/visiting_card.jpg"
-            alt="Visiting Card English"
-            className="visiting-card"
-          />
-          <img
-            src="/visiting_card_hin_2.jpg"
-            alt="Visiting Card Hindi"
-            className="visiting-card"
-          />
-        </div>
-      </div>
+      {/* Visiting Card English */}
+      <img
+        src="/visiting_card.jpg"
+        alt="Visiting Card English"
+        className="visiting-card"
+      />
+
+      {/* Visiting Card Hindi */}
+      <img
+        src="/visiting_card_hin_2.jpg"
+        alt="Visiting Card Hindi"
+        className="visiting-card"
+      />
     </div>
   </React.StrictMode>
 );
