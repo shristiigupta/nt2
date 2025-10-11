@@ -1,0 +1,16 @@
+{
+  "2025-10-11": [
+    { "time": "10:00 AM", "status": "booked" },
+    { "time": "11:00 AM", "status": "available" },
+    { "time": "12:00 PM", "status": "available" },
+    { "time": "1:00 PM", "status": "booked" },
+    { "time": "3:00 PM", "status": "available" }
+  ],
+  "2025-10-12": [
+    { "time": "9:00 AM", "status": "available" },
+    { "time": "10:00 AM", "status": "booked" },
+    { "time": "11:00 AM", "status": "booked" },
+    { "time": "2:00 PM", "status": "available" },
+    { "time": "4:00 PM", "status": "available" }
+  ]
+}

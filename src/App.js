@@ -4,6 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
+import AppointmentSlots from "./pages/AppointmentSlots";
+import TranslateDropdown from "./components/TranslateDropdown";
+
+
+
 import "./App.css";
 
 function About() {
@@ -34,7 +39,7 @@ function Contact() {
     <div className="page contact-page">
       <h2 className="contact-title">Visit Us at Santulan Holistic Solutions</h2>
       <p className="contact-subtitle">
-        
+
       </p>
 
       <div className="contact-section">
@@ -93,6 +98,7 @@ function App() {
           path="/"
           element={
             <>
+              <TranslateDropdown /> {/* Styled language selector */}
               <HeroSection />
               <ServicesSection />
             </>

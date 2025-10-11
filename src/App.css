@@ -118,6 +118,14 @@
   border-radius: 12px;
 }
 
+#google_translate_element select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+
 /* placeholder + responsiveness already in your CSS - keep them */
 
 

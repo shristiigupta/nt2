@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  useEffect(() => {
+    // Check if script already exists
+    if (!window.google || !window.google.translate) {
+      if (!document.getElementById("google-translate-script")) {
+        const script = document.createElement("script");
+        script.id = "google-translate-script";
+        script.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
+      if (!document.getElementById("google-translate-script")) {
+        const script = document.createElement("script");
+        script.id = "google-translate-script";
+        script.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
+
+      // Only initialize once
+      window.googleTranslateElementInit = () => {
+        if (!document.getElementById("google_translate_element").innerHTML) {
+          new window.google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+              layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false,
+            },
+            "google_translate_element"
+          );
+        }
+      };
+    }
+  }, []);
+
   return (
     <nav className="navbar">
       {/* Logo */}
@@ -37,6 +75,11 @@ function Navbar() {
           <NavLink to="/contact">Contact Us</NavLink>
         </li>
       </ul>
+
+      {/* Google Translate Dropdown on Right */}
+      <div className="translate-dropdown">
+        <div id="google_translate_element"></div>
+      </div>
     </nav>
   );
 }

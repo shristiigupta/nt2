@@ -1,0 +1,74 @@
+.appointment-container {
+  padding: 50px 20px;
+  background: #fffef7;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.appointment-title {
+  font-size: 2rem;
+  color: #444;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.appointment-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.calendar-section {
+  background: #fffbea;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slots-section {
+  background: #fdf6e3;
+  padding: 25px;
+  border-radius: 15px;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.selected-date {
+  color: #d4a100;
+  font-weight: bold;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.slot-card {
+  padding: 12px 0;
+  border-radius: 10px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.3s;
+}
+
+.slot-card.available {
+  background-color: #4caf50; /* green */
+}
+
+.slot-card.booked {
+  background-color: #f44336; /* red */
+}
+
+.slot-card:hover {
+  transform: scale(1.05);
+}
+
+.no-slots {
+  color: #777;
+  margin-top: 20px;
+  font-style: italic;
+}
