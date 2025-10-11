@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
-import AppointmentSlots from "./pages/AppointmentSlots";
 import TranslateDropdown from "./components/TranslateDropdown";
 
 
