@@ -1,31 +1,33 @@
-/* Navbar Container */
+/* ------------------------
+   NAVBAR - CLEAN & RESPONSIVE
+   ------------------------ */
+
+/* Container */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 0.8rem 2.5rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: all 0.25s ease;
 }
 
 /* Logo */
 .nav-logo img {
-  height: 60px;
+  height: 50px;
   width: auto;
-  transform: scale(1.4);
-  margin-right: 3rem;
-  transition: transform 0.3s ease;
-}
-
-.nav-logo img:hover {
   transform: scale(1.5);
+  margin-right: 2.5rem;
+  transition: transform 0.25s ease;
 }
+.nav-logo img:hover { transform: scale(1.6); }
 
-/* Navigation Links */
+/* Main menu (desktop) */
 .nav-links {
   list-style: none;
   display: flex;
@@ -33,9 +35,16 @@
   gap: 1.2rem;
   margin: 0;
   padding: 0;
+  transition: all 0.25s ease;
 }
 
-/* Tabs (All Same Style Now) */
+/* Menu item style */
+.nav-links li {
+  /* ensure consistent spacing */
+  display: inline-flex;
+  align-items: center;
+}
+
 .nav-links a,
 .success-tab {
   text-decoration: none;
@@ -46,99 +55,187 @@
   padding: 0.5rem 1rem;
   border-radius: 25px;
   border: 2px solid transparent;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-/* Hover Effect (Same for all tabs) */
 .nav-links a:hover,
 .success-tab:hover {
   background-color: #ffe082;
-  color: #000000;
+  color: #000;
   border: 2px solid #ffd54f;
- 
 }
 
-/* Active Tab */
 .nav-links .active,
 .success-tab.active {
   background-color: #fdd835;
-  color: #000000;
+  color: #000;
   border: 2px solid #fbc02d;
   transform: scale(1.05);
 }
 
-/* Translation Dropdown on the right */
-.translate-dropdown {
-  margin-left: auto; /* push to right */
-}
-
-.translate-dropdown select {
-  padding: 6px 12px;
-  border-radius: 25px;
-  border: 2px solid #fbc02d;
-  background-color: #fbe9a3;
-  color: #004d40;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.translate-dropdown select:hover {
-  background-color: #ffe082;
-  border-color: #ffd54f;
-}
-
-.translate-dropdown select:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(251, 233, 163, 0.8);
-}
-
-/* Translation Dropdown on the right */
+/* Desktop translator (right side) */
 .translate-dropdown {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-/* Optional: style the Google Translate iframe container */
-.translate-dropdown .goog-te-combo {
-  padding: 6px 12px;
-  border-radius: 25px;
-  border: 2px solid #fbc02d;
-  background-color: #fbe9a3;
-  color: #004d40;
-  font-weight: 600;
+/* normal select inside translator (if used) */
+.translate-dropdown select,
+.goog-te-combo {
+  padding: 6px 12px !important;
+  border-radius: 25px !important;
+  border: 2px solid #fbc02d !important;
+  background-color: #fbe9a3 !important;
+  color: #004d40 !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+}
+
+/* Hide Google logo text from widget if present */
+.goog-logo-link,
+.goog-te-gadget span { display: none !important; }
+
+/* Hamburger (hidden on desktop) */
+.hamburger {
+  display: none;
+  width: 30px;
+  height: 22px;
+  flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin-left: auto; /* places hamburger to right of menu */
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #004d40;
+  border-radius: 3px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.hamburger.active span:nth-child(1){ transform: rotate(45deg) translate(4px, 6px); }
+.hamburger.active span:nth-child(2){ opacity: 0; }
+.hamburger.active span:nth-child(3){ transform: rotate(-45deg) translate(4px, -6px); }
+
+/* ===========================
+   MOBILE / TABLET ADAPTATIONS
+   =========================== */
+
+/* tablet */
+@media (max-width: 992px) {
+  .navbar { padding: 0.6rem 1.2rem; flex-wrap: wrap; }
+  .nav-logo img { height: 48px; margin-right: 1.5rem; }
 }
 
-.translate-dropdown .goog-te-combo:hover {
-  background-color: #ffe082;
-  border-color: #ffd54f;
-}
-
-.translate-dropdown .goog-te-combo:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(251, 233, 163, 0.8);
-}
-
-
-/* Responsive */
+/* mobile */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
+  /* layout adjustments */
+  .navbar { padding: 0.5rem 1rem; align-items: center; }
 
+  /* keep logo visible but smaller */
+  .nav-logo img { height: 44px; margin-right: 1rem; transform: scale(1.4); }
+
+  /* show hamburger */
+  .hamburger { display: flex; }
+
+  /* hide desktop translator (we'll show it inside menu) */
+  .translate-dropdown { display: none; }
+
+  /* mobile menu panel (hidden by default) */
   .nav-links {
+    position: absolute;
+    top: 64px; /* below navbar */
+    right: 14px;
+    width: calc(100% - 28px);
+    max-width: 420px;
+    display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 12px;                /* uniform spacing between items */
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.99);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transform: translateY(-10px) scale(.98);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.22s ease;
+    z-index: 200;
   }
 
-  .nav-logo img {
-    height: 60px;
-    margin-bottom: 0.5rem;
+  /* when hamburger toggles menu, add .open to nav-links */
+  .nav-links.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* menu item layout on mobile */
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a,
+  .success-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  /* Add translator inside mobile menu: hidden by default, shown in menu flow */
+  .nav-links .translate-dropdown-mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .nav-links .translate-dropdown-mobile select,
+  .nav-links .translate-dropdown-mobile .goog-te-combo {
+    width: 90%;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* very small phones */
+@media (max-width: 420px) {
+  .nav-links { right: 8px; top:58px; max-width: 92%; padding: 12px; gap: 10px; }
+  .nav-logo img { height: 40px; margin-right: 0.8rem; }
+  .hamburger { width: 28px; height: 20px; }
+  .nav-links a, .success-tab { font-size: 0.95rem; padding: 9px 10px; }
+}
+
+/* Only show desktop translate on larger screens */
+.translate-dropdown.desktop-only {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop translate on mobile */
+  .translate-dropdown.desktop-only {
+    display: none;
+  }
+
+  /* Show translate inside hamburger menu */
+  .translate-mobile {
+    display: block;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .translate-mobile #google_translate_element {
+    display: inline-block;
+    width: 90%;
   }
 }
