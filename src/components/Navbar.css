@@ -239,3 +239,33 @@
     width: 90%;
   }
 }
+
+.hotels-btn {
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #004d40;
+  background-color: #fbe9a3;
+  padding: 0.45rem 1rem;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hotels-btn:hover {
+  background-color: #ffe082;
+  color: #000;
+  border: 2px solid #ffd54f;
+}
+
+/* Hide mobile on desktop & vice versa */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
+
+@media (max-width:768px){
+  .desktop-only{ display:none; }
+  .mobile-only{ display:block; width:100%; text-align:center; }
+}
+

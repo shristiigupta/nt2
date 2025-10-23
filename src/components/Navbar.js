@@ -86,10 +86,27 @@ function Navbar() {
         <li className="translate-mobile">
           <div id="google_translate_element"></div>
         </li>
+        
       </ul>
 
       {/* Keep desktop Google Translate on right */}
       <div className="translate-dropdown desktop-only" id="google_translate_element"></div>
+
+      {/* Hotels Near Me Button (Desktop Only) */}
+      <button
+        className="hotels-btn desktop-only"
+        onClick={() => {
+          window.open(
+            "https://www.google.com/maps/search/Hotels/@28.6622557,77.3533587,15z/data=!3m1!4b1!4m7!2m6!3m5!2sSantulan+Holistic+Solutions+and+Neurotherapy+Center!3s0x5a0af2e9444593f:0xef13883481b28168!4m2!1d77.358132!2d28.659551?entry=ttu&g_ep=EgoyMDI1MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+          );
+          setIsMenuOpen(false);
+        }}
+      >
+        Hotels Near Me
+      </button>
+
+      <div className="translate-dropdown desktop-only" id="google_translate_element"></div>
+
 
     </nav>
   );
