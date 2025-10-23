@@ -269,3 +269,64 @@
   .mobile-only{ display:block; width:100%; text-align:center; }
 }
 
+.hotels-tab {
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #004d40;
+  background-color: #fbe9a3;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hotels-tab:hover {
+  background-color: #ffe082;
+  color: #000;
+  border: 2px solid #ffd54f;
+}
+
+/* Optional: match mobile button width */
+@media (max-width: 768px) {
+  .hotels-tab {
+    width: 100%;
+    text-align: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+}
+
+/* Desktop right section */
+.desktop-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hide mobile translate in desktop menu */
+.translate-mobile {
+  display: none;
+}
+
+/* Show mobile translate inside menu on small screens */
+@media (max-width: 768px) {
+  .desktop-right {
+    display: none;
+  }
+
+  .translate-mobile {
+    display: block;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .translate-mobile #google_translate_element {
+    width: 90%;
+    display: inline-block;
+  }
+}
