@@ -95,7 +95,7 @@ function Navbar() {
               setIsMenuOpen(false);
             }}
           >
-            Hotels Near Me
+            Nearby Hotels
           </button>
         </li>
 
@@ -119,7 +119,7 @@ function Navbar() {
             );
           }}
         >
-          Hotels Near Me
+          Nearby Hotels
         </button>
       </div>
     </nav>
