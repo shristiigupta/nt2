@@ -1,12 +1,6 @@
-/* ------------------------
-   NAVBAR - CLEAN & RESPONSIVE
-   ------------------------ */
-
-/* Container */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   padding: 0.8rem 2.5rem;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(8px);
@@ -14,10 +8,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: all 0.25s ease;
 }
 
-/* Logo */
 .nav-logo img {
   height: 50px;
   width: auto;
@@ -27,7 +19,6 @@
 }
 .nav-logo img:hover { transform: scale(1.6); }
 
-/* Main menu (desktop) */
 .nav-links {
   list-style: none;
   display: flex;
@@ -35,18 +26,12 @@
   gap: 1.2rem;
   margin: 0;
   padding: 0;
-  transition: all 0.25s ease;
 }
-
-/* Menu item style */
-.nav-links li {
-  /* ensure consistent spacing */
-  display: inline-flex;
-  align-items: center;
-}
+.nav-links li { display: inline-flex; align-items: center; }
 
 .nav-links a,
-.success-tab {
+.success-tab,
+.hotels-tab {
   text-decoration: none;
   font-size: 1.15rem;
   font-weight: 600;
@@ -57,50 +42,26 @@
   border: 2px solid transparent;
   transition: all 0.25s ease;
   cursor: pointer;
-  display: inline-block;
   white-space: nowrap;
+  display: inline-block;
 }
-
 .nav-links a:hover,
-.success-tab:hover {
+.success-tab:hover,
+.hotels-tab:hover {
   background-color: #ffe082;
   color: #000;
   border: 2px solid #ffd54f;
 }
-
 .nav-links .active,
-.success-tab.active {
+.success-tab.active,
+.hotels-tab.active {
   background-color: #fdd835;
   color: #000;
   border: 2px solid #fbc02d;
   transform: scale(1.05);
 }
 
-/* Desktop translator (right side) */
-.translate-dropdown {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-
-/* normal select inside translator (if used) */
-.translate-dropdown select,
-.goog-te-combo {
-  padding: 6px 12px !important;
-  border-radius: 25px !important;
-  border: 2px solid #fbc02d !important;
-  background-color: #fbe9a3 !important;
-  color: #004d40 !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
-  font-family: inherit !important;
-}
-
-/* Hide Google logo text from widget if present */
-.goog-logo-link,
-.goog-te-gadget span { display: none !important; }
-
-/* Hamburger (hidden on desktop) */
+/* Hamburger */
 .hamburger {
   display: none;
   width: 30px;
@@ -108,7 +69,7 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  margin-left: auto; /* places hamburger to right of menu */
+  margin-left: auto;
 }
 .hamburger span {
   display: block;
@@ -122,40 +83,39 @@
 .hamburger.active span:nth-child(2){ opacity: 0; }
 .hamburger.active span:nth-child(3){ transform: rotate(-45deg) translate(4px, -6px); }
 
-/* ===========================
-   MOBILE / TABLET ADAPTATIONS
-   =========================== */
-
-/* tablet */
-@media (max-width: 992px) {
-  .navbar { padding: 0.6rem 1.2rem; flex-wrap: wrap; }
-  .nav-logo img { height: 48px; margin-right: 1.5rem; }
+/* Desktop Right Section */
+.desktop-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
+.translate-dropdown select,
+.goog-te-combo {
+  padding: 6px 12px !important;
+  border-radius: 25px !important;
+  border: 2px solid #fbc02d !important;
+  background-color: #fbe9a3 !important;
+  color: #004d40 !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+}
+.goog-logo-link,
+.goog-te-gadget span { display: none !important; }
 
-/* mobile */
+/* Mobile / Tablet */
 @media (max-width: 768px) {
-  /* layout adjustments */
-  .navbar { padding: 0.5rem 1rem; align-items: center; }
-
-  /* keep logo visible but smaller */
-  .nav-logo img { height: 44px; margin-right: 1rem; transform: scale(1.4); }
-
-  /* show hamburger */
   .hamburger { display: flex; }
+  .desktop-right { display: none; }
 
-  /* hide desktop translator (we'll show it inside menu) */
-  .translate-dropdown { display: none; }
-
-  /* mobile menu panel (hidden by default) */
   .nav-links {
     position: absolute;
-    top: 64px; /* below navbar */
+    top: 64px;
     right: 14px;
     width: calc(100% - 28px);
     max-width: 420px;
-    display: flex;
     flex-direction: column;
-    gap: 12px;                /* uniform spacing between items */
+    gap: 12px;
     padding: 14px 16px;
     background: rgba(255,255,255,0.99);
     border-radius: 12px;
@@ -167,166 +127,12 @@
     transition: all 0.22s ease;
     z-index: 200;
   }
-
-  /* when hamburger toggles menu, add .open to nav-links */
-  .nav-links.open {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* menu item layout on mobile */
-  .nav-links li {
-    width: 100%;
-  }
+  .nav-links.open { transform: translateY(0) scale(1); opacity:1; visibility: visible; pointer-events:auto; }
 
   .nav-links a,
-  .success-tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font-size: 1rem;
-    padding: 10px 12px;
-    border-radius: 10px;
-  }
+  .success-tab,
+  .hotels-tab { display: flex; justify-content:center; width:100%; padding:10px; border-radius:10px; font-size:1rem; }
 
-  /* Add translator inside mobile menu: hidden by default, shown in menu flow */
-  .nav-links .translate-dropdown-mobile {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 4px;
-  }
-  .nav-links .translate-dropdown-mobile select,
-  .nav-links .translate-dropdown-mobile .goog-te-combo {
-    width: 90%;
-    padding: 8px 10px !important;
-    border-radius: 10px !important;
-    font-size: 0.95rem !important;
-  }
-}
-
-/* very small phones */
-@media (max-width: 420px) {
-  .nav-links { right: 8px; top:58px; max-width: 92%; padding: 12px; gap: 10px; }
-  .nav-logo img { height: 40px; margin-right: 0.8rem; }
-  .hamburger { width: 28px; height: 20px; }
-  .nav-links a, .success-tab { font-size: 0.95rem; padding: 9px 10px; }
-}
-
-/* Only show desktop translate on larger screens */
-.translate-dropdown.desktop-only {
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  /* Hide desktop translate on mobile */
-  .translate-dropdown.desktop-only {
-    display: none;
-  }
-
-  /* Show translate inside hamburger menu */
-  .translate-mobile {
-    display: block;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-
-  .translate-mobile #google_translate_element {
-    display: inline-block;
-    width: 90%;
-  }
-}
-
-.hotels-btn {
-  text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #004d40;
-  background-color: #fbe9a3;
-  padding: 0.45rem 1rem;
-  border-radius: 25px;
-  border: 2px solid transparent;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.hotels-btn:hover {
-  background-color: #ffe082;
-  color: #000;
-  border: 2px solid #ffd54f;
-}
-
-/* Hide mobile on desktop & vice versa */
-.desktop-only { display: flex; }
-.mobile-only { display: none; }
-
-@media (max-width:768px){
-  .desktop-only{ display:none; }
-  .mobile-only{ display:block; width:100%; text-align:center; }
-}
-
-.hotels-tab {
-  text-decoration: none;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #004d40;
-  background-color: #fbe9a3;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  border: 2px solid transparent;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.hotels-tab:hover {
-  background-color: #ffe082;
-  color: #000;
-  border: 2px solid #ffd54f;
-}
-
-/* Optional: match mobile button width */
-@media (max-width: 768px) {
-  .hotels-tab {
-    width: 100%;
-    text-align: center;
-    padding: 10px 12px;
-    border-radius: 10px;
-  }
-}
-
-/* Desktop right section */
-.desktop-right {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Hide mobile translate in desktop menu */
-.translate-mobile {
-  display: none;
-}
-
-/* Show mobile translate inside menu on small screens */
-@media (max-width: 768px) {
-  .desktop-right {
-    display: none;
-  }
-
-  .translate-mobile {
-    display: block;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-
-  .translate-mobile #google_translate_element {
-    width: 90%;
-    display: inline-block;
-  }
+  .translate-mobile { display: block; margin-top: 0.5rem; text-align:center; }
+  .translate-mobile #google_translate_element { width: 90%; display: inline-block; }
 }

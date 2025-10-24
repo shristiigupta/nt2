@@ -1,33 +1,39 @@
 .translate-container {
   display: flex;
   align-items: center;
-  margin: 15px 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .translate-label {
-  margin-right: 10px;
+  margin-right: 8px;
   font-weight: 600;
   font-size: 14px;
   color: #333;
 }
 
-.translate-select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  cursor: pointer;
-  background: #fff;
-  transition: all 0.3s ease;
+.translate-select select,
+.goog-te-combo {
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid #ccc !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  background: #fff !important;
+  transition: all 0.3s ease !important;
 }
 
-.translate-select:hover {
-  border-color: #007bff;
+.translate-select select:hover,
+.goog-te-combo:hover {
+  border-color: #007bff !important;
 }
 
-.translate-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.translate-select select:focus,
+.goog-te-combo:focus {
+  outline: none !important;
+  border-color: #007bff !important;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5) !important;
 }
+
+/* Hide Google branding */
+.goog-logo-link,
+.goog-te-gadget span { display: none !important; }

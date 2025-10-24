@@ -5,7 +5,8 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
 import TranslateDropdown from "./components/TranslateDropdown";
-
+import Appointment from "./pages/Appointment";
+import ResidentialArrangements from "./pages/ResidentialArrangements";
 
 
 import "./App.css";
@@ -105,6 +106,8 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/appointment" element={<Appointment/>} />
+        <Route path="/residential" element={<ResidentialArrangements />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,54 @@
+.residential-page {
+  max-width: 850px;
+  margin: 50px auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  line-height: 1.7;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.residential-page h1 {
+  color: #00695c;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.residential-page h2 {
+  color: #004d40;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.residential-page p {
+  color: #444;
+  font-size: 1rem;
+}
+
+.residential-page button {
+  display: inline-block;
+  background: #fbe9a3;
+  color: black;
+  padding: 10px 22px;
+  border: none;
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+
+.residential-page button:hover {
+  background: #e4c95f;
+}
+
+.note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

@@ -6,7 +6,7 @@
     { "time": "1:00 PM", "status": "booked" },
     { "time": "3:00 PM", "status": "available" }
   ],
-  "2025-10-12": [
+  "2025-10-26": [
     { "time": "9:00 AM", "status": "available" },
     { "time": "10:00 AM", "status": "booked" },
     { "time": "11:00 AM", "status": "booked" },
