@@ -7,7 +7,8 @@ import ServicesSection from "./components/ServicesSection";
 import TranslateDropdown from "./components/TranslateDropdown";
 import Appointment from "./pages/Appointment";
 import ResidentialArrangements from "./pages/ResidentialArrangements";
-
+import Diseases from "./pages/Diseases";
+import Dietchart from "./pages/Dietchart";
 
 import "./App.css";
 
@@ -104,10 +105,11 @@ function App() {
             </>
           }
         />
-        <Route path="/about" element={<About />} />
+        <Route path="/diseases" element={<Diseases />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/appointment" element={<Appointment/>} />
         <Route path="/residential" element={<ResidentialArrangements />} />
+        <Route path="/dietchart" element={<Dietchart />} />
       </Routes>
     </Router>
   );

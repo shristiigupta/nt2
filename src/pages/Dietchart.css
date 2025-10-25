@@ -1,0 +1,194 @@
+/* ===== DIET CHART SECTION ===== */
+.dietchart-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 40px; /* increased gap between content and image */
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", sans-serif;
+    max-width: 1400px;
+    margin: 20px auto; /* center the card */
+}
+
+/* ===== Content ===== */
+.dietchart-content {
+    flex: 1 1 400px;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left; /* align text to left */
+}
+
+.dietchart-content h1 {
+    font-size: 2.2rem;
+    color: #00695c;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dietchart-content p {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.dietchart-content strong {
+    color: #00695c;
+}
+
+/* ===== Image ===== */
+.dietchart-image {
+    flex: 1 1 350px;
+    max-width: 800px; /* slightly bigger image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.dietchart-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dietchart-image img:hover {
+    transform: scale(1.01);
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 900px) {
+    .dietchart-section {
+        flex-direction: column;
+        padding: 30px 15px;
+        gap: 30px;
+    }
+
+    .dietchart-content {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .dietchart-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .dietchart-content p {
+        font-size: 0.95rem;
+    }
+
+    .dietchart-image {
+        max-width: 100%;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dietchart-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .dietchart-content p {
+        font-size: 0.9rem;
+    }
+
+    .dietchart-section {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+
+    .dietchart-image {
+        padding: 10px;
+    }
+}
+
+.download-buttons {
+    margin-top: 15px; /* space between image and buttons */
+    display: flex;
+    gap: 12px;
+    justify-content: center; /* center buttons */
+}
+
+.download-buttons button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #00695c;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.download-buttons button:hover {
+    background-color: #004d40;
+}
+
+.dietchart-image {
+    flex: 1 1 350px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column; /* stack image and buttons vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.dietchart-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    margin-bottom: 15px; /* space between image and buttons */
+}
+
+.download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.download-buttons button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #00695c;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.download-buttons button:hover {
+    background-color: #004d40;
+}
+
+/* Optional: make buttons stack vertically on very small screens */
+@media screen and (max-width: 480px) {
+    .download-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+

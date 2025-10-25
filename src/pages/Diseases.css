@@ -1,0 +1,102 @@
+/* ===== GENERAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #e8f5e9, #f8f9f3);
+  min-height: 100vh;
+  color: #222;
+}
+
+/* Container */
+.appointment-procedure-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.appointment-procedure-container h1 {
+  font-size: 2.8rem;
+  color: #00695c;
+  margin-bottom: 40px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.appointment-procedure-container h1::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 4px;
+  background-color: #fdd835;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Grid layout for services */
+.appointment-procedure-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual cards */
+.appointment-procedure-list li {
+  background-color: #ffffff;
+  padding: 25px 15px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #004d40;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.appointment-procedure-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(145deg, #e0f2f1, #ffffff);
+}
+
+/* Optional: add icons (if needed later) */
+.appointment-procedure-list li::before {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .appointment-procedure-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .appointment-procedure-list li {
+    font-size: 1rem;
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointment-procedure-container {
+    padding: 15px 20px;
+  }
+
+  .appointment-procedure-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .appointment-procedure-list li {
+    padding: 18px 10px;
+    font-size: 0.95rem;
+  }
+}

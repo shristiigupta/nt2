@@ -196,3 +196,37 @@
 
 
 }
+
+
+/* Nav Links */
+.nav-links a,
+.success-tab,
+.hotels-tab {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #004d40;
+  background-color: #fbe9a3;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: normal; /* allow wrapping */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center text horizontally */
+  text-align: center; /* center text if multiple lines */
+  line-height: 1.2; /* adjust line spacing */
+}
+
+/* Mobile: full width links */
+@media (max-width: 868px) {
+  .nav-links a,
+  .success-tab,
+  .hotels-tab {
+    width: 100%;
+    text-align: center;
+    white-space: normal; /* allow wrapping on mobile too */
+  }
+}

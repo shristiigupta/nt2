@@ -66,7 +66,11 @@ function Navbar() {
         </li>
         
         <li>
-          <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Diseases <br/>Treated</NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/dietchart" onClick={() => setIsMenuOpen(false)}>Diet Chart</NavLink>
         </li>
         
         <li>
@@ -77,11 +81,11 @@ function Navbar() {
               setIsMenuOpen(false);
             }}
           >
-            Success Stories
+            Success <br/>Stories
           </button>
         </li>
         <li>
-          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential Arrangements</NavLink>
+          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential <br/> Arrangements</NavLink>
         </li>
         <li>
           <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>Appointment</NavLink>
