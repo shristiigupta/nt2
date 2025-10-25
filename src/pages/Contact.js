@@ -27,8 +27,8 @@ const Contact = () => {
                     <p><strong>Address:</strong> 2021, Sector 16A, Vasundhara, Ghaziabad, Uttar Pradesh, India - 201012</p>
                     <p><strong>Website:</strong> <a href="https://neurotherapy.netlify.app" target="_blank" rel="noopener noreferrer">
                         neurotherapy.netlify.app  </a></p>
-                    <p><strong>Landmark:</strong> Please inquire directly to confirm nearest landmark</p>
-                    <p><strong>Open hours:</strong> Please call to confirm the timing</p>
+                    <p><strong>Landmark:</strong> Sahibabad Mandi (300 meter only) / Avas Vikas Training Center (200 meters only)</p>
+                    <p><strong>Open hours:</strong> 8.00 AM to 7.00 PM (by appointment only)</p>
 
                 </div>
 
