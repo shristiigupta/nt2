@@ -42,13 +42,34 @@
 }
 
 .residential-page button:hover {
-  background: #e4c95f;
+  background: #fbe9a3;
 }
 
 .note {
   margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #777;
+  color: #aa1c1c;
   font-style: italic;
+  font-weight: bold;
   text-align: center;
+}
+
+.transport-buttons {
+    display: flex;
+    gap: 10px; /* space between buttons */
+    margin-top: 10px; /* optional: add some space above */
+}
+
+.button-row {
+    display: flex;
+    align-items: center; /* vertical alignment */
+    gap: 15px; /* space between label and buttons */
+    margin: 15px 0;
+    flex-wrap: wrap; /* wrap on smaller screens */
+}
+
+.label {
+    font-size: 1.2rem; /* bigger font for label */
+    font-weight: bold;
+    color: #00695c;
+    min-width: 120px; /* ensures label has some width so buttons align nicely */
 }

@@ -7,23 +7,27 @@ function Navbar() {
 
   useEffect(() => {
     // Initialize Google Translate
-    if (!window.googleTranslateElementInit) {
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,hi,pa,mr,ta,es,fr,de,zh-CN,ar",
-            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false,
-          },
-          "google_translate_element"
-        );
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "en,hi,pa,mr,ta,es,fr,de,zh-CN,ar",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        "google_translate_element"
+      );
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "en,hi,pa,mr,ta,es,fr,de,zh-CN,ar",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        "google_translate_mobile"
+      );
+    };
 
-        
-      };
-    }
-
-    // Load Google Translate script only once
     if (!document.getElementById("google-translate-script")) {
       const script = document.createElement("script");
       script.id = "google-translate-script";
@@ -32,7 +36,9 @@ function Navbar() {
       script.async = true;
       document.body.appendChild(script);
     } else if (window.google && window.google.translate) {
-      window.googleTranslateElementInit();
+      setTimeout(() => {
+        window.googleTranslateElementInit();
+      }, 500); // delay to ensure menu div exists
     }
   }, []);
 
@@ -53,18 +59,16 @@ function Navbar() {
         <span></span>
       </div>
 
-      {/* Navigation Links */}
+      {/* Nav Links */}
       <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         <li>
-          <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>
-            Home
-          </NavLink>
+          <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>Home</NavLink>
         </li>
+        
         <li>
-          <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>
-            About Us
-          </NavLink>
+          <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
         </li>
+        
         <li>
           <button
             className="success-tab"
@@ -77,25 +81,22 @@ function Navbar() {
           </button>
         </li>
         <li>
-          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>
-            Residential Arrangements
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>
-            Appointment
-          </NavLink>
+          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential Arrangements</NavLink>
         </li>
         <li>
-          <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-            Contact Us
-          </NavLink>
+          <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>Appointment</NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
         </li>
 
+        {/* Google Translate Mobile */}
+        <li className="translate-mobile">
+          <div id="google_translate_mobile"></div>
+        </li>
       </ul>
 
-      {/* Desktop Translate on Right */}
+      {/* Desktop Google Translate */}
       <div className="desktop-right">
         <div id="google_translate_element" className="translate-dropdown"></div>
       </div>

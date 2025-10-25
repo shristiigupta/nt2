@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   padding: 0.8rem 2.5rem;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -17,7 +17,10 @@
   margin-right: 2.5rem;
   transition: transform 0.25s ease;
 }
-.nav-logo img:hover { transform: scale(1.6); }
+
+.nav-logo img:hover {
+  transform: scale(1.6);
+}
 
 .nav-links {
   list-style: none;
@@ -27,13 +30,17 @@
   margin: 0;
   padding: 0;
 }
-.nav-links li { display: inline-flex; align-items: center; }
+
+.nav-links li {
+  display: inline-flex;
+  align-items: center;
+}
 
 .nav-links a,
 .success-tab,
 .hotels-tab {
   text-decoration: none;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #004d40;
   background-color: #fbe9a3;
@@ -45,6 +52,7 @@
   white-space: nowrap;
   display: inline-block;
 }
+
 .nav-links a:hover,
 .success-tab:hover,
 .hotels-tab:hover {
@@ -52,6 +60,7 @@
   color: #000;
   border: 2px solid #ffd54f;
 }
+
 .nav-links .active,
 .success-tab.active,
 .hotels-tab.active {
@@ -71,17 +80,27 @@
   cursor: pointer;
   margin-left: auto;
 }
+
 .hamburger span {
   display: block;
   height: 3px;
   width: 100%;
   background: #004d40;
   border-radius: 3px;
-  transition: transform .25s ease, opacity .2s ease;
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
-.hamburger.active span:nth-child(1){ transform: rotate(45deg) translate(4px, 6px); }
-.hamburger.active span:nth-child(2){ opacity: 0; }
-.hamburger.active span:nth-child(3){ transform: rotate(-45deg) translate(4px, -6px); }
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -6px);
+}
 
 /* Desktop Right Section */
 .desktop-right {
@@ -89,6 +108,7 @@
   display: flex;
   align-items: center;
 }
+
 .translate-dropdown select,
 .goog-te-combo {
   padding: 6px 12px !important;
@@ -101,11 +121,15 @@
   font-family: inherit !important;
 }
 
-
 /* Mobile / Tablet */
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .desktop-right { display: none; }
+@media (max-width: 868px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .desktop-right {
+    display: none;
+  }
 
   .nav-links {
     position: absolute;
@@ -116,25 +140,59 @@
     flex-direction: column;
     gap: 12px;
     padding: 14px 16px;
-    background: rgba(255,255,255,0.99);
+    background: rgba(255, 255, 255, 0.99);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    transform: translateY(-10px) scale(.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px) scale(0.98);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: all 0.22s ease;
     z-index: 200;
   }
-  .nav-links.open { transform: translateY(0) scale(1); opacity:1; visibility: visible; pointer-events:auto; }
+
+  .nav-links.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
   .nav-links a,
   .success-tab,
-  .hotels-tab { display: flex; justify-content:center; width:100%; padding:10px; border-radius:10px; font-size:1rem; }
+  .hotels-tab {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
 
-  .translate-mobile { display: block; margin-top: 0.5rem; text-align:center; }
-  .translate-mobile #google_translate_element { width: 90%; display: inline-block; }
+  /* Mobile Google Translate */
+  .translate-mobile {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.translate-mobile select {
+  width: 100% !important;
+  border-radius: 25px !important;
+  padding: 6px 12px !important;
+  border: 2px solid #fbc02d !important;
+  background-color: #fbe9a3 !important;
+  color: #004d40 !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.translate-mobile #google_translate_mobile {
+    display: block !important;
+    width: 100% !important;
 }
 
 
 
+}
