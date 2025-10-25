@@ -5,14 +5,6 @@ import jsPDF from "jspdf";
 const Dietchart = () => {
     const imageSrc = "/dietchart.jpg";
 
-    // Download as JPG
-    const downloadImage = () => {
-        const link = document.createElement("a");
-        link.href = imageSrc;
-        link.download = "dietchart.jpg";
-        link.click();
-    };
-
     // Download as PDF
     const downloadPDF = () => {
         const doc = new jsPDF({
