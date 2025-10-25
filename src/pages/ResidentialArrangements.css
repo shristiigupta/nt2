@@ -1,19 +1,30 @@
 .residential-page {
   max-width: 850px;
   margin: 50px auto;
-  padding: 2.5rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 0; /* removed background padding */
   line-height: 1.7;
   font-family: "Segoe UI", sans-serif;
+  text-align: left; /* natural text alignment */
+  color: #333;
 }
 
 .residential-page h1 {
+  font-size: 2.8rem;
   color: #00695c;
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* optional yellow underline below heading */
+.residential-page h1::after {
+  content: "";
+  display: block;
+  margin: 0.5rem auto 0;
+  width: 100px;
+  height: 4px;
+  background-color: #ffd54f;
+  border-radius: 4px;
 }
 
 .residential-page h2 {
@@ -26,8 +37,10 @@
 .residential-page p {
   color: #444;
   font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
+/* Buttons styling */
 .residential-page button {
   display: inline-block;
   background: #fbe9a3;
@@ -42,9 +55,10 @@
 }
 
 .residential-page button:hover {
-  background: #fbe9a3;
+  background: #ffe680; /* slightly lighter on hover for natural feel */
 }
 
+/* Notes */
 .note {
   margin-top: 2rem;
   color: #aa1c1c;
@@ -53,23 +67,25 @@
   text-align: center;
 }
 
+/* Transport buttons layout */
 .transport-buttons {
-    display: flex;
-    gap: 10px; /* space between buttons */
-    margin-top: 10px; /* optional: add some space above */
+  display: flex;
+  gap: 10px; /* space between buttons */
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .button-row {
-    display: flex;
-    align-items: center; /* vertical alignment */
-    gap: 15px; /* space between label and buttons */
-    margin: 15px 0;
-    flex-wrap: wrap; /* wrap on smaller screens */
+  display: flex;
+  align-items: center; /* vertical alignment */
+  gap: 15px; /* space between label and buttons */
+  margin: 15px 0;
+  flex-wrap: wrap; /* wrap on smaller screens */
 }
 
 .label {
-    font-size: 1.2rem; /* bigger font for label */
-    font-weight: bold;
-    color: #00695c;
-    min-width: 120px; /* ensures label has some width so buttons align nicely */
+  font-size: 1.2rem; /* bigger font for label */
+  font-weight: bold;
+  color: #00695c;
+  min-width: 120px; /* ensures label has some width so buttons align nicely */
 }

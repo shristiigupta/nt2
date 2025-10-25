@@ -64,7 +64,9 @@ function Navbar() {
         <li>
           <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>Home</NavLink>
         </li>
-        
+        <li>
+          <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+        </li>
         <li>
           <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Diseases <br/>Treated</NavLink>
         </li>
