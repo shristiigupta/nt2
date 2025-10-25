@@ -1,13 +1,18 @@
+/* ===========================
+   RESIDENTIAL PAGE
+=========================== */
+
 .residential-page {
   max-width: 850px;
   margin: 50px auto;
-  padding: 0; /* removed background padding */
+  padding: 0 30px; /* side padding for natural spacing */
   line-height: 1.7;
   font-family: "Segoe UI", sans-serif;
-  text-align: left; /* natural text alignment */
+  text-align: left;
   color: #333;
 }
 
+/* Heading */
 .residential-page h1 {
   font-size: 2.8rem;
   color: #00695c;
@@ -16,7 +21,7 @@
   position: relative;
 }
 
-/* optional yellow underline below heading */
+/* Yellow underline for heading */
 .residential-page h1::after {
   content: "";
   display: block;
@@ -40,7 +45,7 @@
   margin-bottom: 1rem;
 }
 
-/* Buttons styling */
+/* Buttons */
 .residential-page button {
   display: inline-block;
   background: #fbe9a3;
@@ -55,7 +60,7 @@
 }
 
 .residential-page button:hover {
-  background: #ffe680; /* slightly lighter on hover for natural feel */
+  background: #ffe680;
 }
 
 /* Notes */
@@ -70,22 +75,84 @@
 /* Transport buttons layout */
 .transport-buttons {
   display: flex;
-  gap: 10px; /* space between buttons */
+  gap: 10px;
   margin-top: 10px;
   flex-wrap: wrap;
 }
 
 .button-row {
   display: flex;
-  align-items: center; /* vertical alignment */
-  gap: 15px; /* space between label and buttons */
+  align-items: center;
+  gap: 15px;
   margin: 15px 0;
-  flex-wrap: wrap; /* wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
 .label {
-  font-size: 1.2rem; /* bigger font for label */
+  font-size: 1.2rem;
   font-weight: bold;
   color: #00695c;
-  min-width: 120px; /* ensures label has some width so buttons align nicely */
+  min-width: 120px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 868px) {
+  .residential-page {
+    padding: 0 25px;
+  }
+
+  .residential-page h1 {
+    font-size: 2.4rem;
+  }
+
+  .residential-page h2 {
+    font-size: 1.2rem;
+  }
+
+  .residential-page p {
+    font-size: 0.95rem;
+  }
+
+  .label {
+    font-size: 1.1rem;
+    min-width: 100px;
+  }
+}
+
+/* Small screens (mobiles) */
+@media screen and (max-width: 480px) {
+  .residential-page {
+    padding: 0 20px;
+  }
+
+  .residential-page h1 {
+    font-size: 2rem;
+  }
+
+  .residential-page h2 {
+    font-size: 1.1rem;
+  }
+
+  .residential-page p {
+    font-size: 0.9rem;
+  }
+
+  .label {
+    font-size: 1rem;
+    min-width: 80px;
+  }
+
+  .transport-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

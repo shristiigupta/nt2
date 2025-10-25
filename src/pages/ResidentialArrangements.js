@@ -28,6 +28,25 @@ function ResidentialArrangements() {
                 >
                     Nearby Hotels & Lodges
                 </button>
+
+
+                <button
+                    onClick={() => {
+                        window.open("https://www.makemytrip.com/", "_blank");
+                    }}
+                >
+                    Make My Trip
+                </button>
+
+                <button
+                    onClick={() => {
+                        window.open("https://www.goibibo.com/", "_blank");
+                    }}
+                >
+                    Goibibo
+                </button>
+
+
             </div>
 
             <div className="button-row">

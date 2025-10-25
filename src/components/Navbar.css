@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   align-items: center;
-  padding: 0.8rem 2.5rem;
+  padding: 0.6rem 2.0rem;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.1rem;
   margin: 0;
   padding: 0;
 }
@@ -40,7 +40,7 @@
 .success-tab,
 .hotels-tab {
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: #004d40;
   background-color: #fbe9a3;
@@ -122,7 +122,7 @@
 }
 
 /* Mobile / Tablet */
-@media (max-width: 868px) {
+@media (max-width: 968px) {
   .hamburger {
     display: flex;
   }
@@ -138,7 +138,7 @@
     width: calc(100% - 28px);
     max-width: 420px;
     flex-direction: column;
-    gap: 12px;
+    gap: 4px;
     padding: 14px 16px;
     background: rgba(255, 255, 255, 0.99);
     border-radius: 12px;
@@ -149,6 +149,7 @@
     pointer-events: none;
     transition: all 0.22s ease;
     z-index: 200;
+    font-size: 0.5rem;
   }
 
   .nav-links.open {
@@ -166,7 +167,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.5rem;
   }
 
   /* Mobile Google Translate */

@@ -12,14 +12,6 @@ function HeroSection() {
           natural balance and empower you to live a pain-free, healthy, and energetic life.
         </p>
 
-        <div
-          className="success-link"
-          onClick={() =>
-            window.open("https://youtube.com/@SantulanHolisticSolutions", "_blank")
-          }
-        >
-          🎥 View Success Stories
-        </div>
         
       </div>
 
