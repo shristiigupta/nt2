@@ -15,10 +15,10 @@ const services = [
 
 const Diseases = () => {
   return (
-    <div className="appointment-procedure-container">
+    <div className="diseases-container">
       <h1>Diseases Treated</h1>
 
-      <ul className="appointment-procedure-list">
+      <ul className="diseases-list">
         {services.map((service, index) => (
           <li key={index}>{service}</li>
         ))}
