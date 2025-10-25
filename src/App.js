@@ -12,18 +12,6 @@ import Dietchart from "./pages/Dietchart";
 
 import "./App.css";
 
-function About() {
-  return (
-    <div className="page about-page">
-      <img
-        src="/nt_sticker.jpg"
-        alt="Neurotherapy Sticker"
-        className="about-img"
-      />
-    </div>
-  );
-}
-
 function Contact() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
