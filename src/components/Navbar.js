@@ -19,30 +19,7 @@ function Navbar() {
           "google_translate_element"
         );
 
-        // Add "Select Language" placeholder
-        const observer = new MutationObserver(() => {
-          const select = document.querySelector("#google_translate_element select");
-          if (select && !select.dataset.placeholderSet) {
-            select.dataset.placeholderSet = "true";
-
-            // Remove the default Google "G" option
-            const gOption = select.querySelector("option");
-            if (gOption) gOption.remove();
-
-            // Add custom placeholder at top
-            const firstOption = document.createElement("option");
-            firstOption.text = "Select Language";
-            firstOption.value = "";
-            firstOption.selected = true;
-            firstOption.disabled = true;
-            select.prepend(firstOption);
-          }
-        });
-
-        observer.observe(document.getElementById("google_translate_element"), {
-          childList: true,
-          subtree: true,
-        });
+        
       };
     }
 

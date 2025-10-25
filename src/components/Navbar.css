@@ -100,8 +100,7 @@
   cursor: pointer !important;
   font-family: inherit !important;
 }
-.goog-logo-link,
-.goog-te-gadget span { display: none !important; }
+
 
 /* Mobile / Tablet */
 @media (max-width: 768px) {
@@ -136,3 +135,6 @@
   .translate-mobile { display: block; margin-top: 0.5rem; text-align:center; }
   .translate-mobile #google_translate_element { width: 90%; display: inline-block; }
 }
+
+
+
