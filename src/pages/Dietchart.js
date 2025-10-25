@@ -36,34 +36,24 @@ const Dietchart = () => {
     return (
         <section className="dietchart-section">
             <div className="dietchart-content">
-                <h1>Diet Chart</h1>
+                <h1>Daily Routine</h1>
                 <br />
-                <p>Namaskar,</p>
-                <p>Welcome to Santulan Holistic Solutions.</p>
-                <p>
-                    This is the diet chart used during Neurotherapy treatment.
-                    From the above diet chart, select and eat only those items that are available to you
-                    and that you like, according to your personal needs.
-                </p>
-                <p>
-                    Take 20 minutes of sunlight daily. Walking barefoot on grass or on the ground is also very beneficial.
-                    If you can do pranayama at the same time, it adds even more benefit.
-                </p>
-                <p>
-                    Oil massage followed by a bath is very good — use coconut oil in summer and pure sesame oil in winter.
-                    Eat only when you feel hungry; do not eat otherwise. Replace sugar with jaggery, refined oil with pure oil, and white salt with rock salt.
-                </p>
-                <p>
-                    If possible, sit in Chair Pose (Kursi Asan) or Vajrasan for 15 minutes after eating.
-                    Patients with kidney stones should avoid taking lime (calcium).
-                </p>
-                <p>
-                    With regards,<br />
-                    <strong>Wellness Team</strong><br />
-                    Santulan Holistic Solutions<br />
-                    8130608275 (WhatsApp)
-                </p>
-            </div>
+                <ul>
+                    <li>Follow the Diet Chart used during Neurotherapy treatment </li>
+                    <li>In the diet chart, select and eat only those items that are available to you
+                        and that you like, according to your personal needs.</li>
+                    <li>Take 20 minutes of sunlight daily. </li>
+                    <li>Walking barefoot on grass or on the ground is also very beneficial.
+                        If you can do pranayama at the same time, it adds even more benefit</li>
+                    <li>Oil massage followed by a bath is very good — use coconut oil in summer and pure sesame oil in winter.</li>
+                    <li>Eat only when you feel hungry; do not eat otherwise</li>
+                    <li> Replace sugar with jaggery, refined oil with pure oil, and white salt with rock salt.</li>
+                    <li> If possible, sit in Chair Pose (Kursi Asan) or Vajrasan for 15 minutes after eating.</li>
+                    <li>Patients with kidney stones should avoid taking lime (calcium).</li>
+
+
+                </ul>
+            </div >
 
             <div className="dietchart-image">
                 <img src="/dietchart.jpg" alt="Neurotherapy Experts" />
@@ -74,7 +64,7 @@ const Dietchart = () => {
                 </div>
             </div>
 
-        </section>
+        </section >
     );
 };
 

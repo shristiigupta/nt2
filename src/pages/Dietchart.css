@@ -43,6 +43,10 @@
     margin-bottom: 12px;
 }
 
+.dietchart-content li{
+    line-height:170%;
+}
+
 .dietchart-content strong {
     color: #00695c;
 }

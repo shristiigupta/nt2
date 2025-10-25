@@ -6,11 +6,7 @@ const services = [
   "Sciatica",
   "Back Pain",
   "Cervical",
-  "Joint Pain",
-  "Migraine",
-  "Stress Management",
-  "Posture Correction",
-  // Add more in future easily
+  
 ];
 
 const Diseases = () => {
