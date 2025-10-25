@@ -10,14 +10,14 @@ function ResidentialArrangements() {
                 Patients coming from far locations may require short-term stay nearby. <br />
                 Below are nearby options for accommodation and support services. <br /><br />
 
-                <span className="note"> Note: </span> These services are external and <span className="note">  NOT MANAGED </span> by Santulan Holistic
+                <span className="note"> Note: </span> These services are external and are <span className="note">  NOT MANAGED </span> by Santulan Holistic
                 Solutions. Patients may choose the services as per their requirements.
 
             </p>
 
 
             <div className="button-row">
-                <span className="label">Accommodation options: </span>
+                <span className="label">Accommodation Options: </span>
                 <button
                     onClick={() => {
                         window.open(
@@ -42,24 +42,40 @@ function ResidentialArrangements() {
                 >
                     Nearby Tiffin / Food Services
                 </button>
+
+                <button
+                    onClick={() => {
+                        window.open("https://www.swiggy.com/", "_blank");
+                    }}
+                >
+                    Swiggy
+                </button>
+
+                <button
+                    onClick={() => {
+                        window.open("https://www.zomato.com/ncr", "_blank");
+                    }}
+                >
+                    Zomato
+                </button>
             </div>
 
             <div className="button-row">
                 <span className="label">Transport:</span>
                 <button
                     onClick={() => {
-                        window.open("https://www.olacabs.com/", "_blank");
-                    }}
-                >
-                    Ola
-                </button>
-
-                <button
-                    onClick={() => {
                         window.open("https://www.uber.com/in/en/", "_blank");
                     }}
                 >
                     Uber
+                </button>
+
+                <button
+                    onClick={() => {
+                        window.open("https://www.olacabs.com/", "_blank");
+                    }}
+                >
+                    Ola
                 </button>
 
                 <button

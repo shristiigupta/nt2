@@ -7,29 +7,14 @@ const AppointmentSlots = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
 
-  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTaY5X1aeOz7WXI2SCzw1B8xIn_FMD_cXtlWE4_2-V2BMRIdxvVQ3x-TS7Rieocf21IdMwlVxSi3Fo9/pub?gid=0&single=true&output=csv";
-
+  // Fetch slots from backend
   const fetchSlots = async (date) => {
+    const formattedDate = date.toISOString().split("T")[0];
     try {
-      const res = await fetch(SHEET_CSV_URL);
-      const text = await res.text();
-      const rows = text.split("\n").map((r) => r.split(","));
-      // rows[0] = header: ['Date','08:00','10:00','12:00']
+      const res = await fetch(`http://localhost:5000/api/slots?date=${formattedDate}`);
+      const data = await res.json();
+      setSlots(data);
 
-      const formattedDate = date.toISOString().split("T")[0];
-
-      const dayRow = rows.find((row) => row[0] === formattedDate);
-      if (!dayRow) {
-        setSlots([]);
-        return;
-      }
-
-      const slotData = rows[0].slice(1).map((time, i) => ({
-        time,
-        status: dayRow[i + 1].trim() === "green" ? "available" : "booked",
-      }));
-
-      setSlots(slotData);
     } catch (err) {
       console.error("Error fetching slots:", err);
       setSlots([]);
@@ -64,21 +49,15 @@ const AppointmentSlots = () => {
         <div className="slots-section">
           <h3>
             Slots for{" "}
-            <span className="selected-date">{selectedDate.toDateString()}</span>
+            <span className="selected-date">
+              {selectedDate.toDateString()}
+            </span>
           </h3>
 
           {slots.length > 0 ? (
             <div className="slots-grid">
               {slots.map((slot, index) => (
-                <div
-                  key={index}
-                  className={`slot-card ${slot.status}`}
-                  style={{
-                    backgroundColor:
-                      slot.status === "available" ? "green" : "red",
-                    color: "#fff",
-                  }}
-                >
+                <div key={index} className={`slot-card ${slot.status}`}>
                   {slot.time}
                 </div>
               ))}

@@ -31,18 +31,17 @@ const Appointment = () => {
           
 
           <li>
-            Santulan Wellness Team will block your date and time and share a QR code for payment.
+            Santulan Wellness Team will block your date and time for two hours and share a QR code for payment.
           </li>
 
           <li>
-            Please make the payment as specified and share the payment screenshot to confirm your appointment. 
-            <br />
-            If you have already made an advance payment, you may skip this step.
+            Please make the payment as specified within the blocking period and share the payment screenshot to confirm your appointment. 
+            
           </li>
 
           <li>
             Your appointment will be confirmed only after the payment is received. 
-            If the payment is not made, the appointment will not be considered confirmed and the time slot may be given to someone else.
+            If the payment is not made within the blocking period, the appointment will not be considered confirmed and the time slot may be given to someone else.
           </li>
 
           <li>
