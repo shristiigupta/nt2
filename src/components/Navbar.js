@@ -72,7 +72,7 @@ function Navbar() {
         </li>
 
         <li>
-          <NavLink to="/dietchart" onClick={() => setIsMenuOpen(false)}>Diet Chart</NavLink>
+          <NavLink to="/dietchart" onClick={() => setIsMenuOpen(false)}>Daily <br />Routine</NavLink>
         </li>
         
         <li>
@@ -83,7 +83,7 @@ function Navbar() {
               setIsMenuOpen(false);
             }}
           >
-            Success <br/>Stories
+            Customer <br/>Reviews
           </button>
         </li>
         <li>

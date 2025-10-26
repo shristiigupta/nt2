@@ -9,47 +9,87 @@ const About = () => {
         <h1>About Us</h1>
 
         <p>
-          <strong>Santulan Holistic Solutions</strong> is dedicated to helping people regain health and
-          balance through natural, non-invasive neurotherapy treatments. Our center believes in the
-          body's ability to heal itself when guided with the right techniques.
+          <strong>
+            <span className="hover-img">
+              Santulan Holistic Solutions
+              <img src="/images/santulan.png" alt="Santulan" className="hover-image" />
+            </span>
+          </strong>{" "} is dedicated to helping people regain health and balance through natural, non-invasive neurotherapy treatments. Our centre believes in the body's ability to heal itself when guided with the right techniques.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+          <strong>“To provide personalized and ethical care to the patients” <br /></strong>
+          The mission of Santulan Holistic Solutions is to provide personalized and ethical care to the patients. The team is fully trained to create a supportive and positive environment. The centre welcomes people of all ages seeking relief from most of the diseases including different types of pains, stomach problems, gynaecological problems, neurological problems, and also for those wishing to enhance their quality of life. Santulan Holistic Solutions stands as a trusted choice for neurotherapy, offering genuine care and reliable treatments to help you restore balance in your life.
+        </p>
+
+        <h2>What is Neurotherapy?</h2>
+        <p>
+          Neurotherapy is a scientifically backed holistic healing system developed by{" "} 
+          <span className="hover-img">
+            Dr. Lajpatrai Mehra
+            <img src="/images/lajpatrai.jpg" alt="Dr. Lajpatrai" className="hover-image" />
+          </span>{" "} in the 20th century. <br /><br />
+          This drug-free therapy draws from the ancient science of Nadi Vigyan and focuses on achieving balance among the body’s organs. It is founded on the principle that diseases occur due to excessive or reduced functioning of one or more organs, which disrupts the body’s chemical harmony. Neurotherapy restores equilibrium by stimulating or calming the affected organs as needed. <br /><br />
+          Rather than treating symptoms, Neurotherapy addresses the root cause of ailments, promoting both physical and mental well-being. It has shown positive results even in cases involving genetic disorders. Many patients with chronic or long-standing conditions have experienced significant improvement through this therapeutic approach.
+        </p>
+
+        <h2>How Does Neurotherapy Work?</h2>
+        <p>
+          Neurotherapy, created by Dr. Lajpatrai Mehra in the 20th century, is a comprehensive, science-based healing approach.
         </p>
 
         <p>
-          Led by <strong>Shri Vishal Gupta</strong>, a government-certified senior neurotherapist, our aim is
-          to offer effective, holistic care for every patient.
+          This method uniquely integrates non-pharmaceutical techniques with modern scientific diagnostics, utilizing tools such as X-rays, sonography, pathology tests, and its proprietary Neurotherapy assessment. It posits that health issues stem from imbalances in acids, alkalis, hormones, and enzymes within the body. Dr. Mehra’s technique seeks to correct these chemical discrepancies by applying controlled pressure, mostly using the feet and sometimes the hands, on specific body areas for predetermined durations and frequencies to regulate the function of targeted glands and organs.
         </p>
 
         <p>
-          Mr. Vishal Gupta brings more than <strong>25 years of experience in public service</strong>. After
-          retiring, he established Santulan Holistic Solutions to serve the community through expert
-          neurotherapy care. He has completed senior neurotherapy training from an organization under
-          the Ministry of Skill Development, Government of India.
+          Neurotherapy holds that the immune system already has the capability to combat various infections, bacteria, and viruses without the need for medications that might suppress its function. It asserts that everyone inherits around one hundred thousand genetic codes from their parents, corresponding to protein markers on cell surfaces, which enable the production of antibodies against numerous antigens. Over generations, this natural mechanism has provided humans with built-in immunity against diseases.
+        </p>
+
+        <h2>How Treatments Are Given</h2>
+        <p>
+          The initial consultation includes a comprehensive review of the patient’s medical history. A visual assessment follows, involving observation of the eyes, tongue color, nails, skin, and other indicators.
+        </p>
+        <p>
+          Next, the practitioner conducts abdominal palpation to identify Neurotherapy pain points, which form the basis for creating a personalized treatment plan. Depending on the patient’s age and health condition, treatments are administered through the hands or feet. This therapy stands out for delivering remarkable results without the use of medication.
+        </p>
+
+        <p>Health issues effectively managed by this approach include:</p>
+
+        <ul>
+          <li>Cervical and lumbar spondylosis</li>
+          <li>Rheumatoid arthritis (AR+)</li>
+          <li>Hormonal imbalances</li>
+          <li>PCOD</li>
+          <li>Scoliosis</li>
+          <li>Psoriasis</li>
+          <li>Genetic disorders such as Down Syndrome</li>
+          <li>Autism</li>
+          <li>Cerebral palsy</li>
+          <li>Delayed developmental milestones</li>
+          <li>Infertility</li>
+          <li>Angina</li>
+          <li>Asthma</li>
+          <li>Migraine</li>
+          <li>Allergies</li>
+          <li>Muscle cramps</li>
+          <li>Post-surgical complications</li>
+          <li>Digestive issues like indigestion, gas, and acidity</li>
+        </ul>
+
+        <h2>About Vishal Gupta</h2>
+        <p>
+          <strong>
+            <span className="hover-img">
+              Vishal Gupta
+              <img src="/images/vishal.jpg" alt="Vishal Gupta" className="hover-image" />
+            </span>
+          </strong>{" "} is a Government Certified Senior Neurotherapist, who is dedicated and committed to promote health and healing through natural and scientific approaches. With the deep sense of service, he aims to help people restore balance in mind and body, empowering them to lead healthier and happier lives.
         </p>
 
         <p>
-          Neurotherapy is a unique therapy developed by <strong>Shri Lajpat Rai Mehra ji</strong>. This approach
-          blends ancient Indian knowledge with modern understanding of human anatomy and physiology.
-          It is completely natural — it uses no medicines, oils, or invasive techniques.
-        </p>
-
-        <p>
-          The therapy focuses on restoring the body's internal balance by manipulating nerves,
-          muscles, and joints. By applying specific scientific techniques, it helps stimulate or relax
-          different organs, aiming to restore harmony among the body’s biochemical processes and improve
-          overall well-being. Lajpat Rai Mehra ji’s compassionate vision has led to hundreds of
-          neurotherapy centers across India and abroad.
-        </p>
-
-        <p>
-          At Santulan Holistic Solutions, patients receive personalized and ethical care. The team is
-          fully trained to create a supportive, positive environment. The center welcomes people of all
-          ages seeking relief from long-term pain, neurological problems, and those wishing to enhance
-          their quality of life.
-        </p>
-
-        <p>
-          <strong>Santulan Holistic Solutions stands as a trusted choice</strong> for neurotherapy, offering
-          genuine care and reliable treatments to help you restore balance in your life.
+          Moreover, he brings more than 25 years of experience in public service and now has established Santulan Holistic Solutions which aims to offer effective and holistic care for every patient and to serve the community through expert Neurotherapy care.
         </p>
 
       </div>
