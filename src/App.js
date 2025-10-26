@@ -10,6 +10,7 @@ import Diseases from "./pages/Diseases";
 import Dietchart from "./pages/Dietchart";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Reviews from "./pages/Reviews";
 
 import "./App.css";
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/dietchart" element={<Dietchart />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/reviews" element={<Reviews />} />
 
       </Routes>
     </Router>

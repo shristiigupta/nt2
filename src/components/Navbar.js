@@ -68,26 +68,21 @@ function Navbar() {
           <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
         </li>
         <li>
-          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Diseases <br/>Treated</NavLink>
+          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Diseases <br />Treated</NavLink>
         </li>
 
         <li>
           <NavLink to="/dietchart" onClick={() => setIsMenuOpen(false)}>Daily <br />Routine</NavLink>
         </li>
-        
+
         <li>
-          <button
-            className="success-tab"
-            onClick={() => {
-              window.open("https://youtube.com/@SantulanHolisticSolutions", "_blank");
-              setIsMenuOpen(false);
-            }}
-          >
-            Customer <br/>Reviews
-          </button>
+          <NavLink to="/reviews" onClick={() => setIsMenuOpen(false)}>
+            Customer <br /> Reviews
+          </NavLink>
         </li>
+
         <li>
-          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential <br/> Arrangements</NavLink>
+          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential <br /> Arrangements</NavLink>
         </li>
         <li>
           <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>Appointment</NavLink>

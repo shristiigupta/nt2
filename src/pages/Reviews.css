@@ -1,0 +1,101 @@
+.reviews-page {
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  background: #fafafa;
+}
+
+.reviews-page h1 {
+  font-size: 2.3rem;
+  margin-bottom: 2.5rem;
+  color: #00695c;
+}
+
+.video-grid {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-wrapper {
+  max-width: 500px;
+}
+
+.video-card {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform .3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card img {
+  width: 100%;
+  display: block;
+}
+
+.play-icon {
+  position: absolute;
+  font-size: 3.5rem;
+  color: white;
+  font-weight: bold;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 25px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.video-desc {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  text-align: justify;
+}
+
+
+
+.reviews-page h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.videos-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.video-card {
+  max-width: 420px;
+  text-align: center;
+}
+
+.video-card img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.video-card p {
+  margin-top: 0.7rem;
+  font-weight: 500;
+}
+
+/* space for google reviews */
+.google-reviews-wrapper {
+  margin-top: 2rem;
+}
