@@ -3,77 +3,52 @@
 =========================== */
 
 .page.contact-page {
-  padding: 3rem 2rem;
+  padding: 2.5rem 1.5rem;
   background: linear-gradient(135deg, #e8f5e9, #f9fbe7);
-  min-height: 90vh;
-  text-align: center;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 0.5rem;
-}
-
-.contact-subtitle {
-  color: #555;
-  font-size: 1.1rem;
-  max-width: 700px;
-  line-height: 1.6;
-  margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .contact-section {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: 2.5rem;
-  max-width: 1300px;
+  gap: 2rem;
+  max-width: 1200px;
   width: 100%;
-  align-items: start;  /* align left text naturally */
+  align-items: start;
 }
-
 
 /* ===========================
    CONTACT INFO (LEFT)
-   - natural style, no card
 =========================== */
 
 .contact-info {
   text-align: left;
-  line-height: 1.7;
-  font-size: 1.03rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #333;
 }
 
 .contact-info h1 {
-  margin-top: 15px;
-  font-size: 2.8rem;
-    color: #00695c;
-  margin-bottom: 15px;
-}
-
-.contact-info h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 2.6rem;
   color: #00695c;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .contact-info p {
   margin-bottom: 12px;
+  word-wrap: break-word;
 }
 
-/* style links inside contact-info */
 .contact-info a {
-  color: #004d40;           /* green tone matching headings */
-  text-decoration: none;    
+  color: #004d40;
+  text-decoration: none;
   font-weight: 500;
+  word-break: break-word;
 }
 
-.contact-info a:hover {   
+.contact-info a:hover {
   color: #065249;
   text-decoration: underline;
 }
@@ -82,17 +57,21 @@
    MAP CARD (RIGHT)
 =========================== */
 
+.map-wrapper {
+  width: 100%;
+}
+
 .map-card {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   padding: 1rem;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .map-card:hover {
   transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .map-card iframe,
@@ -125,26 +104,75 @@
   border-radius: 20px;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   transition: transform 0.16s ease, box-shadow 0.16s ease;
 }
 
 .map-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
 }
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE DESIGN
 =========================== */
 
-@media (max-width: 900px) {
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .page.contact-page {
+    padding: 2rem 1.2rem;
+  }
+
   .contact-section {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+
+  .contact-info h1 {
+    font-size: 2.2rem;
   }
 
   .map-card iframe {
     height: 350px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .page.contact-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .contact-section {
+    gap: 2rem;
+  }
+
+  .contact-info {
+    font-size: 0.95rem;
+  }
+
+  .contact-info h1 {
+    font-size: 1.9rem;
+  }
+
+  .contact-info p {
+    margin-bottom: 10px;
+  }
+
+  .contact-info a {
+    display: inline-block;
+  }
+
+  .map-card iframe {
+    height: 300px;
+  }
+
+  .map-footer {
+    justify-content: center;
+  }
+
+  .map-link {
+    font-size: 0.9rem;
+    padding: 6px 12px;
   }
 }
