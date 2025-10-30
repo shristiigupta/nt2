@@ -8,14 +8,17 @@ const About = () => {
 
         <h1>About Us</h1>
 
-        <p>
-          <strong>
-            <span className="hover-img">
-              Santulan Holistic Solutions
-              <img src="/images/santulan.png" alt="Santulan" className="hover-image" />
-            </span>
-          </strong>{" "} is dedicated to helping people regain health and balance through natural, non-invasive neurotherapy treatments. Our centre believes in the body's ability to heal itself when guided with the right techniques.
-        </p>
+        <div className="highlight-card">
+          <img src="/images/santulan.png" alt="Santulan Holistic Solutions" className="highlight-img" />
+          <div className="highlight-text">
+            <h3>Santulan Holistic Solutions</h3>
+            <p>
+              Santulan Holistic Solutions is dedicated to helping people regain health and balance through natural, non-invasive neurotherapy treatments. Our centre believes in the body's ability to heal itself when guided with the right techniques.
+            </p>
+          </div>
+        </div>
+
+
 
         <h2>Our Mission</h2>
         <p>
@@ -25,14 +28,19 @@ const About = () => {
 
         <h2>What is Neurotherapy?</h2>
         <p>
-          Neurotherapy is a scientifically backed holistic healing system developed by{" "} 
-          <span className="hover-img">
-            Dr. Lajpatrai Mehra
-            <img src="/images/lajpatrai.jpg" alt="Dr. Lajpatrai" className="hover-image" />
-          </span>{" "} in the 20th century. <br /><br />
-          This drug-free therapy draws from the ancient science of Nadi Vigyan and focuses on achieving balance among the body’s organs. It is founded on the principle that diseases occur due to excessive or reduced functioning of one or more organs, which disrupts the body’s chemical harmony. Neurotherapy restores equilibrium by stimulating or calming the affected organs as needed. <br /><br />
+          <div className="lajpat-section">
+            <img src="/images/lajpatrai.jpg" alt="Dr. Lajpatrai Mehra" className="lajpat-img" />
+            <h3>Dr. Lajpatrai Mehra</h3>
+            <p>
+              Neurotherapy is a scientifically backed holistic healing system developed by Dr. Lajpatrai Mehra in the 20th century.
+              This drug-free therapy draws from the ancient science of Nadi Vigyan and focuses on achieving balance among the body’s organs.
+              It is founded on the principle that diseases occur due to excessive or reduced functioning of one or more organs, which disrupts the body’s chemical harmony. Neurotherapy restores equilibrium by stimulating or calming the affected organs as needed. <br /><br />
           Rather than treating symptoms, Neurotherapy addresses the root cause of ailments, promoting both physical and mental well-being. It has shown positive results even in cases involving genetic disorders. Many patients with chronic or long-standing conditions have experienced significant improvement through this therapeutic approach.
+            </p>
+          </div>
         </p>
+
+          
 
         <h2>How Does Neurotherapy Work?</h2>
         <p>
@@ -55,42 +63,67 @@ const About = () => {
           Next, the practitioner conducts abdominal palpation to identify Neurotherapy pain points, which form the basis for creating a personalized treatment plan. Depending on the patient’s age and health condition, treatments are administered through the hands or feet. This therapy stands out for delivering remarkable results without the use of medication.
         </p>
 
-        <p>Health issues effectively managed by this approach include:</p>
+        <div className="treatment-list-video">
+          <div className="list-section">
+            <p>Health issues effectively managed by this approach include:</p>
+            <ul>
+              <li>Cervical and lumbar spondylosis</li>
+              <li>Rheumatoid arthritis (AR+)</li>
+              <li>Hormonal imbalances</li>
+              <li>PCOD</li>
+              <li>Scoliosis</li>
+              <li>Psoriasis</li>
+              <li>Genetic disorders such as Down Syndrome</li>
+              <li>Autism</li>
+              <li>Cerebral palsy</li>
+              <li>Delayed developmental milestones</li>
+              <li>Infertility</li>
+              <li>Angina</li>
+              <li>Asthma</li>
+              <li>Migraine</li>
+              <li>Allergies</li>
+              <li>Muscle cramps</li>
+              <li>Post-surgical complications</li>
+              <li>Digestive issues like indigestion, gas, and acidity</li>
+            </ul>
+          </div>
 
-        <ul>
-          <li>Cervical and lumbar spondylosis</li>
-          <li>Rheumatoid arthritis (AR+)</li>
-          <li>Hormonal imbalances</li>
-          <li>PCOD</li>
-          <li>Scoliosis</li>
-          <li>Psoriasis</li>
-          <li>Genetic disorders such as Down Syndrome</li>
-          <li>Autism</li>
-          <li>Cerebral palsy</li>
-          <li>Delayed developmental milestones</li>
-          <li>Infertility</li>
-          <li>Angina</li>
-          <li>Asthma</li>
-          <li>Migraine</li>
-          <li>Allergies</li>
-          <li>Muscle cramps</li>
-          <li>Post-surgical complications</li>
-          <li>Digestive issues like indigestion, gas, and acidity</li>
-        </ul>
+          <div className="video-section">
+            <a
+              href="https://youtu.be/QATVp54xZS0?si=R2SlCiI1HeKUY45S"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://img.youtube.com/vi/QATVp54xZS0/hqdefault.jpg"
+                alt="Neurotherapy Treatment Video"
+                className="video-thumbnail"
+              />
+            </a>
+
+          </div>
+        </div>
+
+
 
         <h2>About Vishal Gupta</h2>
         <p>
-          <strong>
-            <span className="hover-img">
-              Vishal Gupta
-              <img src="/images/vishal.jpg" alt="Vishal Gupta" className="hover-image" />
-            </span>
-          </strong>{" "} is a Government Certified Senior Neurotherapist, who is dedicated and committed to promote health and healing through natural and scientific approaches. With the deep sense of service, he aims to help people restore balance in mind and body, empowering them to lead healthier and happier lives.
+          <div className="highlight-card">
+            <img src="/images/vishal.jpg" alt="Vishal Gupta" className="highlight-img" />
+            <div className="highlight-text">
+              <h3>Vishal Gupta</h3>
+              <p>
+                is a Government Certified Senior Neurotherapist, who is dedicated and committed to promote health and healing through natural and scientific approaches. With the deep sense of service, he aims to help people restore balance in mind and body, empowering them to lead healthier and happier lives.
+              </p>
+              <p>
+                Moreover, he brings more than 25 years of experience in public service and now has established Santulan Holistic Solutions which aims to offer effective and holistic care for every patient and to serve the community through expert Neurotherapy care.
+              </p>
+            </div>
+          </div>
         </p>
 
-        <p>
-          Moreover, he brings more than 25 years of experience in public service and now has established Santulan Holistic Solutions which aims to offer effective and holistic care for every patient and to serve the community through expert Neurotherapy care.
-        </p>
+
+
 
       </div>
     </div>
