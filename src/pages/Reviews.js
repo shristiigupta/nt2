@@ -71,7 +71,7 @@ const Reviews = () => {
 
       {/* GOOGLE REVIEWS SECTION */}
       <section className="reviews-section">
-        <h1 className="section-heading">Google Reviews</h1>
+        
         <div className="google-reviews-wrapper">
           <div
             className="elfsight-app-3c78991c-da6c-4440-9563-33fb19308889"
