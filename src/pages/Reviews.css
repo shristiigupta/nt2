@@ -1,101 +1,182 @@
 .reviews-page {
   min-height: 100vh;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1.5rem;
   background: #fafafa;
+  text-align: center;
 }
 
-.reviews-page h1 {
+/* ---- HEADINGS ---- */
+.section-heading {
   font-size: 2.3rem;
-  margin-bottom: 2.5rem;
+  font-weight: 600;
   color: #00695c;
+  margin-bottom: 2rem;
+  font-family: "Poppins", sans-serif;
 }
 
-.video-grid {
+.reviews-section {
+  margin-bottom: 4rem;
+}
+
+/* ---- SHORTS SECTION ---- */
+.shorts-section {
   display: flex;
-  gap: 3rem;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-.video-wrapper {
-  max-width: 500px;
-}
-
-.video-card {
-  position: relative;
-  width: 100%;
+.short-card {
+  width: 180px;
+  height: 320px;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
-  display: block;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform .3s ease;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
-.video-card:hover {
-  transform: translateY(-5px);
+.short-card:hover {
+  transform: scale(1.05);
 }
 
-.video-card img {
+.short-card img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-.play-icon {
+/* ---- PLAY BUTTON OVERLAY ---- */
+.play-overlay {
   position: absolute;
-  font-size: 3.5rem;
-  color: white;
-  font-weight: bold;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  text-shadow: 0 0 25px rgba(0,0,0,0.8);
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  opacity: 0.9;
   pointer-events: none;
 }
 
-.video-desc {
-  margin-top: 0.8rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
-  text-align: justify;
-}
-
-
-
-.reviews-page h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.videos-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.video-card {
-  max-width: 420px;
-  text-align: center;
-}
-
-.video-card img {
-  width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  display: block;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.video-card p {
-  margin-top: 0.7rem;
-  font-weight: 500;
-}
-
-/* space for google reviews */
+/* ---- GOOGLE REVIEWS ---- */
 .google-reviews-wrapper {
   margin-top: 2rem;
+}
+
+/* ---- PIONEERS SECTION ---- */
+.pioneers-section {
+  position: relative;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.pioneer-card {
+  flex: 0 0 auto;
+  width: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.pioneer-card:hover {
+  transform: translateY(-5px);
+}
+
+.pioneer-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+/* ---- SCROLL BUTTONS ---- */
+.scroll-btn {
+  background: #00695c;
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+  z-index: 5;
+}
+
+.scroll-btn:hover {
+  background: #004d40;
+}
+
+.scroll-btn.left {
+  left: -2rem;
+}
+
+.scroll-btn.right {
+  right: -2rem;
+}
+
+/* ---- RESPONSIVE DESIGN ---- */
+@media (max-width: 900px) {
+  .section-heading {
+    font-size: 1.9rem;
+  }
+
+  .pioneer-card {
+    width: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews-page {
+    padding: 1.2rem;
+  }
+
+  .section-heading {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .short-card {
+    width: 140px;
+    height: 250px;
+  }
+
+  .pioneer-card {
+    width: 180px;
+  }
+
+  .scroll-btn {
+    display: none;
+  }
+
+  .reviews-section {
+    margin-bottom: 3rem;
+  }
 }

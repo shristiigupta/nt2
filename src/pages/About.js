@@ -22,7 +22,9 @@ const About = () => {
 
         <h2>Our Mission</h2>
         <p>
-          <strong>“To provide personalized and ethical care to the patients” <br /></strong>
+          <h3 className="notranslate" translate="no">
+          चलो एक बार फिर से, स्वस्थ हो जाए...
+        </h3> 
           The mission of Santulan Holistic Solutions is to provide personalized and ethical care to the patients. The team is fully trained to create a supportive and positive environment. The centre welcomes people of all ages seeking relief from most of the diseases including different types of pains, stomach problems, gynaecological problems, neurological problems, and also for those wishing to enhance their quality of life. Santulan Holistic Solutions stands as a trusted choice for neurotherapy, offering genuine care and reliable treatments to help you restore balance in your life.
         </p>
 

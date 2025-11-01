@@ -11,8 +11,9 @@ function HeroSection() {
           Through the proven science of <strong>Neurotherapy</strong>, restore your body’s
           natural balance and empower you to live a pain-free, healthy, and energetic life.
         </p>
-
-        
+        <h2 className="notranslate" translate="no">
+          चलो एक बार फिर से, स्वस्थ हो जाए...
+        </h2>
       </div>
 
       <div className="hero-image">
