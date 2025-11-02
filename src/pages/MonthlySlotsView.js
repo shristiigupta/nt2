@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
+
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -65,13 +69,80 @@ const MonthlySlotsView = () => {
     return slot ? slot.status : null;
   };
 
+  const downloadPDF = () => {
+    const doc = new jsPDF("landscape");
+    const [year, month] = selectedMonth.split("-");
+    const monthName = new Date(selectedMonth + "-01").toLocaleString("default", {
+      month: "long",
+    });
+
+    // Title
+    doc.setFontSize(20);
+    doc.setTextColor(40, 60, 120);
+    doc.text(`Monthly Appointment Report — ${monthName} ${year}`, 14, 20);
+
+    // Table data
+    const dates = getDatesForMonth(selectedMonth);
+    const tableHead = ["Date", ...uniqueTimes];
+    const tableBody = [];
+
+    let summary = { available: 0, booked: 0, blocked: 0 };
+
+    dates.forEach((date) => {
+      const row = [
+        new Date(date).toLocaleDateString("en-IN", {
+          day: "numeric",
+          month: "short",
+          weekday: "short",
+        }),
+      ];
+      uniqueTimes.forEach((time) => {
+        const status = getSlotStatus(date, time);
+        if (status === "available") summary.available++;
+        if (status === "booked") summary.booked++;
+        if (status === "blocked") summary.blocked++;
+        row.push(status ? status.charAt(0).toUpperCase() + status.slice(1) : "");
+      });
+      tableBody.push(row);
+    });
+
+    // Add table
+    autoTable(doc,{
+      startY: 30,
+      head: [tableHead],
+      body: tableBody,
+      styles: {
+        fontSize: 8,
+        cellPadding: 2,
+        halign: "center",
+      },
+      headStyles: {
+        fillColor: [40, 60, 120],
+        textColor: 255,
+      },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+    });
+
+    // Summary section
+    const finalY = doc.lastAutoTable.finalY + 10;
+    doc.setFontSize(14);
+    doc.text("Summary:", 14, finalY);
+    doc.setFontSize(12);
+    doc.text(` Available Slots: ${summary.available}`, 14, finalY + 8);
+    doc.text(` Booked Slots: ${summary.booked}`, 14, finalY + 16);
+    doc.text(` Blocked Slots: ${summary.blocked}`, 14, finalY + 24);
+
+    // Save file
+    const fileName = `Appointment_Report_${monthName}_${year}.pdf`;
+    doc.save(fileName);
+  };
+
   const dates = getDatesForMonth(selectedMonth);
 
   return (
     <div className="monthly-container">
       <h1 className="monthly-title">Monthly Appointment Overview</h1>
 
-      {/* Month selector */}
       <div className="month-selector">
         <label>Select Month: </label>
         <input
@@ -116,7 +187,6 @@ const MonthlySlotsView = () => {
         </table>
       </div>
 
-      {/* Legend */}
       <div className="legend">
         <div className="legend-item">
           <div className="legend-color available"></div> Green – Available
@@ -128,6 +198,10 @@ const MonthlySlotsView = () => {
           <div className="legend-color blocked"></div> Yellow – Blocked
         </div>
       </div>
+
+      <button className="download-btn" onClick={downloadPDF}>
+        Download PDF
+      </button>
     </div>
   );
 };
