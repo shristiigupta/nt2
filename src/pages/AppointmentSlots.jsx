@@ -13,7 +13,7 @@ const AppointmentSlots = () => {
 
     try {
       const res = await fetch(
-        "https://gist.githubusercontent.com/shristi-gup/44923d3d2eba283d99822c1b351b019d/raw/gistfile1.txt?nocache=" +
+        "https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=" +
           Date.now()
       );
       const text = await res.text();
