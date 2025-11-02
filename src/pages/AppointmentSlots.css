@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+/* ----- Title ----- */
 .appointment-title {
   font-size: 2rem;
   color: #444;
@@ -12,6 +13,7 @@
   margin-bottom: 30px;
 }
 
+/* ----- Layout ----- */
 .appointment-content {
   display: flex;
   justify-content: center;
@@ -20,6 +22,7 @@
   flex-wrap: wrap;
 }
 
+/* ----- Calendar Section ----- */
 .calendar-section {
   background: #fffbea;
   padding: 20px;
@@ -27,6 +30,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ----- Slots Section ----- */
 .slots-section {
   background: #fdf6e3;
   padding: 25px;
@@ -40,6 +44,7 @@
   font-weight: bold;
 }
 
+/* ----- Slot Grid ----- */
 .slots-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -47,28 +52,72 @@
   margin-top: 20px;
 }
 
+/* ----- Slot Cards ----- */
 .slot-card {
   padding: 12px 0;
   border-radius: 10px;
   font-weight: 500;
   color: white;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .slot-card.available {
-  background-color: #4caf50; /* green */
+  background-color: #4caf50; /* Green */
 }
 
 .slot-card.booked {
-  background-color: #f44336; /* red */
+  background-color: #f44336; /* Red */
+}
+
+.slot-card.blocked {
+  background-color: #ffcc00; /* Yellow */
+  color: #333;
 }
 
 .slot-card:hover {
   transform: scale(1.05);
 }
 
+/* ----- No Slots Message ----- */
 .no-slots {
   color: #777;
   margin-top: 20px;
   font-style: italic;
+}
+
+/* ----- Legend Section ----- */
+.legend {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.legend-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+/* Legend Colors */
+.legend-color.available {
+  background-color: #4caf50;
+}
+
+.legend-color.booked {
+  background-color: #f44336;
+}
+
+.legend-color.blocked {
+  background-color: #ffcc00;
 }
