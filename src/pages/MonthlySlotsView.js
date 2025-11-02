@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -71,7 +70,9 @@ const MonthlySlotsView = () => {
 
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
-    const [year] = monthYear.split("-").map(Number);
+
+    // ✅ Use selectedMonth instead of undefined "month"
+    const [year] = selectedMonth.split("-").map(Number);
 
     const monthName = new Date(selectedMonth + "-01").toLocaleString("default", {
       month: "long",
@@ -108,7 +109,7 @@ const MonthlySlotsView = () => {
     });
 
     // Add table
-    autoTable(doc,{
+    autoTable(doc, {
       startY: 30,
       head: [tableHead],
       body: tableBody,
