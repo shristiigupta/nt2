@@ -71,7 +71,8 @@ const MonthlySlotsView = () => {
 
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
-    const [year, month] = selectedMonth.split("-");
+    const [year] = monthYear.split("-").map(Number);
+
     const monthName = new Date(selectedMonth + "-01").toLocaleString("default", {
       month: "long",
     });
