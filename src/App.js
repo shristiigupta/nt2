@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Reviews from "./pages/Reviews";
 import AppointmentSlots from "./pages/AppointmentSlots";
+import MonthlySlotsView from "./pages/MonthlySlotsView";
 
 import "./App.css";
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/appointmentSlots" element={<AppointmentSlots />} />
         <Route path="/about" element={<About />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/MonthlySlotsView" element={<MonthlySlotsView />} />
 
       </Routes>
     </Router>

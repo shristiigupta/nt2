@@ -14,7 +14,7 @@ const AppointmentSlots = () => {
     try {
       const res = await fetch(
         "https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=" +
-          Date.now()
+        Date.now()
       );
       const text = await res.text();
       const jsonData = JSON.parse(text);
@@ -38,7 +38,7 @@ const AppointmentSlots = () => {
 
   return (
     <div className="appointment-container">
-      <h1 className="appointment-title">Check Available Appointment Slots</h1>
+      <h1 className="appointment-title">Appointments</h1>
 
       <div className="appointment-content">
         {/* Calendar */}
@@ -54,11 +54,17 @@ const AppointmentSlots = () => {
         {/* Slots */}
         <div className="slots-section">
           <h3>
-            Slots for{" "}
+            Slots availability as on<br />
             <span className="selected-date">
-              {selectedDate.toDateString()}
+              {selectedDate.toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}{" "}
+              ({selectedDate.toLocaleDateString("en-IN", { weekday: "long" })})
             </span>
           </h3>
+
 
           {slots.length > 0 ? (
             <div className="slots-grid">
@@ -76,15 +82,15 @@ const AppointmentSlots = () => {
           <div className="legend">
             <div className="legend-item">
               <div className="legend-color" style={{ backgroundColor: "#4caf50" }}></div>
-              <span>Green – Available (Unreserved)</span>
+              <span>Green – Available slot</span>
             </div>
             <div className="legend-item">
               <div className="legend-color" style={{ backgroundColor: "#f44336" }}></div>
-              <span>Red – Booked (Reserved)</span>
+              <span>Red – Booked slot</span>
             </div>
             <div className="legend-item">
               <div className="legend-color" style={{ backgroundColor: "#ffcc00" }}></div>
-              <span>Yellow – Blocked (Subject to payment realization)</span>
+              <span>Yellow – Blocked slot</span>
             </div>
           </div>
         </div>
@@ -94,3 +100,5 @@ const AppointmentSlots = () => {
 };
 
 export default AppointmentSlots;
+
+
