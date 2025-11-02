@@ -1,31 +1,29 @@
-.appointment-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 50px 60px;
-  background: #fffef7;
+/* ===========================
+   APPOINTMENT PROCEDURE PAGE
+=========================== */
+
+.appointment-procedure-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 30px; /* add side padding for natural spacing */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  gap: 60px;
-  flex-wrap: wrap;
-}
-
-/* ========== LEFT SIDE ========== */
-.procedure-section {
-  flex: 1.3;
-  max-width: 650px;
   line-height: 1.6;
+  text-align: left;
 }
 
-.procedure-section h1 {
+/* Heading */
+.appointment-procedure-container h1 {
   text-align: center;
   color: #00695c;
   margin-bottom: 2rem;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   position: relative;
+  padding: 0 10px; /* small padding for mobile */
 }
 
-.procedure-section h1::after {
+/* Yellow underline */
+.appointment-procedure-container h1::after {
   content: "";
   display: block;
   margin: 0.5rem auto 0;
@@ -35,141 +33,69 @@
   border-radius: 4px;
 }
 
-.procedure-list {
+/* List styling */
+.appointment-procedure-list {
   padding-left: 1.5rem;
+  margin: 0;
 }
 
-.procedure-list li {
+.appointment-procedure-list li {
   margin-bottom: 1rem;
   font-size: 1.05rem;
   color: #333;
 }
 
+/* Links inside list */
+.appointment-procedure-list a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.appointment-procedure-list a:hover {
+  color: #0056b3;
+}
+
+/* Highlight text */
 .highlight-green {
   color: #2e7d32;
   font-weight: 600;
 }
 
-.procedure-list a {
-  color: #007bff;
-  text-decoration: underline;
-}
-.procedure-list a:hover {
-  color: #0056b3;
-}
+/* ===========================
+   RESPONSIVE
+=========================== */
 
-/* ========== RIGHT SIDE ========== */
-.slots-section {
-  flex: 1;
-  text-align: center;
-  background: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  max-width: 380px;
-}
-
-.slots-section h1 {
-  font-size: 2rem;
-  color: #00695c;
-  margin-bottom: 1rem;
-}
-
-.calendar-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.react-calendar {
-  border: none !important;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.slots-heading {
-  font-size: 1.1rem;
-  margin: 10px 0;
-  color: #333;
-}
-
-.selected-date {
-  color: #d4a100;
-  font-weight: bold;
-}
-
-/* Slot Cards */
-.slots-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.slot-card {
-  padding: 10px 0;
-  border-radius: 8px;
-  font-weight: 500;
-  color: white;
-  transition: all 0.3s;
-}
-
-.slot-card.available {
-  background-color: #4caf50;
-}
-.slot-card.booked {
-  background-color: #f44336;
-}
-.slot-card.blocked {
-  background-color: #ffcc00;
-  color: #333;
-}
-.slot-card:hover {
-  transform: scale(1.05);
-}
-
-/* Legend */
-.legend {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  color: #444;
-}
-.legend-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-}
-.legend-color.available {
-  background-color: #4caf50;
-}
-.legend-color.booked {
-  background-color: #f44336;
-}
-.legend-color.blocked {
-  background-color: #ffcc00;
-}
-
-/* ========== RESPONSIVE ========== */
-@media screen and (max-width: 960px) {
-  .appointment-wrapper {
-    flex-direction: column;
-    align-items: center;
+/* Medium screens (tablets) */
+@media screen and (max-width: 868px) {
+  .appointment-procedure-container {
+    padding: 0 25px; /* more spacing from edges */
   }
-  .procedure-section,
-  .slots-section {
-    max-width: 100%;
+
+  .appointment-procedure-container h1 {
+    font-size: 2.4rem;
   }
-  .slots-section {
-    margin-top: 30px;
+
+  .appointment-procedure-list li {
+    font-size: 1rem;
   }
 }
 
+/* Small screens (mobiles) */
+@media screen and (max-width: 480px) {
+  .appointment-procedure-container {
+    padding: 0 20px; /* sufficient margin for mobile */
+  }
+
+  .appointment-procedure-container h1 {
+    font-size: 2rem;
+  }
+
+  .appointment-procedure-list li {
+    font-size: 0.95rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .appointment-procedure-container h1::after {
+    width: 70px; /* adjust underline for small screens */
+  }
+}
