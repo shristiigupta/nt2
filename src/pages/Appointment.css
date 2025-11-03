@@ -78,13 +78,14 @@ body {
 ============================== */
 .slots-section {
   flex: 1;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  background: none; /* remove the white inner box look */
+  padding: 0; /* remove extra inner spacing */
+  border-radius: 0;
+  box-shadow: none; /* removes the pale box shadow that looked like a border */
   max-width: 420px;
   text-align: center;
 }
+
 
 .slots-section h1 {
   font-size: 2rem;
@@ -218,44 +219,61 @@ body {
   }
 }
 
-/* Phones */
 @media screen and (max-width: 600px) {
   .appointment-wrapper {
-    padding: 30px 15px;
-  }
-
-  .procedure-section h1 {
-    font-size: 1.8rem;
-  }
-
-  .procedure-list li {
-    font-size: 0.95rem;
+    padding: 25px 10px;
   }
 
   .slots-section {
-    padding: 20px;
+    padding: 1px;
     max-width: 100%;
+    transform: scale(0.93); /* slightly reduce entire section size */
+    transform-origin: top center;
   }
 
   .slots-section h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
   }
 
+  .calendar-container {
+    margin-bottom: 10px;
+  }
+
+  /* Smaller slot rectangles */
   .slots-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-  }
-
-  .slot-card {
-    font-size: 0.85rem;
-    padding: 8px 0;
-  }
-
-  .legend {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 8px;
   }
 
-  .legend-item {
+  .slot-card {
     font-size: 0.8rem;
+    padding: 6px 0;
+    border-radius: 6px;
+  }
+
+  /* Legend smaller and tighter */
+  .legend {
+    margin-top: 18px;
+    gap: 6px;
+  }
+
+  .legend-item {
+    font-size: 0.75rem;
+  }
+
+  /* Procedure smaller spacing to fit better */
+  .procedure-section h1 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .procedure-list li {
+    font-size: 0.9rem;
+    margin-bottom: 0.7rem;
+  }
+  .appointment-wrapper {
+    padding: 10px 5px;
   }
 }
+
