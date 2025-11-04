@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -62,18 +61,15 @@ const MonthlySlotsView = () => {
     return dates;
   };
 
-  const getSlotStatus = (date, time) => {
+  // ✅ Updated to return the full slot (so we can access reason)
+  const getSlot = (date, time) => {
     if (!slotsData[date]) return null;
-    const slot = slotsData[date].find((s) => s.time === time);
-    return slot ? slot.status : null;
+    return slotsData[date].find((s) => s.time === time) || null;
   };
 
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
-
-    // ✅ Use selectedMonth instead of undefined "month"
     const [year] = selectedMonth.split("-").map(Number);
-
     const monthName = new Date(selectedMonth + "-01").toLocaleString("default", {
       month: "long",
     });
@@ -83,7 +79,6 @@ const MonthlySlotsView = () => {
     doc.setTextColor(40, 60, 120);
     doc.text(`Monthly Appointment Report — ${monthName} ${year}`, 14, 20);
 
-    // Table data
     const dates = getDatesForMonth(selectedMonth);
     const tableHead = ["Date", ...uniqueTimes];
     const tableBody = [];
@@ -98,17 +93,34 @@ const MonthlySlotsView = () => {
           weekday: "short",
         }),
       ];
+
       uniqueTimes.forEach((time) => {
-        const status = getSlotStatus(date, time);
-        if (status === "available") summary.available++;
-        if (status === "booked") summary.booked++;
-        if (status === "blocked") summary.blocked++;
-        row.push(status ? status.charAt(0).toUpperCase() + status.slice(1) : "");
+        const slot = getSlot(date, time);
+        if (!slot) {
+          row.push("");
+          return;
+        }
+
+        if (slot.status === "available") summary.available++;
+        if (slot.status === "booked") summary.booked++;
+        if (slot.status === "blocked") summary.blocked++;
+
+        // ✅ Show reason instead of "Booked" if available
+        let displayText = slot.status
+          ? slot.status.charAt(0).toUpperCase() + slot.status.slice(1)
+          : "";
+
+        if (slot.status === "booked" && slot.reason) {
+          displayText = slot.reason; // use reason instead of "Booked"
+        }
+
+        row.push(displayText);
       });
+
       tableBody.push(row);
     });
 
-    // Add table
+    // Add table to PDF
     autoTable(doc, {
       startY: 30,
       head: [tableHead],
@@ -125,7 +137,7 @@ const MonthlySlotsView = () => {
       alternateRowStyles: { fillColor: [245, 245, 245] },
     });
 
-    // Summary section
+    // Summary
     const finalY = doc.lastAutoTable.finalY + 10;
     doc.setFontSize(14);
     doc.text("Summary:", 14, finalY);
@@ -175,11 +187,12 @@ const MonthlySlotsView = () => {
                   })}
                 </td>
                 {uniqueTimes.map((time, index) => {
-                  const status = getSlotStatus(date, time);
+                  const slot = getSlot(date, time);
+                  const status = slot?.status || "empty";
                   return (
                     <td
                       key={index}
-                      className={`slot-cell ${status ? status : "empty"}`}
+                      className={`slot-cell ${status}`}
                     ></td>
                   );
                 })}
