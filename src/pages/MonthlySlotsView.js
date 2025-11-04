@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -10,7 +11,9 @@ const MonthlySlotsView = () => {
     return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
   });
   const [uniqueTimes, setUniqueTimes] = useState([]);
+  const [visitStats, setVisitStats] = useState({});
 
+  // ✅ Fetch slots data
   const fetchSlots = async () => {
     try {
       const res = await fetch(
@@ -46,8 +49,23 @@ const MonthlySlotsView = () => {
     }
   };
 
+  // ✅ Fetch slot data once
   useEffect(() => {
     fetchSlots();
+  }, []);
+
+  // ✅ Visit counter logic
+  useEffect(() => {
+    const recordVisit = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/api/visit?page=monthly");
+        const data = await res.json();
+        setVisitStats(data);
+      } catch (err) {
+        console.error("Error recording visit:", err);
+      }
+    };
+    recordVisit();
   }, []);
 
   const getDatesForMonth = (monthYear) => {
@@ -61,12 +79,13 @@ const MonthlySlotsView = () => {
     return dates;
   };
 
-  // ✅ Updated to return the full slot (so we can access reason)
+  // ✅ Return full slot for reason display
   const getSlot = (date, time) => {
     if (!slotsData[date]) return null;
     return slotsData[date].find((s) => s.time === time) || null;
   };
 
+  // ✅ PDF generation
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
     const [year] = selectedMonth.split("-").map(Number);
@@ -74,7 +93,6 @@ const MonthlySlotsView = () => {
       month: "long",
     });
 
-    // Title
     doc.setFontSize(20);
     doc.setTextColor(40, 60, 120);
     doc.text(`Monthly Appointment Report — ${monthName} ${year}`, 14, 20);
@@ -105,13 +123,12 @@ const MonthlySlotsView = () => {
         if (slot.status === "booked") summary.booked++;
         if (slot.status === "blocked") summary.blocked++;
 
-        // ✅ Show reason instead of "Booked" if available
         let displayText = slot.status
           ? slot.status.charAt(0).toUpperCase() + slot.status.slice(1)
           : "";
 
         if (slot.status === "booked" && slot.reason) {
-          displayText = slot.reason; // use reason instead of "Booked"
+          displayText = slot.reason;
         }
 
         row.push(displayText);
@@ -120,7 +137,6 @@ const MonthlySlotsView = () => {
       tableBody.push(row);
     });
 
-    // Add table to PDF
     autoTable(doc, {
       startY: 30,
       head: [tableHead],
@@ -137,7 +153,6 @@ const MonthlySlotsView = () => {
       alternateRowStyles: { fillColor: [245, 245, 245] },
     });
 
-    // Summary
     const finalY = doc.lastAutoTable.finalY + 10;
     doc.setFontSize(14);
     doc.text("Summary:", 14, finalY);
@@ -146,7 +161,6 @@ const MonthlySlotsView = () => {
     doc.text(` Booked Slots: ${summary.booked}`, 14, finalY + 16);
     doc.text(` Blocked Slots: ${summary.blocked}`, 14, finalY + 24);
 
-    // Save file
     const fileName = `Appointment_Report_${monthName}_${year}.pdf`;
     doc.save(fileName);
   };
@@ -217,6 +231,39 @@ const MonthlySlotsView = () => {
       <button className="download-btn" onClick={downloadPDF}>
         Download PDF
       </button>
+
+      {/* ✅ Visit Counter Chart */}
+      <div className="visits-section">
+        <h2>Website Visit Statistics</h2>
+        {Object.keys(visitStats).length > 0 ? (
+          <PieChart width={400} height={300}>
+            <Pie
+              data={Object.entries(visitStats).map(([page, count]) => ({
+                name: page,
+                value: count,
+              }))}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              fill="#8884d8"
+              label
+            >
+              {Object.keys(visitStats).map((_, i) => (
+                <Cell
+                  key={i}
+                  fill={["#4CAF50", "#2196F3", "#FFC107", "#F44336"][i % 4]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        ) : (
+          <p>Loading visit data...</p>
+        )}
+      </div>
     </div>
   );
 };
