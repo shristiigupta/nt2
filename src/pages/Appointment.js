@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Appointment.css";
+import { incrementVisit } from "./visitTracker";
 
 const Appointment = () => {
+  useEffect(() => {
+    incrementVisit("Appointment Page");
+  }, []);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
 

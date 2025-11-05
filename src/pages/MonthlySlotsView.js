@@ -8,7 +8,13 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
 } from "recharts";
+import { getVisitData, getTotalVisits } from "./visitTracker";
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -19,23 +25,9 @@ const MonthlySlotsView = () => {
   });
   const [uniqueTimes, setUniqueTimes] = useState([]);
   const [visitData, setVisitData] = useState([]);
+  const [totalVisits, setTotalVisits] = useState(0);
 
-  // ========== WEBSITE VISIT COUNTER ==========
-  useEffect(() => {
-    const pageKey = window.location.pathname;
-    const storedData = JSON.parse(localStorage.getItem("visitData")) || {};
-    storedData[pageKey] = (storedData[pageKey] || 0) + 1;
-    localStorage.setItem("visitData", JSON.stringify(storedData));
-
-    const formattedData = Object.keys(storedData).map((page) => ({
-      name: page === "/" ? "Home" : page.replace("/", ""),
-      value: storedData[page],
-    }));
-
-    setVisitData(formattedData);
-  }, []);
-
-  // ========== FETCH SLOTS ==========
+  // Fetch slot data
   const fetchSlots = async () => {
     try {
       const res = await fetch(
@@ -70,8 +62,25 @@ const MonthlySlotsView = () => {
   };
 
   useEffect(() => {
-    fetchSlots();
-  }, []);
+  fetchSlots();
+
+  // Load stats initially
+  const loadStats = () => {
+    setVisitData(getVisitData());
+    setTotalVisits(getTotalVisits());
+  };
+
+  loadStats();
+
+  // Update whenever localStorage changes (in case other pages are visited)
+  window.addEventListener("storage", loadStats);
+
+  return () => {
+    window.removeEventListener("storage", loadStats);
+  };
+}, []);
+
+
 
   const getDatesForMonth = (monthYear) => {
     const [year, month] = monthYear.split("-").map(Number);
@@ -89,7 +98,6 @@ const MonthlySlotsView = () => {
     return slotsData[date].find((s) => s.time === time) || null;
   };
 
-  // ========== PDF DOWNLOAD ==========
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
     const [year] = selectedMonth.split("-").map(Number);
@@ -179,7 +187,6 @@ const MonthlySlotsView = () => {
     doc.save(`Appointment_Report_${monthName}_${year}.pdf`);
   };
 
-  // ========== RENDER ==========
   const dates = getDatesForMonth(selectedMonth);
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -256,30 +263,53 @@ const MonthlySlotsView = () => {
         Download PDF
       </button>
 
-      <h2 className="visit-title">Website Visit Statistics</h2>
-      {visitData.length > 0 ? (
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={visitData}
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              fill="#8884d8"
-              dataKey="value"
-              label
-            >
-              {visitData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
-      ) : (
-        <p>Loading visit data...</p>
-      )}
+      <h2 className="visit-title">Website Visit Statistics</h2> <br/>
+<h3>Total Visits Across All Pages: {totalVisits}</h3>
+
+{visitData.length > 0 ? (
+  <>
+    <div className="pie-chart-section">
+      <ResponsiveContainer width="100%" height={350}>
+        <PieChart>
+          <text x="50%" y="5%" textAnchor="middle" dominantBaseline="middle" fontSize="18" fontWeight="bold">
+            Percentage of Visits per Page
+          </text>
+          <Pie
+            data={visitData}
+            cx="50%"
+            cy="55%"
+            outerRadius={100}
+            fill="#8884d8"
+            dataKey="value"
+            label
+          >
+            {visitData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+
+    <div className="bar-chart-section">
+      <ResponsiveContainer width="100%" height={350}>
+        <BarChart data={visitData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="value" fill="#82ca9d" name="Visits per Page" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  </>
+) : (
+  <p>Loading visit data...</p>
+)}
+
     </div>
   );
 };

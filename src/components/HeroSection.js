@@ -1,7 +1,12 @@
-import React from "react";
+import React , { useEffect }  from "react";
+import { incrementVisit } from "../pages/visitTracker"
 
 function HeroSection() {
+  useEffect(() => {
+    incrementVisit("Home Page");
+  }, []);
   return (
+    
     <section className="hero">
       <div className="hero-content">
         <h1>Revitalize Your Health Naturally</h1>

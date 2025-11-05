@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Dietchart.css";
 import jsPDF from "jspdf";
+import { incrementVisit } from "./visitTracker";
 
 const Dietchart = () => {
     const imageSrc = "/dietchart.jpg";
+
+    useEffect(() => {
+            incrementVisit("Diet Chart");
+        }, []);
 
     // Download as PDF
     const downloadPDF = () => {

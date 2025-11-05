@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Diseases.css";
+import { incrementVisit } from "./visitTracker";
 
 const services = [
   "Knee Pain",
@@ -10,6 +11,9 @@ const services = [
 ];
 
 const Diseases = () => {
+  useEffect(() => {
+          incrementVisit("Diseases Treated Page");
+      }, []);
   return (
     <div className="diseases-container">
       <h1>Diseases Treated</h1>

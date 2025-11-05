@@ -1,13 +1,19 @@
 // src/pages/Contact.js
 import React, { useEffect, useState } from "react";
 import "./Contact.css";
+import { incrementVisit } from "./visitTracker";
 
 const Contact = () => {
+
     const [mapLoaded, setMapLoaded] = useState(false);
+    useEffect(() => {
+        incrementVisit("Contact Page");
+    }, []);
 
     useEffect(() => {
         const t = setTimeout(() => setMapLoaded(true), 800);
         return () => clearTimeout(t);
+
     }, []);
 
     const googleMapsHref =

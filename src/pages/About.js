@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./About.css";
+import { incrementVisit } from "./visitTracker";
 
 const About = () => {
+   useEffect(() => {
+      incrementVisit("About Page");
+    }, []);
   return (
     <div className="about-page">
       <div className="about-container">

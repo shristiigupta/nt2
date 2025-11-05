@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./ResidentialArrangements.css";
+import { incrementVisit } from "./visitTracker";
 
 function ResidentialArrangements() {
+    useEffect(() => {
+            incrementVisit("Residential Arrangements Page");
+        }, []);
     return (
         <div className="residential-page">
             <h1>Residential Arrangements</h1>
