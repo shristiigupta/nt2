@@ -103,7 +103,7 @@ const Appointment = () => {
         </div>
 
         <h3 className="slots-heading">
-          Slots availability as on{" "}
+          Available slots as on{" "}
           <br />
           <span className="selected-date">
             {selectedDate.toLocaleDateString("en-IN", {
