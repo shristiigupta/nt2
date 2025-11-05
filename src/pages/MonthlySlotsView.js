@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -11,9 +18,24 @@ const MonthlySlotsView = () => {
     return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
   });
   const [uniqueTimes, setUniqueTimes] = useState([]);
-  const [visitStats, setVisitStats] = useState({});
+  const [visitData, setVisitData] = useState([]);
 
-  // ✅ Fetch slots data
+  // ========== WEBSITE VISIT COUNTER ==========
+  useEffect(() => {
+    const pageKey = window.location.pathname;
+    const storedData = JSON.parse(localStorage.getItem("visitData")) || {};
+    storedData[pageKey] = (storedData[pageKey] || 0) + 1;
+    localStorage.setItem("visitData", JSON.stringify(storedData));
+
+    const formattedData = Object.keys(storedData).map((page) => ({
+      name: page === "/" ? "Home" : page.replace("/", ""),
+      value: storedData[page],
+    }));
+
+    setVisitData(formattedData);
+  }, []);
+
+  // ========== FETCH SLOTS ==========
   const fetchSlots = async () => {
     try {
       const res = await fetch(
@@ -24,13 +46,11 @@ const MonthlySlotsView = () => {
       const jsonData = JSON.parse(text);
       setSlotsData(jsonData);
 
-      // Extract unique time slots
       const allTimes = new Set();
       Object.values(jsonData).forEach((daySlots) => {
         daySlots.forEach((slot) => allTimes.add(slot.time));
       });
 
-      // Sort times chronologically
       const sortedTimes = [...allTimes].sort((a, b) => {
         const parseTime = (t) => {
           if (!t) return 0;
@@ -49,23 +69,8 @@ const MonthlySlotsView = () => {
     }
   };
 
-  // ✅ Fetch slot data once
   useEffect(() => {
     fetchSlots();
-  }, []);
-
-  // ✅ Visit counter logic
-  useEffect(() => {
-    const recordVisit = async () => {
-      try {
-        const res = await fetch("http://localhost:4000/api/visit?page=monthly");
-        const data = await res.json();
-        setVisitStats(data);
-      } catch (err) {
-        console.error("Error recording visit:", err);
-      }
-    };
-    recordVisit();
   }, []);
 
   const getDatesForMonth = (monthYear) => {
@@ -79,13 +84,12 @@ const MonthlySlotsView = () => {
     return dates;
   };
 
-  // ✅ Return full slot for reason display
   const getSlot = (date, time) => {
     if (!slotsData[date]) return null;
     return slotsData[date].find((s) => s.time === time) || null;
   };
 
-  // ✅ PDF generation
+  // ========== PDF DOWNLOAD ==========
   const downloadPDF = () => {
     const doc = new jsPDF("landscape");
     const [year] = selectedMonth.split("-").map(Number);
@@ -100,7 +104,6 @@ const MonthlySlotsView = () => {
     const dates = getDatesForMonth(selectedMonth);
     const tableHead = ["Date", ...uniqueTimes];
     const tableBody = [];
-
     let summary = { available: 0, booked: 0, blocked: 0 };
 
     dates.forEach((date) => {
@@ -123,13 +126,11 @@ const MonthlySlotsView = () => {
         if (slot.status === "booked") summary.booked++;
         if (slot.status === "blocked") summary.blocked++;
 
-        let displayText = slot.status
+        let displayText = slot.reason
+          ? slot.reason
+          : slot.status
           ? slot.status.charAt(0).toUpperCase() + slot.status.slice(1)
           : "";
-
-        if (slot.status === "booked" && slot.reason) {
-          displayText = slot.reason;
-        }
 
         row.push(displayText);
       });
@@ -141,16 +142,30 @@ const MonthlySlotsView = () => {
       startY: 30,
       head: [tableHead],
       body: tableBody,
-      styles: {
-        fontSize: 8,
-        cellPadding: 2,
-        halign: "center",
-      },
-      headStyles: {
-        fillColor: [40, 60, 120],
-        textColor: 255,
-      },
+      styles: { fontSize: 8, cellPadding: 2, halign: "center" },
+      headStyles: { fillColor: [40, 60, 120], textColor: 255 },
       alternateRowStyles: { fillColor: [245, 245, 245] },
+      didParseCell: (data) => {
+        if (data.section === "body" && data.column.index > 0) {
+          const rowDate = dates[data.row.index];
+          const time = uniqueTimes[data.column.index - 1];
+          const slot = getSlot(rowDate, time);
+
+          if (slot?.status === "available") {
+            data.cell.styles.fillColor = [76, 175, 80];
+            data.cell.styles.textColor = [255, 255, 255];
+          } else if (slot?.status === "booked") {
+            data.cell.styles.fillColor = [244, 67, 54];
+            data.cell.styles.textColor = [255, 255, 255];
+          } else if (slot?.status === "blocked") {
+            data.cell.styles.fillColor = [255, 204, 0];
+            data.cell.styles.textColor = [0, 0, 0];
+          } else {
+            data.cell.styles.fillColor = [240, 240, 240];
+            data.cell.styles.textColor = [0, 0, 0];
+          }
+        }
+      },
     });
 
     const finalY = doc.lastAutoTable.finalY + 10;
@@ -161,11 +176,12 @@ const MonthlySlotsView = () => {
     doc.text(` Booked Slots: ${summary.booked}`, 14, finalY + 16);
     doc.text(` Blocked Slots: ${summary.blocked}`, 14, finalY + 24);
 
-    const fileName = `Appointment_Report_${monthName}_${year}.pdf`;
-    doc.save(fileName);
+    doc.save(`Appointment_Report_${monthName}_${year}.pdf`);
   };
 
+  // ========== RENDER ==========
   const dates = getDatesForMonth(selectedMonth);
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
     <div className="monthly-container">
@@ -203,11 +219,19 @@ const MonthlySlotsView = () => {
                 {uniqueTimes.map((time, index) => {
                   const slot = getSlot(date, time);
                   const status = slot?.status || "empty";
+                  const text =
+                    slot?.reason ||
+                    (status === "available"
+                      ? "Available"
+                      : status === "booked"
+                      ? "Booked"
+                      : status === "blocked"
+                      ? "Blocked"
+                      : "");
                   return (
-                    <td
-                      key={index}
-                      className={`slot-cell ${status}`}
-                    ></td>
+                    <td key={index} className={`slot-cell ${status}`}>
+                      {text}
+                    </td>
                   );
                 })}
               </tr>
@@ -232,38 +256,30 @@ const MonthlySlotsView = () => {
         Download PDF
       </button>
 
-      {/* ✅ Visit Counter Chart */}
-      <div className="visits-section">
-        <h2>Website Visit Statistics</h2>
-        {Object.keys(visitStats).length > 0 ? (
-          <PieChart width={400} height={300}>
+      <h2 className="visit-title">Website Visit Statistics</h2>
+      {visitData.length > 0 ? (
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
             <Pie
-              data={Object.entries(visitStats).map(([page, count]) => ({
-                name: page,
-                value: count,
-              }))}
-              dataKey="value"
-              nameKey="name"
+              data={visitData}
               cx="50%"
               cy="50%"
               outerRadius={100}
               fill="#8884d8"
+              dataKey="value"
               label
             >
-              {Object.keys(visitStats).map((_, i) => (
-                <Cell
-                  key={i}
-                  fill={["#4CAF50", "#2196F3", "#FFC107", "#F44336"][i % 4]}
-                />
+              {visitData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
             <Tooltip />
             <Legend />
           </PieChart>
-        ) : (
-          <p>Loading visit data...</p>
-        )}
-      </div>
+        </ResponsiveContainer>
+      ) : (
+        <p>Loading visit data...</p>
+      )}
     </div>
   );
 };

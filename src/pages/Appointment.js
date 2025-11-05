@@ -34,6 +34,59 @@ const Appointment = () => {
   const maxDate = new Date();
   maxDate.setMonth(maxDate.getMonth() + 2);
 
+  // helpers for date-only comparisons
+  const dateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const isSameDay = (a, b) =>
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+  const isBeforeDay = (a, b) => dateOnly(a).getTime() < dateOnly(b).getTime();
+
+  // convert "HH:MM AM/PM" (or "H:MM AM/PM") to minutes since midnight
+  const timeToMinutes = (timeStr) => {
+    if (!timeStr) return 0;
+    const parts = timeStr.trim().split(" ");
+    let timePart = parts[0];
+    let modifier = parts[1] ? parts[1].toUpperCase() : null;
+
+    // handle times without AM/PM by assuming 24-hour format
+    let [hours, minutes] = timePart.split(":").map(Number);
+    if (!modifier) {
+      // e.g., "13:30" -> 13:30
+    } else {
+      if (modifier === "PM" && hours !== 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+    }
+    return hours * 60 + (minutes || 0);
+  };
+
+  const getCurrentMinutes = () => {
+    const now = new Date();
+    return now.getHours() * 60 + now.getMinutes();
+  };
+
+  // Determine visible slots:
+  const getFilteredSlots = () => {
+    const today = new Date();
+    const nowMinutes = getCurrentMinutes();
+
+    // If selected date is before today => none
+    if (isBeforeDay(selectedDate, today)) return [];
+
+    // If selected date is today => only upcoming slots (strictly greater than current time)
+    if (isSameDay(selectedDate, today)) {
+      return slots.filter(
+        (slot) =>
+          slot.status === "available" && timeToMinutes(slot.time) > nowMinutes
+      );
+    }
+
+    // Future date => show all available slots
+    return slots.filter((slot) => slot.status === "available");
+  };
+
+  const visibleSlots = getFilteredSlots();
+
   return (
     <div className="appointment-wrapper">
       {/* RIGHT SECTION - Calendar and Slots */}
@@ -63,26 +116,20 @@ const Appointment = () => {
         </h3>
 
         {/* SLOT DISPLAY */}
-        {(() => {
-          const availableSlots = slots.filter(
-            (slot) => slot.status === "available"
-          );
-
-          return availableSlots.length > 0 ? (
-            <div className="slots-grid">
-              {availableSlots.map((slot, index) => (
-                <div key={index} className={`slot-card ${slot.status}`}>
-                  {slot.time}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="no-slots">
-              No available slots for this date. Please try selecting another
-              date.
-            </p>
-          );
-        })()}
+        {visibleSlots.length > 0 ? (
+          <div className="slots-grid">
+            {visibleSlots.map((slot, index) => (
+              <div key={index} className={`slot-card ${slot.status}`}>
+                {slot.time}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="no-slots">
+            No available slots for this date. Please try selecting another
+            date.
+          </p>
+        )}
 
         {/* LEGEND */}
         <div className="legend">
@@ -90,10 +137,7 @@ const Appointment = () => {
             <div className="legend-color available"></div>
             <span>Green – Available slot</span>
           </div>
-          <div className="legend-item">
-            <div className="legend-color booked"></div>
-            <span>Red – Booked slot</span>
-          </div>
+
           <div className="legend-item">
             <div className="legend-color blocked"></div>
             <span>Yellow – Blocked slot</span>
