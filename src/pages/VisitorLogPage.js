@@ -8,8 +8,8 @@ const VisitorLogPage = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const BIN_ID = "YOUR_BIN_ID";
-        const API_KEY = "YOUR_API_KEY";
+        const BIN_ID = "690c728bae596e708f4814ba";
+        const API_KEY = "$2a$10$/ERM20klZc811EtIrQqFGeRAbEjXhKfZd5K92avgff9rfIGoe7cja";
 
         const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
           headers: { "X-Master-Key": API_KEY },
