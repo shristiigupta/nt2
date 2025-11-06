@@ -3,9 +3,12 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
 import "./MonthlySlotsView.css";
-
+import { logVisitor } from "./visitorLogger";
 
 const MonthlySlotsView = () => {
+  useEffect(() => {
+  logVisitor("Monthly Slots View");
+}, []);
   const [slotsData, setSlotsData] = useState({});
   const [selectedMonth, setSelectedMonth] = useState(() => {
     const today = new Date();
