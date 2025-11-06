@@ -15,7 +15,6 @@ import AppointmentSlots from "./pages/AppointmentSlots";
 import MonthlySlotsView from "./pages/MonthlySlotsView";
 import StatsPage from "./pages/StatsPage";
 import VisitorLogPage from "./pages/VisitorLogPage";
-import { Link } from "react-router-dom";
 
 import "./App.css";
 
