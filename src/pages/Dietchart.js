@@ -2,11 +2,13 @@ import React, {useEffect} from "react";
 import "./Dietchart.css";
 import jsPDF from "jspdf";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const Dietchart = () => {
     const imageSrc = "/dietchart.jpg";
 
     useEffect(() => {
+            logVisitor("Diet Chart")
             incrementVisit("Diet Chart");
         }, []);
 

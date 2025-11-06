@@ -1,7 +1,6 @@
 // visitorLogger.js
 export const logVisitor = async (pageName) => {
   try {
-    // Get IP + location info
     const response = await fetch("https://ipapi.co/json/");
     const data = await response.json();
 
@@ -19,13 +18,17 @@ export const logVisitor = async (pageName) => {
       email: localStorage.getItem("userEmail") || "Guest",
     };
 
-    // Save to localStorage
-    const existingLogs =
-      JSON.parse(localStorage.getItem("visitorLogs")) || [];
-    existingLogs.push(visitorInfo);
-    localStorage.setItem("visitorLogs", JSON.stringify(existingLogs));
+    // ✅ Send data to your collector (replace URL below)
+    await fetch("https://webhook.site/2ece17e7-769a-4fee-a293-92ea9b6a1bd8", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(visitorInfo),
+    });
 
+    console.log("Visitor logged:", visitorInfo);
   } catch (err) {
     console.error("Error logging visitor:", err);
   }
 };
+
+

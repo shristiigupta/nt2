@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "./Reviews.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const Reviews = () => {
   const pioneerCarousel = useRef(null);
 
   useEffect(() => {
+    logVisitor("Customer Reviews Page");
     incrementVisit("Customer Reviews Page");
   }, []);
 

@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
 import "./ResidentialArrangements.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 function ResidentialArrangements() {
     useEffect(() => {
+            logVisitor("Residential Arrangements Page");
             incrementVisit("Residential Arrangements Page");
         }, []);
     return (

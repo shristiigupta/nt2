@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 import "./Contact.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const Contact = () => {
 
     const [mapLoaded, setMapLoaded] = useState(false);
     useEffect(() => {
+        logVisitor("Contact Page")
         incrementVisit("Contact Page");
     }, []);
 

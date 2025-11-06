@@ -3,11 +3,31 @@ import "./VisitorLogPage.css";
 
 const VisitorLogPage = () => {
   const [logs, setLogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedLogs = JSON.parse(localStorage.getItem("visitorLogs")) || [];
-    setLogs(storedLogs.reverse()); // latest first
+    const fetchLogs = async () => {
+      try {
+        const BIN_ID = "YOUR_BIN_ID";
+        const API_KEY = "YOUR_API_KEY";
+
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+          headers: { "X-Master-Key": API_KEY },
+        });
+        const data = await res.json();
+        // Ensure record is an array
+        setLogs(data.record?.logs || []);
+      } catch (err) {
+        console.error("Error fetching visitor logs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLogs();
   }, []);
+
+  if (loading) return <p>Loading visitor logs...</p>;
 
   return (
     <div className="visitor-log-container">

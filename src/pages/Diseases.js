@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import "./Diseases.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const services = [
   "Knee Pain",
@@ -12,6 +13,7 @@ const services = [
 
 const Diseases = () => {
   useEffect(() => {
+          logVisitor("Diseases Treated Page")
           incrementVisit("Diseases Treated Page");
       }, []);
   return (
