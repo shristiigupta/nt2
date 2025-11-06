@@ -4,6 +4,7 @@ import autoTable from "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
 import "./MonthlySlotsView.css";
 
+
 const MonthlySlotsView = () => {
   const [slotsData, setSlotsData] = useState({});
   const [selectedMonth, setSelectedMonth] = useState(() => {
@@ -12,7 +13,6 @@ const MonthlySlotsView = () => {
   });
   const [uniqueTimes, setUniqueTimes] = useState([]);
 
-  const navigate = useNavigate();
 
   // Fetch slot data
   const fetchSlots = async () => {
@@ -158,6 +158,9 @@ const MonthlySlotsView = () => {
   };
 
   const dates = getDatesForMonth(selectedMonth);
+  
+const navigate = useNavigate();
+
 
   return (
     <div className="monthly-container">
@@ -239,6 +242,12 @@ const MonthlySlotsView = () => {
         >
           View Website Visit Statistics
         </button>
+        <button
+      className="stats-btn"
+      onClick={() => navigate("/visitor-log")}
+    >
+      View Visitor Logs
+    </button>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { logVisitor } from "./visitorLogger";
 import {
   PieChart,
   Pie,
@@ -21,6 +22,7 @@ const StatsPage = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   useEffect(() => {
+    logVisitor("Stats Page");
     const loadStats = async () => {
       const data = await getVisitData();
       const total = await getTotalVisits();

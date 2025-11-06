@@ -14,7 +14,8 @@ import Reviews from "./pages/Reviews";
 import AppointmentSlots from "./pages/AppointmentSlots";
 import MonthlySlotsView from "./pages/MonthlySlotsView";
 import StatsPage from "./pages/StatsPage";
-
+import VisitorLogPage from "./pages/VisitorLogPage";
+import { Link } from "react-router-dom";
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ function App() {
             </>
           }
         />
+        
         <Route path="/diseases" element={<Diseases />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/appointment" element={<Appointment/>} />
@@ -44,6 +46,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/MonthlySlotsView" element={<MonthlySlotsView />} />
         <Route path="/Statistics" element={<StatsPage />} />
+        <Route path="/visitor-log" element={<VisitorLogPage />} />
 
       </Routes>
     </Router>

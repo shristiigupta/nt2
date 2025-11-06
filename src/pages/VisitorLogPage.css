@@ -1,0 +1,37 @@
+.visitor-log-container {
+  padding: 30px;
+  background-color: #f9fafc;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.visitor-log-container h1 {
+  text-align: center;
+  color: #283c78;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.visitor-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.visitor-log-table th,
+.visitor-log-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.visitor-log-table th {
+  background-color: #283c78;
+  color: white;
+}
+
+.visitor-log-table tr:nth-child(even) {
+  background-color: #f2f6ff;
+}
