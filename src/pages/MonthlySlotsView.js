@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-} from "recharts";
-import { getVisitData, getTotalVisits } from "./visitTracker";
+import { useNavigate } from "react-router-dom";
 import "./MonthlySlotsView.css";
 
 const MonthlySlotsView = () => {
@@ -24,8 +11,8 @@ const MonthlySlotsView = () => {
     return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
   });
   const [uniqueTimes, setUniqueTimes] = useState([]);
-  const [visitData, setVisitData] = useState([]);
-  const [totalVisits, setTotalVisits] = useState(0);
+
+  const navigate = useNavigate();
 
   // Fetch slot data
   const fetchSlots = async () => {
@@ -62,25 +49,8 @@ const MonthlySlotsView = () => {
   };
 
   useEffect(() => {
-  fetchSlots();
-
-  // Load stats initially
-  const loadStats = () => {
-    setVisitData(getVisitData());
-    setTotalVisits(getTotalVisits());
-  };
-
-  loadStats();
-
-  // Update whenever localStorage changes (in case other pages are visited)
-  window.addEventListener("storage", loadStats);
-
-  return () => {
-    window.removeEventListener("storage", loadStats);
-  };
-}, []);
-
-
+    fetchSlots();
+  }, []);
 
   const getDatesForMonth = (monthYear) => {
     const [year, month] = monthYear.split("-").map(Number);
@@ -188,7 +158,6 @@ const MonthlySlotsView = () => {
   };
 
   const dates = getDatesForMonth(selectedMonth);
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
     <div className="monthly-container">
@@ -259,57 +228,18 @@ const MonthlySlotsView = () => {
         </div>
       </div>
 
-      <button className="download-btn" onClick={downloadPDF}>
-        Download PDF
-      </button>
+      <div className="button-group">
+        <button className="download-btn" onClick={downloadPDF}>
+          Download PDF
+        </button>
 
-      <h2 className="visit-title">Website Visit Statistics</h2> <br/>
-<h3>Total Visits Across All Pages: {totalVisits}</h3>
-
-{visitData.length > 0 ? (
-  <>
-    <div className="pie-chart-section">
-      <ResponsiveContainer width="100%" height={350}>
-        <PieChart>
-          <text x="50%" y="5%" textAnchor="middle" dominantBaseline="middle" fontSize="18" fontWeight="bold">
-            Percentage of Visits per Page
-          </text>
-          <Pie
-            data={visitData}
-            cx="50%"
-            cy="55%"
-            outerRadius={100}
-            fill="#8884d8"
-            dataKey="value"
-            label
-          >
-            {visitData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
-
-    <div className="bar-chart-section">
-      <ResponsiveContainer width="100%" height={350}>
-        <BarChart data={visitData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="value" fill="#82ca9d" name="Visits per Page" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  </>
-) : (
-  <p>Loading visit data...</p>
-)}
-
+        <button
+          className="stats-btn"
+          onClick={() => navigate("/statistics")}
+        >
+          View Website Visit Statistics
+        </button>
+      </div>
     </div>
   );
 };

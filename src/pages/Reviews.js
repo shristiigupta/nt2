@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "./Reviews.css";
+import { incrementVisit } from "./visitTracker";
 
 const Reviews = () => {
   const pioneerCarousel = useRef(null);
+
+  useEffect(() => {
+    incrementVisit("Customer Reviews Page");
+  }, []);
 
   useEffect(() => {
     function initElfsight() {
@@ -72,7 +77,7 @@ const Reviews = () => {
 
       {/* GOOGLE REVIEWS SECTION */}
       <section className="reviews-section">
-        
+
         <div className="google-reviews-wrapper">
           <div
             className="elfsight-app-3c78991c-da6c-4440-9563-33fb19308889"
