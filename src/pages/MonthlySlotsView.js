@@ -78,7 +78,7 @@ const MonthlySlotsView = () => {
       month: "long",
     });
 
-    doc.setFontSize(20);
+    doc.setFontSize(15);
     doc.setTextColor(40, 60, 120);
     doc.text(`Monthly Appointment Report — ${monthName} ${year}`, 14, 20);
 
@@ -123,7 +123,7 @@ const MonthlySlotsView = () => {
       startY: 30,
       head: [tableHead],
       body: tableBody,
-      styles: { fontSize: 8, cellPadding: 2, halign: "center" },
+      styles: { fontSize: 6.6, cellPadding: 1, halign: "center" },
       headStyles: { fillColor: [40, 60, 120], textColor: 255 },
       alternateRowStyles: { fillColor: [245, 245, 245] },
       didParseCell: (data) => {

@@ -39,6 +39,7 @@ const Contact = () => {
                     <p><strong>Youtube: </strong><a href="https://www.youtube.com/@SantulanHolisticSolutions" target="_blank" rel="noopener noreferrer"> https://www.youtube.com/@SantulanHolisticSolutions </a></p>
                     <p><strong>LinkedIn: </strong><a href="https://www.linkedin.com/in/visgup/" target="_blank" rel="noopener noreferrer"> https://www.linkedin.com/in/visgup/ </a></p>
                     <p><strong>Facebook: </strong><a href="https://www.facebook.com/share/17StcvJdqp/" target="_blank" rel="noopener noreferrer"> https://www.facebook.com/share/17StcvJdqp/ </a></p>
+                    <p><strong>Instagram: </strong><a href="https://www.instagram.com/santulanholisticsolutions" target="_blank" rel="noopener noreferrer">https://www.instagram.com/santulanholisticsolutions</a></p>
                     <p><strong>Open hours:</strong> 8.00 AM to 7.00 PM (by appointment only)</p>
 
                 </div>

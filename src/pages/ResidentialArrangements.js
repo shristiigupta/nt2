@@ -5,8 +5,8 @@ import { logVisitor } from "./visitorLogger";
 
 function ResidentialArrangements() {
     useEffect(() => {
-            logVisitor("Residential Arrangements Page");
-            incrementVisit("Residential Arrangements Page");
+            logVisitor("Residential Arrangements");
+            incrementVisit("Residential Arrangements");
         }, []);
     return (
         <div className="residential-page">

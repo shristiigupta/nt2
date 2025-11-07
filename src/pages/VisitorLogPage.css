@@ -1,37 +1,131 @@
 .visitor-log-container {
-  padding: 30px;
+  padding: 30px 20px;
   background-color: #f9fafc;
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Title */
 .visitor-log-container h1 {
   text-align: center;
   color: #283c78;
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
 }
 
+/* Table wrapper for scroll on small screens */
+.visitor-log-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto; /* ✅ Scroll only when table overflows */
+  scrollbar-width: thin; /* ✅ Slim scrollbar for modern browsers */
+  scrollbar-color: #c1c1c1 #f9fafc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* ✅ Optional: style scrollbar for Chrome, Edge, Safari */
+.visitor-log-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.visitor-log-table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+.visitor-log-table-wrapper::-webkit-scrollbar-track {
+  background-color: #f9fafc;
+}
+
+/* Table */
 .visitor-log-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-width: 800px; /* Prevent column squeezing on smaller screens */
+  border-radius: 8px;
+  overflow: hidden;
 }
 
+/* Table header and cells */
 .visitor-log-table th,
 .visitor-log-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  padding: 4px 7px;
+  font-size: 09px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .visitor-log-table th {
   background-color: #283c78;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .visitor-log-table tr:nth-child(even) {
   background-color: #f2f6ff;
+}
+
+.visitor-log-table tr:hover {
+  background-color: #e8eeff;
+  transition: 0.3s ease;
+}
+
+/* ✅ Ensure no scroll on large screens when table fits */
+@media (min-width: 1025px) {
+  .visitor-log-table-wrapper {
+    overflow-x: hidden;
+  }
+}
+
+/* Small screen optimization */
+@media (max-width: 768px) {
+  .visitor-log-container {
+    padding: 20px 10px;
+  }
+
+  .visitor-log-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .visitor-log-table th,
+  .visitor-log-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .visitor-log-table {
+    min-width: 600px;
+  }
+
+  .visitor-log-table-wrapper {
+    overflow-x: auto; /* ✅ Allow scroll only when table doesn’t fit */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .visitor-log-container h1 {
+    font-size: 1.3rem;
+  }
+
+  .visitor-log-table {
+    min-width: 500px;
+  }
+
+  .visitor-log-table th,
+  .visitor-log-table td {
+    font-size:8px;
+    padding: 4px;
+  }
+
+  .visitor-log-table-wrapper {
+    overflow-x: auto; /* ✅ Scroll on extra-small screens */
+  }
 }

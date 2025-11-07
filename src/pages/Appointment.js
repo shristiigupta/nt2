@@ -36,7 +36,7 @@ const Appointment = () => {
 
   const minDate = new Date();
   const maxDate = new Date();
-  maxDate.setMonth(maxDate.getMonth() + 2);
+  maxDate.setDate(maxDate.getDate() + 6);
 
   // helpers for date-only comparisons
   const dateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -81,7 +81,7 @@ const Appointment = () => {
     if (isSameDay(selectedDate, today)) {
       return slots.filter(
         (slot) =>
-          slot.status === "available" && timeToMinutes(slot.time) > nowMinutes
+          slot.status === "available" && timeToMinutes(slot.time)  > nowMinutes + 59
       );
     }
 

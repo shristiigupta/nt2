@@ -1,12 +1,22 @@
-// visitorLogger.js
-const BIN_ID = "690c728bae596e708f4814ba"; 
-const API_KEY = "$2a$10$/ERM20klZc811EtIrQqFGeRAbEjXhKfZd5K92avgff9rfIGoe7cja"; 
+const BIN_ID = "690c728bae596e708f4814ba";
+const API_KEY = "$2a$10$/ERM20klZc811EtIrQqFGeRAbEjXhKfZd5K92avgff9rfIGoe7cja";
 const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 export const logVisitor = async (pageName) => {
   try {
     const res = await fetch("https://ipapi.co/json/");
     const data = await res.json();
+
+    // ✅ Strict 24-hour format (no AM/PM, no seconds)
+    const now = new Date();
+    const formattedDate = now.toLocaleString("en-GB", {
+      hour12: false,
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
     const visitorInfo = {
       ip: data.ip,
@@ -15,9 +25,8 @@ export const logVisitor = async (pageName) => {
       country: data.country_name,
       org: data.org,
       timezone: data.timezone,
-      date: new Date().toLocaleString(),
+      date: formattedDate,
       pageVisited: pageName,
-      email: localStorage.getItem("userEmail") || "Guest",
     };
 
     // Get existing logs
@@ -27,8 +36,8 @@ export const logVisitor = async (pageName) => {
     const currentData = await currentRes.json();
     const logs = currentData.record?.logs || [];
 
-    // Add new visitor log
-    logs.push(visitorInfo);
+    // ✅ Add newest visitor to top
+    logs.unshift(visitorInfo);
 
     // Update the bin
     await fetch(BASE_URL, {

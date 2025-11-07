@@ -51,31 +51,49 @@ const Reviews = () => {
   return (
     <div className="reviews-page">
       {/* CUSTOMER SHORTS SECTION */}
+      {/* CUSTOMER SHORTS SECTION */}
       <section className="reviews-section">
         <h1 className="section-heading">Customer Reviews</h1>
 
-        <div className="shorts-section">
-          {[
-            "ZQcQ0o-zrHs",
-            "PZ35UixVCWk",
-            "k3Jv5xC-pIA",
-          ].map((videoId, index) => (
-            <div key={index} className="short-card">
-              <a
-                href={`https://www.youtube.com/shorts/${videoId}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-                  alt={`Customer Review ${index + 1}`}
-                />
-                <div className="play-overlay">▶</div>
-              </a>
-            </div>
-          ))}
+        <div className="carousel-container">
+          <button
+            className="scroll-btn left"
+            onClick={() => {
+              document.querySelector(".shorts-section").scrollBy({ left: -300, behavior: "smooth" });
+            }}
+          >
+            &#10094;
+          </button>
+
+          <div className="shorts-section">
+            {["ZQcQ0o-zrHs", "PZ35UixVCWk", "k3Jv5xC-pIA"].map((videoId, index) => (
+              <div key={index} className="short-card">
+                <a
+                  href={`https://www.youtube.com/shorts/${videoId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                    alt={`Customer Review ${index + 1}`}
+                  />
+                  <div className="play-overlay">▶</div>
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="scroll-btn right"
+            onClick={() => {
+              document.querySelector(".shorts-section").scrollBy({ left: 300, behavior: "smooth" });
+            }}
+          >
+            &#10095;
+          </button>
         </div>
       </section>
+
 
       {/* GOOGLE REVIEWS SECTION */}
       <section className="reviews-section">

@@ -14,12 +14,14 @@ import {
   CartesianGrid,
 } from "recharts";
 import { getVisitData, getTotalVisits } from "./visitTracker";
-import "./StatsPage.css"; 
+import "./StatsPage.css";
+
 
 const StatsPage = () => {
   const [visitData, setVisitData] = useState([]);
   const [totalVisits, setTotalVisits] = useState(0);
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#072d4eff", "#df3f79ff", "#FFBB28", "#2bc43dff" , "#cd2727ff", "#34c9d4ff", "#09ffadff", "#c2dc19ff"];
+
 
   useEffect(() => {
     logVisitor("Stats Page");
@@ -81,11 +83,17 @@ const StatsPage = () => {
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={visitData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis
+                  dataKey="name"
+                  interval={0}
+                  angle={-25}
+                  textAnchor="end"
+                  height={80}
+                />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="value" fill="#82ca9d" name="Visits per Page" />
+                <Bar dataKey="value" fill="#b8bb17ff" name="Visits per Page" />
               </BarChart>
             </ResponsiveContainer>
           </div>
