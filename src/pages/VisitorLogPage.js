@@ -16,7 +16,7 @@ const VisitorLogPage = () => {
         const data = await res.json();
 
         // ✅ Show newest first
-        setLogs((data.record?.logs || []).reverse());
+        setLogs((data.record?.logs || []));
       } catch (err) {
         console.error("Error fetching visitor logs:", err);
       } finally {
