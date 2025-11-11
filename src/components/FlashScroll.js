@@ -1,5 +1,4 @@
 import React from "react";
-import { Sparkles } from "lucide-react"; // small icon for visual interest
 import "./FlashScroll.css";
 
 export default function FlashScroll() {
