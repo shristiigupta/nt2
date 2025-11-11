@@ -18,11 +18,13 @@ import VisitorLogPage from "./pages/VisitorLogPage";
 import HeroCarousel from "./components/HeroCarousel";
 
 import "./App.css";
+import FlashScroll from "./components/FlashScroll";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <FlashScroll />
       <Routes>
         <Route
           path="/"
