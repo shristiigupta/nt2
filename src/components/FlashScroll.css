@@ -16,61 +16,45 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
-/* smooth gradient animation */
+/* animated gradient background */
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* glowing subtle line effect */
-.scroll-glow {
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0));
-  animation: glowMove 3s linear infinite;
-}
-@keyframes glowMove {
-  0% { left: -50%; }
-  100% { left: 120%; }
-}
-
-/* scrolling text animation */
+/* scrolling text container */
 .scroll-content {
-  display: inline-block;
+  display: flex;
   white-space: nowrap;
-  animation: scroll-left 24s linear infinite;
-  padding-left: 100%;
+  animation: scroll-left 8s linear infinite;
 }
 
+/* each message item */
 .scroll-item {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-right: 80px; /* space between messages */
+  margin-right: 80px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
-.scroll-icon {
-  color: #ffe082;
-  flex-shrink: 0;
-}
-
-/* Keyframes for continuous leftward scroll */
+/* Continuous scrolling animation */
 @keyframes scroll-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* Pause scroll on hover */
+/* Pause on hover */
 .flash-scroll:hover .scroll-content {
   animation-play-state: paused;
 }
 
-/* Responsive tweaks */
+/* Responsive */
 @media (max-width: 640px) {
   .flash-scroll {
     height: 36px;
@@ -80,3 +64,36 @@
     margin-right: 50px;
   }
 }
+
+/* blinking text */
+.blink-text {
+  color: #ffeb3b;
+  font-weight: bold;
+  animation: blink 1s step-start infinite;
+  text-shadow: 0 0 6px rgba(255, 235, 59, 0.8);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.blink-text {
+  color: #fff700;
+  font-weight: bold;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 6px #fff700, 0 0 12px #ffea00;
+  }
+  50% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+

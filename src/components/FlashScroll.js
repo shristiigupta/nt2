@@ -3,16 +3,15 @@ import "./FlashScroll.css";
 
 export default function FlashScroll() {
   const messages = [
-    " Consultation FREE",
-    " Therapy Fees: Customized Packages are available as per the condition of patient "
+    <>Consultation <span className="blink-text">FREE</span></>,
+    "Therapy Fees: Customized Packages available as per condition of patient",
   ];
 
   return (
     <div className="flash-scroll">
       <div className="scroll-content">
-        {messages.map((msg, i) => (
+        {[...messages, ...messages].map((msg, i) => (
           <span key={i} className="scroll-item">
-           
             {msg}
           </span>
         ))}
