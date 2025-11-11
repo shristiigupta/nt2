@@ -15,6 +15,7 @@ import AppointmentSlots from "./pages/AppointmentSlots";
 import MonthlySlotsView from "./pages/MonthlySlotsView";
 import StatsPage from "./pages/StatsPage";
 import VisitorLogPage from "./pages/VisitorLogPage";
+import HeroCarousel from "./components/HeroCarousel";
 
 import "./App.css";
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/MonthlySlotsView" element={<MonthlySlotsView />} />
         <Route path="/Statistics" element={<StatsPage />} />
         <Route path="/visitor-log" element={<VisitorLogPage />} />
+        <Route path="/home" element={<HeroCarousel />} />
 
       </Routes>
     </Router>
