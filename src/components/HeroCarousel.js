@@ -10,21 +10,21 @@ import "./HeroCarousel.css";
 const slides = [
   {
     id: 1,
-    img: "/hero1.jpg", // replace with /nt_home.png or other
+    img: "/hero_img1.jpg", // replace with /nt_home.png or other
     title: "Revitalize Your Health Naturally",
     subtitle: "Restore balance with proven Neurotherapy — without medicines or surgery.",
     cta: { text: "Learn More", href: "#about" }
   },
   {
     id: 2,
-    img: "/hero2.jpg",
+    img: "/hero_img2.jpg",
     title: "Gentle • Scientific • Effective",
     subtitle: "Personalized sessions that focus on root causes, not just symptoms.",
     cta: { text: "Book Consultation", href: "#contact" }
   },
   {
     id: 3,
-    img: "/hero3.jpg",
+    img: "/hero_img3.jpg",
     title: "Trusted Care for All Ages",
     subtitle: "Experienced therapists helping you and your family regain vitality.",
     cta: { text: "Our Treatments", href: "#services" }
@@ -91,15 +91,7 @@ export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
             aria-label={`${i + 1} of ${slidesCount}`}
           >
             <img src={s.img} alt={s.title} className="slide-img" />
-            <div className="slide-overlay">
-              <div className="slide-content">
-                <h2>{s.title}</h2>
-                <p>{s.subtitle}</p>
-                <a className="slide-cta" href={s.cta.href}>
-                  {s.cta.text}
-                </a>
-              </div>
-            </div>
+            
           </div>
         ))}
       </div>
