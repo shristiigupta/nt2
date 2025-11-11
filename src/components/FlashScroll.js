@@ -3,8 +3,8 @@ import "./FlashScroll.css";
 
 export default function FlashScroll() {
   const messages = [
-    " Free Consultation Available",
-    " Therapy Cost: Customized Package after Evaluation of Patient’s Condition"
+    " Consultation FREE",
+    " Therapy Fees: Customized Packages are available as per the condition of patient "
   ];
 
   return (

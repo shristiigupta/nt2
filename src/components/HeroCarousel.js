@@ -28,6 +28,27 @@ const slides = [
     title: "Trusted Care for All Ages",
     subtitle: "Experienced therapists helping you and your family regain vitality.",
     cta: { text: "Our Treatments", href: "#services" }
+  },
+  {
+    id: 4,
+    img: "/hero_img4.jpg",
+    title: "Trusted Care for All Ages",
+    subtitle: "Experienced therapists helping you and your family regain vitality.",
+    cta: { text: "Our Treatments", href: "#services" }
+  },
+  {
+    id: 5,
+    img: "/hero_img5.jpg",
+    title: "Trusted Care for All Ages",
+    subtitle: "Experienced therapists helping you and your family regain vitality.",
+    cta: { text: "Our Treatments", href: "#services" }
+  },
+  {
+    id: 6,
+    img: "/hero_img6.jpg",
+    title: "Trusted Care for All Ages",
+    subtitle: "Experienced therapists helping you and your family regain vitality.",
+    cta: { text: "Our Treatments", href: "#services" }
   }
 ];
 
