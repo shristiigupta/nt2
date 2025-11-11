@@ -10,7 +10,7 @@ import "./HeroCarousel.css";
 const slides = [
   {
     id: 1,
-    img: "/hero_img1.jpg", // replace with /nt_home.png or other
+    img: "/hero_img4.jpg", // replace with /nt_home.png or other
     title: "Revitalize Your Health Naturally",
     subtitle: "Restore balance with proven Neurotherapy — without medicines or surgery.",
     cta: { text: "Learn More", href: "#about" }
