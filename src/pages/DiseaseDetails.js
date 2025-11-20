@@ -11,7 +11,6 @@ const DiseaseDetails = () => {
 
   useEffect(() => {
     fetch(
-      
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
     )
       .then((res) => res.json())
@@ -61,8 +60,8 @@ const DiseaseDetails = () => {
         {/* RIGHT SIDE — PDF (only if available) */}
         {details.pdf && (
           <div className="pdf-section">
-            
 
+            {/* PDF Preview */}
             <iframe
               src={details.pdf}
               width="100%"
@@ -71,16 +70,18 @@ const DiseaseDetails = () => {
               className="pdf-preview"
             ></iframe>
 
+            {/* Force Download Real PDF */}
             <a
-              href={details.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={details.pdf_download || details.pdf}
+              download
               className="download-btn"
             >
               Download PDF
             </a>
+
           </div>
         )}
+
       </div>
     </div>
   );
