@@ -1,13 +1,12 @@
 /* ===== PAGE CONTAINER ===== */
 .disease-details {
   background: none;   
-  padding: 0;        
+  padding: 10px;        
   border: none;       
   box-shadow: none;   
-  max-width: 800px;
+  max-width: 1200px;
   margin: 40px auto;
 }
-
 
 /* ===== PAGE TITLE ===== */
 .disease-details h1 {
@@ -29,62 +28,66 @@
   border-radius: 2px;
 }
 
-/* ===== DESCRIPTION / HAVERIAL ===== */
-.disease-details p {
+/* DESCRIPTION */
+.description-text {
   font-size: 1.2rem;
-  line-height: 1.8;
-  color: #333;
-  margin-top: 25px;
-  padding: 0;
-  background: none;
-  border: none;
-  box-shadow: none;
+  margin-bottom: 30px;
+  line-height: 1.7;
 }
 
-
-/* ===== SIMPLE ANIMATION ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* FLEX LAYOUT */
+.content-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .disease-details {
-    margin: 40px 15px;
-    padding: 20px;
-  }
-
-  .disease-details h1 {
-    font-size: 2rem;
-  }
-
-  .disease-details p {
-    font-size: 1.05rem;
-    padding: 15px;
-  }
+/* Video section (LEFT) */
+.video-section {
+  flex: 1;
 }
 
-@media (max-width: 480px) {
-  .disease-details h1 {
-    font-size: 1.7rem;
-  }
-
-  .disease-details p {
-    font-size: 1rem;
-  }
-}
-
-.disease-image {
+.video-section iframe {
   width: 100%;
-  max-width: 600px;
-  height: auto;
-  margin: 20px 0;
+  height: 500px;
   border-radius: 10px;
+}
+
+/* PDF section (RIGHT) */
+.pdf-section {
+  flex: 1;
+}
+
+.download-btn {
+  display: inline-block;
+  background: #00695c;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.download-btn:hover {
+  background: #004d40;
+}
+
+.pdf-preview {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .content-layout {
+    flex-direction: column;
+  }
+
+  .video-section iframe,
+  .pdf-section iframe {
+    height: 380px;
+  }
 }
