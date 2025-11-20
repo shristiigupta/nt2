@@ -13,7 +13,9 @@ const Diseases = () => {
     incrementVisit("Diseases Treated Page");
 
     // Fetch diseases from Gist JSON
-    fetch(`https://gist.githubusercontent.com/shristiigupta/581b8c27346c79306c21d2a397e1e103/raw/diseases.json?nocache=${Date.now()}`)
+    fetch(
+      `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
+    )
 
       .then((res) => res.json())
       .then((data) => {
