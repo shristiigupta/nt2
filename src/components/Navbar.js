@@ -72,7 +72,7 @@ function Navbar() {
         </li>
 
         <li>
-          <NavLink to="/dietchart" onClick={() => setIsMenuOpen(false)}>Daily <br />Routine</NavLink>
+          <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>For <br />Neurotherapist</NavLink>
         </li>
 
         <li>

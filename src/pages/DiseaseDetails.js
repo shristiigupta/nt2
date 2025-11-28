@@ -29,39 +29,45 @@ const DiseaseDetails = () => {
   const details = data[diseaseName];
 
   if (!details)
-    return (
-      <p style={{ textAlign: "center" }}>No information available.</p>
-    );
+    return <p style={{ textAlign: "center" }}>No information available.</p>;
 
   return (
     <div className="disease-details">
       <h1>{diseaseName}</h1>
 
-      {/* DESCRIPTION — show ONLY if exists */}
-      {details.description && (
-        <p className="description-text">{details.description}</p>
-      )}
-
       <div className="content-layout">
-        {/* LEFT SIDE — VIDEO (only if available) */}
-        {details.video && (
+
+        {/* HINDI VIDEO */}
+        {details.video_hindi && (
           <div className="video-section">
             <iframe
               width="100%"
               height="300"
-              src={details.video}
-              title="Disease video"
+              src={details.video_hindi}
+              title="Hindi Video"
               frameBorder="0"
               allowFullScreen
             ></iframe>
           </div>
         )}
 
-        {/* RIGHT SIDE — PDF (only if available) */}
+        {/* ENGLISH VIDEO */}
+        {details.video_english && (
+          <div className="video-section">
+            <iframe
+              width="100%"
+              height="300"
+              src={details.video_english}
+              title="English Video"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {/* PDF PREVIEW */}
         {details.pdf && (
           <div className="pdf-section">
-            
-
             <iframe
               src={details.pdf}
               width="100%"
@@ -69,8 +75,6 @@ const DiseaseDetails = () => {
               title="PDF Preview"
               className="pdf-preview"
             ></iframe>
-
-            
           </div>
         )}
       </div>

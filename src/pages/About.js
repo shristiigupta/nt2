@@ -1,19 +1,63 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import "./About.css";
 import { incrementVisit } from "./visitTracker";
 
+
 const About = () => {
-   useEffect(() => {
-      incrementVisit("About Page");
-    }, []);
+  const [aboutData, setAboutData] = useState(null);
+
+  useEffect(() => {
+    incrementVisit("About Page");
+
+    fetch("https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?raw=1")
+
+      .then((res) => res.json())
+      .then((data) => {
+        setAboutData({
+          aboutHindi: data["About Us"].video_hindi,
+          aboutEnglish: data["About Us"].video_english,
+          demoHindi: data["Demo"].video_hindi,
+          demoEnglish: data["Demo"].video_english,
+        });
+      })
+      .catch((err) => console.error("Error loading gist:", err));
+
+  }, []);
   return (
     <div className="about-page">
       <div className="about-container">
 
         <h1>About Us</h1>
 
+
+        
         <div className="highlight-card">
-          <img src="/images/santulan.png" alt="Santulan Holistic Solutions" className="highlight-img" />
+          <div className="about-video-section">
+            {aboutData ? (
+              <>
+                <div className="single-video-block">
+                  <iframe
+                    className="about-video"
+                    src={aboutData.aboutHindi}
+                    title="About Hindi"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+                <div className="single-video-block">
+                  <iframe
+                    className="about-video"
+                    src={aboutData.aboutEnglish}
+                    title="About English"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </>
+            ) : (
+              <p>Loading videos...</p>
+            )}
+          </div>
+
           <div className="highlight-text">
             <h3>Santulan Holistic Solutions</h3>
             <p>
@@ -27,8 +71,8 @@ const About = () => {
         <h2>Our Mission</h2>
         <p>
           <h3 className="notranslate" translate="no">
-          चलो एक बार फिर से, स्वस्थ हो जाए...
-        </h3> 
+            चलो एक बार फिर से, स्वस्थ हो जाए...
+          </h3>
           The mission of Santulan Holistic Solutions is to provide personalized and ethical care to the patients. The team is fully trained to create a supportive and positive environment. The centre welcomes people of all ages seeking relief from most of the diseases including different types of pains, stomach problems, gynaecological problems, neurological problems, and also for those wishing to enhance their quality of life. Santulan Holistic Solutions stands as a trusted choice for neurotherapy, offering genuine care and reliable treatments to help you restore balance in your life.
         </p>
 
@@ -41,12 +85,12 @@ const About = () => {
               Neurotherapy is a scientifically backed holistic healing system developed by Dr. Lajpatrai Mehra in the 20th century.
               This drug-free therapy draws from the ancient science of Nadi Vigyan and focuses on achieving balance among the body’s organs.
               It is founded on the principle that diseases occur due to excessive or reduced functioning of one or more organs, which disrupts the body’s chemical harmony. Neurotherapy restores equilibrium by stimulating or calming the affected organs as needed. <br /><br />
-          Rather than treating symptoms, Neurotherapy addresses the root cause of ailments, promoting both physical and mental well-being. It has shown positive results even in cases involving genetic disorders. Many patients with chronic or long-standing conditions have experienced significant improvement through this therapeutic approach.
+              Rather than treating symptoms, Neurotherapy addresses the root cause of ailments, promoting both physical and mental well-being. It has shown positive results even in cases involving genetic disorders. Many patients with chronic or long-standing conditions have experienced significant improvement through this therapeutic approach.
             </p>
           </div>
         </p>
 
-          
+
 
         <h2>How Does Neurotherapy Work?</h2>
         <p>
@@ -95,19 +139,31 @@ const About = () => {
           </div>
 
           <div className="video-section">
-            <a
-              href="https://youtu.be/QATVp54xZS0?si=R2SlCiI1HeKUY45S"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://img.youtube.com/vi/QATVp54xZS0/hqdefault.jpg"
-                alt="Neurotherapy Treatment Video"
-                className="video-thumbnail"
-              />
-            </a>
+            {aboutData ? (
+              <>
+                <div className="single-video-block">
+                  <iframe
+                    className="video-thumbnail"
+                    src={aboutData.demoHindi}
+                    title="Demo Hindi"
+                    allowFullScreen
+                  ></iframe>
+                </div>
 
+                <div className="single-video-block">
+                  <iframe
+                    className="video-thumbnail"
+                    src={aboutData.demoEnglish}
+                    title="Demo English"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </>
+            ) : (
+              <p>Loading demo videos...</p>
+            )}
           </div>
+
         </div>
 
 

@@ -17,6 +17,9 @@ import StatsPage from "./pages/StatsPage";
 import VisitorLogPage from "./pages/VisitorLogPage";
 import HeroCarousel from "./components/HeroCarousel";
 import DiseaseDetails from "./pages/DiseaseDetails";
+import Neurotherapist from "./pages/neurotherapist";
+import NeuroDetails from "./pages/NeuroDetails";
+
 
 import "./App.css";
 import FlashScroll from "./components/FlashScroll";
@@ -52,6 +55,8 @@ function App() {
         <Route path="/visitor-log" element={<VisitorLogPage />} />
         <Route path="/home" element={<HeroCarousel />} />
         <Route path="/disease/:name" element={<DiseaseDetails />} />
+        <Route path="/forneurotherapist" element={<Neurotherapist />} />
+        <Route path="/forneurotherapist/:name" element={<NeuroDetails />} />
 
       </Routes>
     </Router>

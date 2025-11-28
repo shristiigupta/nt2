@@ -73,7 +73,28 @@
   text-align: left;
 }
 
-/* ---------- LIST + VIDEO SIDE BY SIDE ---------- */
+/* ---------- ABOUT VIDEO SECTION (CLEANED) ---------- */
+.about-video-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;   /* places videos ABOVE the heading */
+}
+
+.single-video-block {
+  width: 250px;
+  max-width: 100%;
+}
+
+.about-video {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- TREATMENT SECTION ---------- */
 .treatment-list-video {
   display: flex;
   align-items: flex-start;
@@ -89,14 +110,17 @@
 }
 
 .video-section {
-  flex: 0.8;
+  flex: 0.7;
   min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   text-align: center;
 }
 
 .video-thumbnail {
   width: 100%;
-  max-width: 340px;
+  height: 100px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   cursor: pointer;
@@ -115,7 +139,7 @@
   font-weight: 600;
 }
 
-/* ---------- HIGHLIGHT CARD (IMAGE + TEXT) ---------- */
+/* ---------- HIGHLIGHT CARDS ---------- */
 .highlight-card {
   display: flex;
   align-items: center;
@@ -123,7 +147,7 @@
   padding: 1.5rem 2rem;
   margin: 2rem 0;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.25); /* transparent soft box */
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(6px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -140,19 +164,17 @@
 
 .highlight-img {
   width: 180px;
-  height: auto;
   border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Vishal Gupta – square/normal image */
 .highlight-card img[alt="Vishal Gupta"] {
   border-radius: 10px !important;
 }
 
-/* ---------- DR. LAJPATRAI MEHRA – FLOAT STYLE ---------- */
+/* ---------- LAJPAT SECTION ---------- */
 .lajpat-section {
   overflow: hidden;
   margin: 1.5rem 0;
@@ -160,7 +182,6 @@
 
 .lajpat-img {
   width: 220px;
-  height: auto;
   border-radius: 10px;
   float: left;
   margin: 0 1.5rem 1rem 0;
@@ -183,28 +204,31 @@
     font-size: 1.3rem;
   }
 
+  .about-video {
+    height: 180px;
+  }
+
+  .single-video-block {
+    width: 100%;
+  }
+
   .treatment-list-video {
     flex-direction: column;
     align-items: center;
   }
 
   .video-section {
+    width: 100%;
     margin-top: 1rem;
   }
 
   .video-thumbnail {
-    max-width: 100%;
+    height: 170px;
   }
 
   .highlight-card {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-    padding: 1.2rem 1.5rem;
-  }
-
-  .highlight-card.reverse {
-    flex-direction: column;
   }
 
   .highlight-img {
