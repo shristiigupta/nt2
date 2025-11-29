@@ -4,7 +4,13 @@ import { incrementVisit } from "./visitTracker";
 
 
 const About = () => {
-  const [aboutData, setAboutData] = useState(null);
+  const [aboutData, setAboutData] = useState({
+    aboutHindi: null,
+    aboutEnglish: null,
+    demoHindi: null,
+    demoEnglish: null,
+  });
+
 
   useEffect(() => {
     incrementVisit("About Page");
@@ -28,44 +34,43 @@ const About = () => {
       <div className="about-container">
 
         <h1>About Us</h1>
-
-
-        
         <div className="highlight-card">
-          <div className="about-video-section">
-            {aboutData ? (
-              <>
-                <div className="single-video-block">
-                  <iframe
-                    className="about-video"
-                    src={aboutData.aboutHindi}
-                    title="About Hindi"
-                    allowFullScreen
-                  ></iframe>
-                </div>
 
-                <div className="single-video-block">
-                  <iframe
-                    className="about-video"
-                    src={aboutData.aboutEnglish}
-                    title="About English"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </>
-            ) : (
-              <p>Loading videos...</p>
+          <div className="flex-trio">
+            {aboutData.aboutHindi && (
+              <div className="flex-item">
+                <iframe
+                  className="about-video"
+                  src={aboutData.aboutHindi}
+                  title="About Hindi"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
+
+            <div className="flex-item text-block">
+              <h3>Santulan Holistic Solutions</h3>
+              <p>
+                Santulan Holistic Solutions is dedicated to helping people regain
+                health and balance through natural, non-invasive neurotherapy
+                treatments. Our centre believes in the body's ability to heal
+                itself when guided with the right techniques.
+              </p>
+            </div>
+
+            {aboutData.aboutEnglish && (
+              <div className="flex-item">
+                <iframe
+                  className="about-video"
+                  src={aboutData.aboutEnglish}
+                  title="About English"
+                  allowFullScreen
+                ></iframe>
+              </div>
             )}
           </div>
 
-          <div className="highlight-text">
-            <h3>Santulan Holistic Solutions</h3>
-            <p>
-              Santulan Holistic Solutions is dedicated to helping people regain health and balance through natural, non-invasive neurotherapy treatments. Our centre believes in the body's ability to heal itself when guided with the right techniques.
-            </p>
-          </div>
         </div>
-
 
 
         <h2>Our Mission</h2>

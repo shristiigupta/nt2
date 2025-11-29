@@ -68,11 +68,11 @@ function Navbar() {
           <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
         </li>
         <li>
-          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Diseases <br />Treated</NavLink>
+          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Patient's <br />Corner</NavLink>
         </li>
 
         <li>
-          <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>For <br />Neurotherapist</NavLink>
+          <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>Neurotherapist  <br /> Corner</NavLink>
         </li>
 
         <li>
