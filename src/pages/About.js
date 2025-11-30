@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./About.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 
 const About = () => {
@@ -13,6 +14,7 @@ const About = () => {
 
 
   useEffect(() => {
+    logVisitor("About Page");
     incrementVisit("About Page");
 
     fetch("https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?raw=1")

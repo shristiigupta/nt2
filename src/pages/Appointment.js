@@ -3,9 +3,11 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Appointment.css";
 import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const Appointment = () => {
   useEffect(() => {
+    logVisitor("Appointment Page");
     incrementVisit("Appointment Page");
   }, []);
   const [selectedDate, setSelectedDate] = useState(new Date());

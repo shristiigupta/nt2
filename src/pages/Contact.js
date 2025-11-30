@@ -8,7 +8,7 @@ const Contact = () => {
 
     const [mapLoaded, setMapLoaded] = useState(false);
     useEffect(() => {
-        logVisitor("Contact Page")
+        logVisitor("Contact Page");
         incrementVisit("Contact Page");
     }, []);
 

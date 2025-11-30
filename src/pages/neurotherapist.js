@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./neurotherapist.css";
+import { incrementVisit } from "./visitTracker";
+import { logVisitor } from "./visitorLogger";
 
 const Neurotherapist = () => {
   const navigate = useNavigate();
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
+    logVisitor("Neurotherapist corner");
+    incrementVisit("Neurotherapist corner");
+    
     fetch(
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
     )
