@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Diseases = () => {
   const navigate = useNavigate();
-  const [services, setServices] = useState([]);
+  const [groupedDiseases, setGroupedDiseases] = useState({});
 
   useEffect(() => {
     logVisitor("Diseases Treated Page");
@@ -18,10 +18,19 @@ const Diseases = () => {
       .then((res) => res.json())
       .then((data) => {
         // Filter only items having Category = "diseases"
-        const diseaseList = Object.keys(data).filter(
+        const diseaseItems = Object.keys(data).filter(
           (item) => data[item].Category === "diseases"
         );
-        setServices(diseaseList);
+
+        // Group items by subCategory
+        const groups = {};
+        diseaseItems.forEach((item) => {
+          const subCat = data[item].subCategory || "Other";
+          if (!groups[subCat]) groups[subCat] = [];
+          groups[subCat].push(item);
+        });
+
+        setGroupedDiseases(groups);
       })
       .catch((err) => console.error("Error loading Gist:", err));
   }, []);
@@ -32,15 +41,20 @@ const Diseases = () => {
 
   return (
     <div className="diseases-container">
-      <h1>Diseases Treated</h1>
+      {Object.keys(groupedDiseases).map((subCat, idx) => (
+        <div key={idx} className="subcategory-section">
+          {/* SubCategory heading styled like main diseases heading */}
+          <h1>{subCat}</h1>
 
-      <ul className="diseases-list">
-        {services.map((service, index) => (
-          <li key={index} onClick={() => openDiseasePage(service)}>
-            {service}
-          </li>
-        ))}
-      </ul>
+          <ul className="diseases-list">
+            {groupedDiseases[subCat].map((disease, index) => (
+              <li key={index} onClick={() => openDiseasePage(disease)}>
+                {disease}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

@@ -6,21 +6,30 @@ import { logVisitor } from "./visitorLogger";
 
 const Neurotherapist = () => {
   const navigate = useNavigate();
-  const [videos, setVideos] = useState([]);
+  const [groupedVideos, setGroupedVideos] = useState({});
 
   useEffect(() => {
     logVisitor("Neurotherapist corner");
     incrementVisit("Neurotherapist corner");
-    
+
     fetch(
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
     )
       .then((res) => res.json())
       .then((data) => {
-        // Filter technical category
-        const techVideos = Object.keys(data)
-          .filter((key) => data[key].Category === "technical");
-        setVideos(techVideos);
+        const techItems = Object.keys(data).filter(
+          (key) => data[key].Category === "technical"
+        );
+
+        // Group by subCategory if exists, else "Other"
+        const groups = {};
+        techItems.forEach((item) => {
+          const subCat = data[item].subCategory || "Other";
+          if (!groups[subCat]) groups[subCat] = [];
+          groups[subCat].push(item);
+        });
+
+        setGroupedVideos(groups);
       })
       .catch((err) => console.error("Error loading Gist:", err));
   }, []);
@@ -31,15 +40,19 @@ const Neurotherapist = () => {
 
   return (
     <div className="diseases-container">
-      <h1>For Neurotherapist</h1>
+      {Object.keys(groupedVideos).map((subCat, idx) => (
+        <div key={idx} className="subcategory-section">
+          <h1>{subCat}</h1>
 
-      <ul className="diseases-list">
-        {videos.map((video, index) => (
-          <li key={index} onClick={() => openDetails(video)}>
-            {video}
-          </li>
-        ))}
-      </ul>
+          <ul className="diseases-list">
+            {groupedVideos[subCat].map((video, index) => (
+              <li key={index} onClick={() => openDetails(video)}>
+                {video}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

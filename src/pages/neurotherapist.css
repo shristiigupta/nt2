@@ -137,3 +137,27 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Add spacing between subcategory sections */
+.subcategory-section {
+  margin-bottom: 60px; /* space between two subcategories */
+}
+
+.subcategory-section h1 {
+  margin-bottom: 30px; /* space between heading and list */
+  font-size: 2.8rem;
+  color: #00695c;
+  position: relative;
+  display: inline-block;
+}
+
+.subcategory-section h1::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 4px;
+  background-color: #fdd835;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+

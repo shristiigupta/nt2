@@ -100,3 +100,12 @@ body {
     font-size: 0.95rem;
   }
 }
+
+/* Add spacing between subcategory sections */
+.subcategory-section {
+  margin-bottom: 60px; /* space between two subcategories */
+}
+
+.subcategory-section h1 {
+  margin-bottom: 30px; /* space between heading and list */
+}
