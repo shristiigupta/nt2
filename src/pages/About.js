@@ -37,30 +37,30 @@ const About = () => {
         <h1>About Us</h1>
 
         <div className="about-section-1-wrapper">
-          <div className="about-section-1">
-            <div className="video-container">
-              {aboutData.aboutHindi && (
-                <iframe
-                  title="About Us Hindi Video"
-                  src={aboutData.aboutHindi + "?controls=1&modestbranding=1&rel=0&iv_load_policy=3"}
-                  allowFullScreen
-                ></iframe>
-              )}
-            </div>
-            <div className="text-content">
-              <h3>Santulan Holistic Solutions</h3>
-              <p>
-                Santulan Holistic Solutions is dedicated to helping people regain
-                health and balance through natural, non-invasive neurotherapy
-                treatments. Our centre believes in the body's ability to heal itself
-                when guided with the right techniques.
-              </p>
-            </div>
-          </div>
-        </div>
+  <div className="about-section-1">
+    <div className="video-container">
+      {aboutData.aboutHindi && (
+        <iframe
+        title="About Us Hindi Video"  
+          src={aboutData.aboutHindi + "?controls=1&modestbranding=1&rel=0&iv_load_policy=3"}
+          allowFullScreen
+        ></iframe>
+      )}
+    </div>
+    <div className="text-content">
+      <h3>Santulan Holistic Solutions</h3>
+      <p>
+        Santulan Holistic Solutions is dedicated to helping people regain
+        health and balance through natural, non-invasive neurotherapy
+        treatments. Our centre believes in the body's ability to heal itself
+        when guided with the right techniques.
+      </p>
+    </div>
+  </div>
+</div>
 
 
-
+    
 
         {/* MISSION */}
         <h2>Our Mission</h2>
@@ -182,26 +182,23 @@ const About = () => {
 
           <div className="video-section">
             {aboutData.demoHindi && (
-              <iframe
-                className="treatment-video"
-                src={
-                  aboutData.demoHindi +
-                  "&modestbranding=1&controls=0&showinfo=0"
-                }
-                allowFullScreen
-              ></iframe>
-            )}
+  <iframe
+    className="treatment-video"
+    src={aboutData.demoHindi + "&modestbranding=1&controls=0&showinfo=0"}
+    title="Treatment Demo Video - Hindi" // ✅ unique title added
+    allowFullScreen
+  ></iframe>
+)}
 
-            {aboutData.demoEnglish && (
-              <iframe
-                className="treatment-video"
-                src={
-                  aboutData.demoEnglish +
-                  "&modestbranding=1&controls=0&showinfo=0"
-                }
-                allowFullScreen
-              ></iframe>
-            )}
+{aboutData.demoEnglish && (
+  <iframe
+    className="treatment-video"
+    src={aboutData.demoEnglish + "&modestbranding=1&controls=0&showinfo=0"}
+    title="Treatment Demo Video - English" // ✅ this will not render if demoEnglish is null
+    allowFullScreen
+  ></iframe>
+)}
+
           </div>
         </div>
 
