@@ -41,6 +41,11 @@ const Contact = () => {
                     <p><strong>Facebook: </strong><a href="https://www.facebook.com/share/17StcvJdqp/" target="_blank" rel="noopener noreferrer"> https://www.facebook.com/share/17StcvJdqp/ </a></p>
                     <p><strong>Instagram: </strong><a href="https://www.instagram.com/santulanholisticsolutions" target="_blank" rel="noopener noreferrer">https://www.instagram.com/santulanholisticsolutions</a></p>
                     <p><strong>Open hours:</strong> 8.00 AM to 7.00 PM (by appointment only)</p>
+                    <p>
+                        <a href="/gallery" >
+                            <strong>Gallery</strong>
+                        </a>
+                    </p>
 
                 </div>
 

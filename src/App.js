@@ -23,6 +23,7 @@ import NeuroDetails from "./pages/NeuroDetails";
 
 import "./App.css";
 import FlashScroll from "./components/FlashScroll";
+import Gallery from "./pages/Gallery";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/disease/:name" element={<DiseaseDetails />} />
         <Route path="/forneurotherapist" element={<Neurotherapist />} />
         <Route path="/forneurotherapist/:name" element={<NeuroDetails />} />
+        <Route path="/gallery" element={<Gallery />} />
 
       </Routes>
     </Router>

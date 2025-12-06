@@ -41,8 +41,9 @@ const About = () => {
     <div className="video-container">
       {aboutData.aboutHindi && (
         <iframe
-        title="About Us Hindi Video"  
+        title="About Us English Video"  
           src={aboutData.aboutHindi + "?controls=1&modestbranding=1&rel=0&iv_load_policy=3"}
+          frameBorder="0"
           allowFullScreen
         ></iframe>
       )}
@@ -182,23 +183,26 @@ const About = () => {
 
           <div className="video-section">
             {aboutData.demoHindi && (
-  <iframe
-    className="treatment-video"
-    src={aboutData.demoHindi + "&modestbranding=1&controls=0&showinfo=0"}
-    title="Treatment Demo Video - Hindi" // ✅ unique title added
-    allowFullScreen
-  ></iframe>
-)}
+              <iframe
+                className="treatment-video"
+                src={
+                  aboutData.demoHindi +
+                  "&modestbranding=1&controls=0&showinfo=0"
+                }
+                allowFullScreen
+              ></iframe>
+            )}
 
-{aboutData.demoEnglish && (
-  <iframe
-    className="treatment-video"
-    src={aboutData.demoEnglish + "&modestbranding=1&controls=0&showinfo=0"}
-    title="Treatment Demo Video - English" // ✅ this will not render if demoEnglish is null
-    allowFullScreen
-  ></iframe>
-)}
-
+            {aboutData.demoEnglish && (
+              <iframe
+                className="treatment-video"
+                src={
+                  aboutData.demoEnglish +
+                  "&modestbranding=1&controls=0&showinfo=0"
+                }
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
         </div>
 
