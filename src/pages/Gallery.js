@@ -1,30 +1,39 @@
-
-
 import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 
 const Gallery = () => {
-  const [galleryData, setGalleryData] = useState({});
+  const [galleryData, setGalleryData] = useState([]);
 
   const fetchGallery = () => {
-    fetch(`https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`)
+    fetch(
+      `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
+    )
       .then((res) => res.json())
-      .then((data) => setGalleryData(data));
+      .then((data) => {
+        // Convert object into array of videos
+        const allVideos = [];
+        Object.entries(data).forEach(([title, item]) => {
+          if (item.video_hindi) {
+            allVideos.push({ title, src: item.video_hindi, lang: "Hindi" });
+          }
+          if (item.video_english) {
+            allVideos.push({ title, src: item.video_english, lang: "English" });
+          }
+        });
+        setGalleryData(allVideos);
+      });
   };
 
-  // ⬇️ Fetch once when page loads
   useEffect(() => {
     fetchGallery();
   }, []);
 
-  // ⬇️ Auto-refresh every 10 minutes (600,000 ms)
   useEffect(() => {
     const interval = setInterval(() => {
       fetchGallery();
       console.log("Gallery auto-refreshed");
     }, 600000); // 10 minutes
-
-    return () => clearInterval(interval); // cleanup on unmount
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -33,14 +42,15 @@ const Gallery = () => {
         <h1 className="gallery-heading">Gallery</h1>
 
         <div className="video-grid">
-          {Object.entries(galleryData).map(([title, item], index) => (
+          {galleryData.map((video, index) => (
             <div className="video-card" key={index}>
               <iframe
-                src={item.video_hindi}
-                title={title}
+                src={video.src}
+                title={`${video.title} (${video.lang})`}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+           
             </div>
           ))}
         </div>
@@ -50,4 +60,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
