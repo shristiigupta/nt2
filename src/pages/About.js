@@ -37,36 +37,33 @@ const About = () => {
         <h1>About Us</h1>
 
         <div className="about-section-1-wrapper">
-  <div className="about-section-1">
-    <div className="video-container">
-      {aboutData.aboutHindi && (
-  <iframe
-    title="About Us Hindi Video"
-    src={
-      aboutData.aboutHindi +
-      (aboutData.aboutHindi.includes("?") ? "&" : "?") +
-      "controls=1&modestbranding=1&rel=0&iv_load_policy=3"
-    }
-    frameBorder="0"
-    allowFullScreen
-  ></iframe>
-)}
+          <div className="about-section-1">
+            <div className="video-container">
+              {aboutData.aboutHindi && (
+                <iframe
+                  key={aboutData.aboutHindi}
+                  title="About Us Hindi Video"
+                  src={aboutData.aboutHindi.split("?")[0]}
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  muted
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", border: "0" }}
+                ></iframe>
+              )}
+            </div>
 
-    </div>
-    <div className="text-content">
-      <h3>Santulan Holistic Solutions</h3>
-      <p>
-        Santulan Holistic Solutions is dedicated to helping people regain
-        health and balance through natural, non-invasive neurotherapy
-        treatments. Our centre believes in the body's ability to heal itself
-        when guided with the right techniques.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-    
+            <div className="text-content">
+              <h3>Santulan Holistic Solutions</h3>
+              <p>
+                Santulan Holistic Solutions is dedicated to helping people regain
+                health and balance through natural, non-invasive neurotherapy
+                treatments. Our centre believes in the body's ability to heal itself
+                when guided with the right techniques.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* MISSION */}
         <h2>Our Mission</h2>
@@ -187,27 +184,35 @@ const About = () => {
           </div>
 
           <div className="video-section">
+
             {aboutData.demoHindi && (
               <iframe
+                key={aboutData.demoHindi}
                 className="treatment-video"
-                src={
-                  aboutData.demoHindi +
-                  "&modestbranding=1&controls=0&showinfo=0"
-                }
+                title="Neurotherapy Demo Hindi Video"
+                src={aboutData.demoHindi.split("?")[0]}
+                allow="autoplay; encrypted-media"
                 allowFullScreen
+                muted
+                loading="lazy"
+                style={{ width: "100%", height: "100%", border: "0" }}
               ></iframe>
             )}
 
             {aboutData.demoEnglish && (
               <iframe
+                key={aboutData.demoEnglish}
                 className="treatment-video"
-                src={
-                  aboutData.demoEnglish +
-                  "&modestbranding=1&controls=0&showinfo=0"
-                }
+                title="Neurotherapy Demo English Video"
+                src={aboutData.demoEnglish.split("?")[0]}
+                allow="autoplay; encrypted-media"
                 allowFullScreen
+                muted
+                loading="lazy"
+                style={{ width: "100%", height: "100%", border: "0" }}
               ></iframe>
             )}
+
           </div>
         </div>
 
