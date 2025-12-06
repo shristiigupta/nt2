@@ -40,13 +40,18 @@ const About = () => {
   <div className="about-section-1">
     <div className="video-container">
       {aboutData.aboutHindi && (
-        <iframe
-        title="About Us English Video"  
-          src={aboutData.aboutHindi + "?controls=1&modestbranding=1&rel=0&iv_load_policy=3"}
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      )}
+  <iframe
+    title="About Us Hindi Video"
+    src={
+      aboutData.aboutHindi +
+      (aboutData.aboutHindi.includes("?") ? "&" : "?") +
+      "controls=1&modestbranding=1&rel=0&iv_load_policy=3"
+    }
+    frameBorder="0"
+    allowFullScreen
+  ></iframe>
+)}
+
     </div>
     <div className="text-content">
       <h3>Santulan Holistic Solutions</h3>
