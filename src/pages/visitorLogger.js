@@ -49,6 +49,7 @@ export const logVisitor = async (pageName) => {
       body: JSON.stringify({ logs }),
     });
 
+
     console.log("Visitor logged:", visitorInfo);
   } catch (err) {
     console.error("Error logging visitor:", err);
