@@ -6,6 +6,11 @@ import "./MonthlySlotsView.css";
 import { logVisitor } from "./visitorLogger";
 
 const MonthlySlotsView = () => {
+
+  useEffect(() => {
+  document.title = "Monthly Slots View | Santulan Holistic Solutions";
+}, []);
+
   useEffect(() => {
   logVisitor("Monthly Slots View");
 }, []);

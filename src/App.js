@@ -21,11 +21,11 @@ import "./App.css";
 import FlashScroll from "./components/FlashScroll";
 import Gallery from "./pages/Gallery";
 import RouteTracker from "./RouteTracker";
+import VisitorLogPage from "./pages/VisitorLogPage";
 
 function App() {
   return (
     <Router>
-      <RouteTracker/>
       <Navbar />
       <FlashScroll />
       <Routes>
@@ -41,7 +41,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/MonthlySlotsView" element={<MonthlySlotsView />} />
         <Route path="/Statistics" element={<StatsPage />} />
-        <Route path="/visitor-log" element={<RouteTracker />} />
+        <Route path="/visitor-log" element={<VisitorLogPage />} />
         <Route path="/" element={<HeroCarousel />} />
         <Route path="/disease/:name" element={<DiseaseDetails />} />
         <Route path="/forneurotherapist" element={<Neurotherapist />} />

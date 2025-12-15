@@ -6,6 +6,10 @@ import { logVisitor } from "./visitorLogger";
 
 const Contact = () => {
 
+    useEffect(() => {
+  document.title = "Contact Page | Santulan Holistic Solutions";
+}, []);
+
     const [mapLoaded, setMapLoaded] = useState(false);
 
     useEffect(() => {

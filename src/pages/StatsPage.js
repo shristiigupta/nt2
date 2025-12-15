@@ -22,6 +22,9 @@ const StatsPage = () => {
   const [totalVisits, setTotalVisits] = useState(0);
   const COLORS = ["#072d4eff", "#df3f79ff", "#FFBB28", "#2bc43dff" , "#cd2727ff", "#34c9d4ff", "#09ffadff", "#c2dc19ff"];
 
+  useEffect(() => {
+  document.title = "Statistics Page | Santulan Holistic Solutions";
+}, []);
 
   useEffect(() => {
     logVisitor("Stats Page");

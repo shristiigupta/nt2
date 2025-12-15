@@ -9,6 +9,10 @@ const Diseases = () => {
   const [groupedDiseases, setGroupedDiseases] = useState({});
 
   useEffect(() => {
+  document.title = "Diseases Treated Page | Santulan Holistic Solutions";
+}, []);
+
+  useEffect(() => {
     logVisitor("Diseases Treated Page");
     incrementVisit("Diseases Treated Page");
 

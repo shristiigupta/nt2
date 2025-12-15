@@ -7,6 +7,10 @@ const Reviews = () => {
   const pioneerCarousel = useRef(null);
 
   useEffect(() => {
+  document.title = "Customer Reviews Page | Santulan Holistic Solutions";
+}, []);
+
+  useEffect(() => {
     logVisitor("Customer Reviews Page");
     incrementVisit("Customer Reviews Page");
   }, []);

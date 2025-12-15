@@ -9,6 +9,10 @@ const Neurotherapist = () => {
   const [groupedVideos, setGroupedVideos] = useState({});
 
   useEffect(() => {
+  document.title = "Neurotherapist Corner | Santulan Holistic Solutions";
+}, []);
+
+  useEffect(() => {
     logVisitor("Neurotherapist corner");
     incrementVisit("Neurotherapist corner");
 

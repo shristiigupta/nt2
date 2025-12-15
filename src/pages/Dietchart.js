@@ -8,6 +8,10 @@ const Dietchart = () => {
     const imageSrc = "/dietchart.jpg";
 
     useEffect(() => {
+  document.title = "Diet Chart | Santulan Holistic Solutions";
+}, []);
+
+    useEffect(() => {
             logVisitor("Diet Chart")
             incrementVisit("Diet Chart");
         }, []);

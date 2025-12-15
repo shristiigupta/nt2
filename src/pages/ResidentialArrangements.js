@@ -1,13 +1,18 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./ResidentialArrangements.css";
 import { incrementVisit } from "./visitTracker";
 import { logVisitor } from "./visitorLogger";
 
 function ResidentialArrangements() {
+
     useEffect(() => {
-            logVisitor("Residential Arrangements");
-            incrementVisit("Residential Arrangements");
-        }, []);
+        document.title = "Residential Arrangements | Santulan Holistic Solutions";
+    }, []);
+
+    useEffect(() => {
+        logVisitor("Residential Arrangements");
+        incrementVisit("Residential Arrangements");
+    }, []);
     return (
         <div className="residential-page">
             <h1>Residential Arrangements</h1>
