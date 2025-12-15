@@ -7,6 +7,11 @@ import { logVisitor } from "./visitorLogger";
 const Contact = () => {
 
     const [mapLoaded, setMapLoaded] = useState(false);
+
+    useEffect(() => {
+        document.title = "Contact Page | Santulan Holistic Solutions";
+    }, []);
+
     useEffect(() => {
         logVisitor("Contact Page");
         incrementVisit("Contact Page");

@@ -25,6 +25,7 @@ import RouteTracker from "./RouteTracker";
 function App() {
   return (
     <Router>
+      <RouteTracker/>
       <Navbar />
       <FlashScroll />
       <Routes>

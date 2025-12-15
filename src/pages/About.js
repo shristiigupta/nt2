@@ -12,6 +12,10 @@ const About = () => {
   });
 
   useEffect(() => {
+  document.title = "About | Santulan Holistic Solutions";
+}, []);
+
+  useEffect(() => {
     logVisitor("About Page");
     incrementVisit("About Page");
 

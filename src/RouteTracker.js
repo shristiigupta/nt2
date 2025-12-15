@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { trackPageView } from "./analytics";
 
 const RouteTracker = () => {
-  const location = useLocation();
+    const location = useLocation();
 
-  useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location]);
+    useEffect(() => {
+        trackPageView(location.pathname);
+    }, [location.pathname]);
 
-  return null;
+
+    return null;
 };
 
 export default RouteTracker;

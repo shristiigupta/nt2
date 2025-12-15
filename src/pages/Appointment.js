@@ -7,6 +7,10 @@ import { logVisitor } from "./visitorLogger";
 
 const Appointment = () => {
   useEffect(() => {
+  document.title = "Appointment Page | Santulan Holistic Solutions";
+}, []);
+
+  useEffect(() => {
     logVisitor("Appointment Page");
     incrementVisit("Appointment Page");
   }, []);
