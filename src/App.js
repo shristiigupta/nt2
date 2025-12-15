@@ -20,12 +20,13 @@ import NeuroDetails from "./pages/NeuroDetails";
 import "./App.css";
 import FlashScroll from "./components/FlashScroll";
 import Gallery from "./pages/Gallery";
-import RouteTracker from "./RouteTracker";
 import VisitorLogPage from "./pages/VisitorLogPage";
+import RouteTracker from "./RouteTracker";
 
 function App() {
   return (
     <Router>
+      <RouteTracker/>
       <Navbar />
       <FlashScroll />
       <Routes>

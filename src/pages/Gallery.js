@@ -4,6 +4,10 @@ import "./Gallery.css";
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
 
+  useEffect(() => {
+  document.title = "Gallery | Santulan Holistic Solutions";
+}, []);
+
   const fetchGallery = () => {
     fetch(
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
