@@ -1,69 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./HeroCarousel.css";
 
-/**
- * Usage:
- * - Put image files in public/ (or adjust src paths)
- * - Replace slide contents below as needed.
- */
-
-const slides = [
-  {
-    id: 1,
-    img: "/hero_img1.jpg", // replace with /nt_home.png or other
-    title: "Revitalize Your Health Naturally",
-    subtitle: "Restore balance with proven Neurotherapy — without medicines or surgery.",
-    cta: { text: "Learn More", href: "#about" }
-  },
-  {
-    id: 2,
-    img: "/hero_img2.jpg",
-    title: "Gentle • Scientific • Effective",
-    subtitle: "Personalized sessions that focus on root causes, not just symptoms.",
-    cta: { text: "Book Consultation", href: "#contact" }
-  },
-  {
-    id: 3,
-    img: "/hero_img3.jpg",
-    title: "Trusted Care for All Ages",
-    subtitle: "Experienced therapists helping you and your family regain vitality.",
-    cta: { text: "Our Treatments", href: "#services" }
-  },
-  {
-    id: 4,
-    img: "/hero_img4.jpg",
-    title: "Trusted Care for All Ages",
-    subtitle: "Experienced therapists helping you and your family regain vitality.",
-    cta: { text: "Our Treatments", href: "#services" }
-  },
-  {
-    id: 5,
-    img: "/hero_img5.jpg",
-    title: "Trusted Care for All Ages",
-    subtitle: "Experienced therapists helping you and your family regain vitality.",
-    cta: { text: "Our Treatments", href: "#services" }
-  },
-  {
-    id: 6,
-    img: "/hero_img6.jpg",
-    title: "Trusted Care for All Ages",
-    subtitle: "Experienced therapists helping you and your family regain vitality.",
-    cta: { text: "Our Treatments", href: "#services" }
-  }
-];
-
 export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
+  const [slides, setSlides] = useState([]);
   const [index, setIndex] = useState(0);
-  const slidesCount = slides.length;
   const timerRef = useRef(null);
-  const carouselRef = useRef(null);
+
+  const slidesCount = slides.length;
 
   useEffect(() => {
-    if (!autoPlay) return;
+    // Fetch with cache-buster
+    fetch(
+      `https://gist.githubusercontent.com/santulanneurotherapy/60cde4cbffbf867715c09009ea1844a8/raw/homeimages.txt?nocache=${Date.now()}`
+    )
+      .then((res) => res.json())
+    .then((data) => setSlides(data))
+    .catch((err) => console.error("Failed to load slides from Gist", err));
+  }, []); 
+  
+
+ 
+
+
+  useEffect(() => {
+    if (!autoPlay || slidesCount === 0) return;
     startAutoplay();
     return stopAutoplay;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, autoPlay]);
+  }, [index, autoPlay, slidesCount]);
 
   function startAutoplay() {
     stopAutoplay();
@@ -91,58 +54,36 @@ export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
     goTo(index + 1);
   }
 
+  if (slidesCount === 0) return null;
+
   return (
     <header
       className="hero-carousel"
-      onMouseEnter={() => stopAutoplay()}
+      onMouseEnter={stopAutoplay}
       onMouseLeave={() => autoPlay && startAutoplay()}
-      ref={carouselRef}
-      aria-roledescription="carousel"
     >
       <div
         className="slides"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slides.map((s, i) => (
-          <div
-            className="slide"
-            key={s.id}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${slidesCount}`}
-          >
-            <img src={s.img} alt={s.title} className="slide-img" />
-            
+          <div className="slide" key={s.id}>
+            <a href={s.link}>
+              <img src={s.img} alt={`Slide ${i + 1}`} className="slide-img" />
+            </a>
           </div>
         ))}
       </div>
 
-      {/* Controls */}
-      <button
-        className="carousel-arrow left"
-        onClick={prev}
-        aria-label="Previous slide"
-      >
-        ‹
-      </button>
-      <button
-        className="carousel-arrow right"
-        onClick={next}
-        aria-label="Next slide"
-      >
-        ›
-      </button>
+      <button className="carousel-arrow left" onClick={prev}>‹</button>
+      <button className="carousel-arrow right" onClick={next}>›</button>
 
-      {/* Indicators */}
-      <div className="carousel-indicators" role="tablist" aria-label="Slides">
+      <div className="carousel-indicators">
         {slides.map((_, i) => (
           <button
             key={i}
             className={`indicator ${i === index ? "active" : ""}`}
             onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            aria-selected={i === index}
-            role="tab"
           />
         ))}
       </div>
