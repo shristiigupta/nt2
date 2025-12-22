@@ -67,10 +67,11 @@ const fetchSlots = useCallback(async (date) => {
 
 
   useEffect(() => {
-    fetchSlots(selectedDate);
-    const interval = setInterval(() => fetchSlots(selectedDate), 60 * 1000);
-    return () => clearInterval(interval);
-  }, [selectedDate]);
+  fetchSlots(selectedDate);
+  const interval = setInterval(() => fetchSlots(selectedDate), 60 * 1000);
+  return () => clearInterval(interval);
+}, [selectedDate, fetchSlots]);
+
 
   const minDate = new Date();
   const maxDate = new Date();
