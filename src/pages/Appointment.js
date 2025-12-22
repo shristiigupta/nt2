@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Appointment.css";
 import { incrementVisit } from "./visitTracker";
 import { logVisitor } from "./visitorLogger";
+
 
 const DEFAULT_SLOTS = [
   "8:00 AM",
@@ -23,54 +24,47 @@ const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
 
-  const fetchSlots = async (date) => {
-    const formattedDate = date.toLocaleDateString("en-CA");
+const fetchSlots = useCallback(async (date) => {
+  const formattedDate = date.toLocaleDateString("en-CA");
 
-    try {
-      const res = await fetch(
-        `https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=${Date.now()}`
-      );
+  try {
+    const res = await fetch(
+      `https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=${Date.now()}`
+    );
 
-      const text = await res.text();
-      const jsonData = JSON.parse(text);
-      const gistSlots = jsonData[formattedDate] || [];
+    const text = await res.text();
+    const jsonData = JSON.parse(text);
+    const gistSlots = jsonData[formattedDate] || [];
 
-      const slotMap = {};
+    const slotMap = {};
 
-      // 1️⃣ Add default slots (available)
-      DEFAULT_SLOTS.forEach((time) => {
-        slotMap[time] = {
-          time,
-          status: "available",
-        };
-      });
+    DEFAULT_SLOTS.forEach((time) => {
+      slotMap[time] = { time, status: "available" };
+    });
 
-      // 2️⃣ Override / add gist slots (ANY time)
-      gistSlots.forEach((slot) => {
-        slotMap[slot.time] = {
-          time: slot.time,
-          status: slot.status,
-        };
-      });
+    gistSlots.forEach((slot) => {
+      slotMap[slot.time] = {
+        time: slot.time,
+        status: slot.status,
+      };
+    });
 
-      // 3️⃣ Convert to array & sort by time
-      const finalSlots = Object.values(slotMap).sort(
-        (a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)
-      );
+    const finalSlots = Object.values(slotMap).sort(
+      (a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)
+    );
 
-      setSlots(finalSlots);
-    } catch (err) {
-      console.error("Error fetching slots:", err);
+    setSlots(finalSlots);
+  } catch (err) {
+    console.error("Error fetching slots:", err);
+    setSlots(
+      DEFAULT_SLOTS.map((time) => ({
+        time,
+        status: "available",
+      }))
+    );
+  }
+}, []);
 
-      // fallback
-      setSlots(
-        DEFAULT_SLOTS.map((time) => ({
-          time,
-          status: "available",
-        }))
-      );
-    }
-  };
 
   useEffect(() => {
     fetchSlots(selectedDate);
