@@ -5,32 +5,70 @@ import "./Appointment.css";
 import { incrementVisit } from "./visitTracker";
 import { logVisitor } from "./visitorLogger";
 
+const DEFAULT_SLOTS = [
+  "8:00 AM",
+  "10:00 AM",
+  "2:00 PM",
+  "4:00 PM",
+  "6:00 PM",
+];
+
 const Appointment = () => {
   useEffect(() => {
-  document.title = "Appointment Page | Santulan Holistic Solutions";
-}, []);
-
-  useEffect(() => {
+    document.title = "Appointment Page | Santulan Holistic Solutions";
     logVisitor("Appointment Page");
     incrementVisit("Appointment Page");
   }, []);
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
 
   const fetchSlots = async (date) => {
     const formattedDate = date.toLocaleDateString("en-CA");
+
     try {
       const res = await fetch(
-        "https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=" +
-          Date.now()
+        `https://gist.githubusercontent.com/santulanneurotherapy/6681176a55e02ed339a9793d46378747/raw/gistfile1.txt?nocache=${Date.now()}`
       );
+
       const text = await res.text();
       const jsonData = JSON.parse(text);
-      const daySlots = jsonData[formattedDate] || [];
-      setSlots(daySlots);
+      const gistSlots = jsonData[formattedDate] || [];
+
+      const slotMap = {};
+
+      // 1️⃣ Add default slots (available)
+      DEFAULT_SLOTS.forEach((time) => {
+        slotMap[time] = {
+          time,
+          status: "available",
+        };
+      });
+
+      // 2️⃣ Override / add gist slots (ANY time)
+      gistSlots.forEach((slot) => {
+        slotMap[slot.time] = {
+          time: slot.time,
+          status: slot.status,
+        };
+      });
+
+      // 3️⃣ Convert to array & sort by time
+      const finalSlots = Object.values(slotMap).sort(
+        (a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)
+      );
+
+      setSlots(finalSlots);
     } catch (err) {
-      console.error("Error fetching/parsing slots:", err);
-      setSlots([]);
+      console.error("Error fetching slots:", err);
+
+      // fallback
+      setSlots(
+        DEFAULT_SLOTS.map((time) => ({
+          time,
+          status: "available",
+        }))
+      );
     }
   };
 
@@ -44,54 +82,48 @@ const Appointment = () => {
   const maxDate = new Date();
   maxDate.setDate(maxDate.getDate() + 6);
 
-  // helpers for date-only comparisons
-  const dateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  // ---------- TIME HELPERS ----------
+  const dateOnly = (d) =>
+    new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
   const isSameDay = (a, b) =>
     a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&
     a.getDate() === b.getDate();
-  const isBeforeDay = (a, b) => dateOnly(a).getTime() < dateOnly(b).getTime();
 
-  // convert "HH:MM AM/PM" (or "H:MM AM/PM") to minutes since midnight
-  const timeToMinutes = (timeStr) => {
-    if (!timeStr) return 0;
-    const parts = timeStr.trim().split(" ");
-    let timePart = parts[0];
-    let modifier = parts[1] ? parts[1].toUpperCase() : null;
+  const isBeforeDay = (a, b) =>
+    dateOnly(a).getTime() < dateOnly(b).getTime();
 
-    // handle times without AM/PM by assuming 24-hour format
-    let [hours, minutes] = timePart.split(":").map(Number);
-    if (!modifier) {
-      // e.g., "13:30" -> 13:30
-    } else {
-      if (modifier === "PM" && hours !== 12) hours += 12;
-      if (modifier === "AM" && hours === 12) hours = 0;
-    }
-    return hours * 60 + (minutes || 0);
-  };
+  function timeToMinutes(timeStr) {
+    const [time, modifier] = timeStr.split(" ");
+    let [hours, minutes] = time.split(":").map(Number);
+
+    if (modifier === "PM" && hours !== 12) hours += 12;
+    if (modifier === "AM" && hours === 12) hours = 0;
+
+    return hours * 60 + minutes;
+  }
 
   const getCurrentMinutes = () => {
     const now = new Date();
     return now.getHours() * 60 + now.getMinutes();
   };
 
-  // Determine visible slots:
+  // ---------- FILTERING ----------
   const getFilteredSlots = () => {
     const today = new Date();
     const nowMinutes = getCurrentMinutes();
 
-    // If selected date is before today => none
     if (isBeforeDay(selectedDate, today)) return [];
 
-    // If selected date is today => only upcoming slots (strictly greater than current time)
     if (isSameDay(selectedDate, today)) {
       return slots.filter(
         (slot) =>
-          slot.status === "available" && timeToMinutes(slot.time)  > nowMinutes + 59
+          slot.status === "available" &&
+          timeToMinutes(slot.time) > nowMinutes + 59
       );
     }
 
-    // Future date => show all available slots
     return slots.filter((slot) => slot.status === "available");
   };
 
@@ -99,7 +131,7 @@ const Appointment = () => {
 
   return (
     <div className="appointment-wrapper">
-      {/* RIGHT SECTION - Calendar and Slots */}
+      {/* RIGHT SECTION */}
       <div className="slots-section">
         <h1>Appointments</h1>
 
@@ -113,8 +145,7 @@ const Appointment = () => {
         </div>
 
         <h3 className="slots-heading">
-          Available slots as on{" "}
-          <br />
+          Available slots as on <br />
           <span className="selected-date">
             {selectedDate.toLocaleDateString("en-IN", {
               year: "numeric",
@@ -125,7 +156,6 @@ const Appointment = () => {
           </span>
         </h3>
 
-        {/* SLOT DISPLAY */}
         {visibleSlots.length > 0 ? (
           <div className="slots-grid">
             {visibleSlots.map((slot, index) => (
@@ -136,8 +166,7 @@ const Appointment = () => {
           </div>
         ) : (
           <p className="no-slots">
-            No available slots for this date. Please try selecting another
-            date.
+            No available slots for this date. Please try selecting another date.
           </p>
         )}
 
@@ -147,7 +176,6 @@ const Appointment = () => {
             <div className="legend-color available"></div>
             <span>Green – Available slot</span>
           </div>
-
           <div className="legend-item">
             <div className="legend-color blocked"></div>
             <span>Yellow – Blocked slot</span>
@@ -155,7 +183,7 @@ const Appointment = () => {
         </div>
       </div>
 
-      {/* LEFT SECTION - Procedure */}
+      {/* LEFT SECTION — RESTORED EXACTLY */}
       <div className="procedure-section">
         <h1>Appointment Procedure</h1>
         <ol className="procedure-list">
@@ -173,8 +201,8 @@ const Appointment = () => {
             8130608275
           </li>
           <li>
-            Santulan Wellness Team will block your date and time for two hours
-            and share a QR code for payment.
+            Santulan Wellness Team will block your date and time for two hours and
+            share a QR code for payment.
           </li>
           <li>
             Please make the payment as specified within the blocking period and
@@ -197,8 +225,8 @@ const Appointment = () => {
           </li>
           <li>
             Any advance payment will not be refunded. Only onetime Preponement /
-            Postponement can be done with prior intimation subject to
-            availability of time slot.
+            Postponement can be done with prior intimation subject to availability
+            of time slot.
           </li>
         </ol>
       </div>

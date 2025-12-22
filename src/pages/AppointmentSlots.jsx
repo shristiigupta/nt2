@@ -4,6 +4,8 @@ import "react-calendar/dist/Calendar.css";
 import "./AppointmentSlots.css";
 
 const AppointmentSlots = () => {
+
+  
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [slots, setSlots] = useState([]);
 
