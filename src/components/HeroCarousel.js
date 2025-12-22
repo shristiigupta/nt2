@@ -70,7 +70,11 @@ export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
       >
         {slides.map((s, i) => (
           <div className="slide" key={s.id || i}>
-            <a href={s.link}>
+            <a
+              href={s.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src={s.img}
                 alt={`Slide ${i + 1}`}
@@ -79,6 +83,7 @@ export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
             </a>
           </div>
         ))}
+
       </div>
 
       <button className="carousel-arrow left" onClick={prev}>

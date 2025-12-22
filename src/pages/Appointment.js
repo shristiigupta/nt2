@@ -106,21 +106,26 @@ const fetchSlots = useCallback(async (date) => {
 
   // ---------- FILTERING ----------
   const getFilteredSlots = () => {
-    const today = new Date();
-    const nowMinutes = getCurrentMinutes();
+  const today = new Date();
+  const nowMinutes = getCurrentMinutes();
 
-    if (isBeforeDay(selectedDate, today)) return [];
+  // ❌ No slots for past dates
+  if (isBeforeDay(selectedDate, today)) return [];
 
-    if (isSameDay(selectedDate, today)) {
-      return slots.filter(
-        (slot) =>
-          slot.status === "available" &&
-          timeToMinutes(slot.time) > nowMinutes + 59
-      );
-    }
+  // ⏰ Today → hide past-time slots
+  if (isSameDay(selectedDate, today)) {
+    return slots.filter(
+      (slot) =>
+        timeToMinutes(slot.time) > nowMinutes + 59 &&
+        (slot.status === "available" || slot.status === "blocked")
+    );
+  }
 
-    return slots.filter((slot) => slot.status === "available");
-  };
+  // 📅 Future dates → show only available & blocked
+  return slots.filter(
+    (slot) => slot.status === "available" || slot.status === "blocked"
+  );
+};
 
   const visibleSlots = getFilteredSlots();
 
