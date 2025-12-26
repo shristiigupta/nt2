@@ -84,6 +84,37 @@
   background: white;
 }
 
+
+
+/* ===============================
+   HERO CAROUSEL CONTAINER
+================================ */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;          /* FULL SCREEN ON DESKTOP */
+  overflow: hidden;
+}
+
+/* ===============================
+   SLIDE
+================================ */
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ===============================
+   IMAGE — DESKTOP FULL SPREAD
+================================ */
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;      /* fills screen, no gaps */
+  display: block;
+}
+
 /* ===============================
    📱 MOBILE
 ================================ */
@@ -98,5 +129,17 @@
 
   .carousel-arrow {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    display: flex;
+    align-items: center; /* 🔑 centers arrows to image height */
+  }
+
+  .carousel-arrow {
+    top: auto;
+    transform: none;
   }
 }
