@@ -22,13 +22,15 @@
 /* ---- SHORTS SECTION ---- */
 .shorts-section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;   /* ✅ allow horizontal scroll */
   gap: 1.5rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 1rem 0;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 .shorts-section::-webkit-scrollbar {
   display: none;
