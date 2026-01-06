@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Reviews.css";
 import { incrementVisit } from "./visitTracker";
 import { logVisitor } from "./visitorLogger";
@@ -6,15 +6,52 @@ import { logVisitor } from "./visitorLogger";
 const Reviews = () => {
   const pioneerCarousel = useRef(null);
 
-  useEffect(() => {
-  document.title = "Customer Reviews Page | Santulan Holistic Solutions";
-}, []);
+  const [customerReviews, setCustomerReviews] = useState([]);
+  const [pioneerVideos, setPioneerVideos] = useState([]);
 
+  /* ---- PAGE TITLE ---- */
+  useEffect(() => {
+    document.title = "Customer Reviews | Santulan Holistic Solutions";
+  }, []);
+
+  /* ---- VISITOR LOGGING ---- */
   useEffect(() => {
     logVisitor("Customer Reviews Page");
     incrementVisit("Customer Reviews Page");
   }, []);
 
+  /* ---- FETCH DATA FROM GIST (CACHE-BUSTED) ---- */
+  useEffect(() => {
+    const url = `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?ts=${Date.now()}`;
+
+    fetch(url, { cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load JSON");
+        return res.json();
+      })
+      .then((data) => {
+        const values = Object.values(data);
+
+        const customer = values.filter(
+          (item) => item.Category === "customer_reviews"
+        );
+
+        const pioneers = values.filter(
+          (item) => item.Category === "pioneer_reviews"
+        );
+
+        console.log("✅ Loaded customer reviews:", customer.length);
+        console.log("✅ Loaded pioneers:", pioneers.length);
+
+        setCustomerReviews(customer);
+        setPioneerVideos(pioneers);
+      })
+      .catch((err) => {
+        console.error("❌ Error loading reviews data:", err);
+      });
+  }, []);
+
+  /* ---- ELFSIGHT GOOGLE REVIEWS ---- */
   useEffect(() => {
     function initElfsight() {
       if (window.ElfsightApp) {
@@ -35,50 +72,43 @@ const Reviews = () => {
     }
   }, []);
 
+  /* ---- SCROLL HANDLERS ---- */
   const scrollLeft = () => {
-    pioneerCarousel.current.scrollBy({ left: -400, behavior: "smooth" });
+    if (pioneerCarousel.current) {
+      pioneerCarousel.current.scrollBy({ left: -400, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    pioneerCarousel.current.scrollBy({ left: 400, behavior: "smooth" });
+    if (pioneerCarousel.current) {
+      pioneerCarousel.current.scrollBy({ left: 400, behavior: "smooth" });
+    }
   };
-
-  // Pioneer video data
-  const pioneerVideos = [
-    { id: "AdaW0bm45YQ", link: "https://youtu.be/AdaW0bm45YQ?si=MmpdgMWP-std3Vvb" },
-    { id: "tn4rSZ-HTi4", link: "https://youtu.be/tn4rSZ-HTi4?si=K_4LJVUpI2Ni6Wk3" },
-    { id: "VZIoNIUHCY4", link: "https://www.youtube.com/watch?v=VZIoNIUHCY4" },
-    { id: "qnyG2MR539A", link: "https://www.youtube.com/watch?v=qnyG2MR539A" },
-    { id: "O9bSWaEDBVo", link: "https://www.youtube.com/shorts/O9bSWaEDBVo" },
-  ];
 
   return (
     <div className="reviews-page">
-      {/* CUSTOMER SHORTS SECTION */}
-      {/* CUSTOMER SHORTS SECTION */}
+      {/* ================= CUSTOMER REVIEWS ================= */}
       <section className="reviews-section">
         <h1 className="section-heading">Customer Reviews</h1>
 
         <div className="carousel-container">
           <button
             className="scroll-btn left"
-            onClick={() => {
-              document.querySelector(".shorts-section").scrollBy({ left: -300, behavior: "smooth" });
-            }}
+            onClick={() =>
+              document
+                .querySelector(".shorts-section")
+                ?.scrollBy({ left: -300, behavior: "smooth" })
+            }
           >
             &#10094;
           </button>
 
           <div className="shorts-section">
-            {["ZQcQ0o-zrHs", "PZ35UixVCWk", "k3Jv5xC-pIA"].map((videoId, index) => (
+            {customerReviews.map((video, index) => (
               <div key={index} className="short-card">
-                <a
-                  href={`https://www.youtube.com/shorts/${videoId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={video.video_link} target="_blank" rel="noreferrer">
                   <img
-                    src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                    src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
                     alt={`Customer Review ${index + 1}`}
                   />
                   <div className="play-overlay">▶</div>
@@ -89,19 +119,19 @@ const Reviews = () => {
 
           <button
             className="scroll-btn right"
-            onClick={() => {
-              document.querySelector(".shorts-section").scrollBy({ left: 300, behavior: "smooth" });
-            }}
+            onClick={() =>
+              document
+                .querySelector(".shorts-section")
+                ?.scrollBy({ left: 300, behavior: "smooth" })
+            }
           >
             &#10095;
           </button>
         </div>
       </section>
 
-
-      {/* GOOGLE REVIEWS SECTION */}
+      {/* ================= GOOGLE REVIEWS ================= */}
       <section className="reviews-section">
-
         <div className="google-reviews-wrapper">
           <div
             className="elfsight-app-3c78991c-da6c-4440-9563-33fb19308889"
@@ -110,9 +140,11 @@ const Reviews = () => {
         </div>
       </section>
 
-      {/* PIONEERS SECTION */}
+      {/* ================= PIONEERS ================= */}
       <section className="reviews-section pioneers-section">
-        <h1 className="section-heading">What Pioneers Say About Neurotherapy</h1>
+        <h1 className="section-heading">
+          What Pioneers Say About Neurotherapy
+        </h1>
 
         <div className="carousel-container">
           <button className="scroll-btn left" onClick={scrollLeft}>
@@ -122,9 +154,9 @@ const Reviews = () => {
           <div className="carousel" ref={pioneerCarousel}>
             {pioneerVideos.map((video, index) => (
               <div key={index} className="pioneer-card">
-                <a href={video.link} target="_blank" rel="noreferrer">
+                <a href={video.video_link} target="_blank" rel="noreferrer">
                   <img
-                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
                     alt={`Pioneer Video ${index + 1}`}
                   />
                   <div className="play-overlay">▶</div>

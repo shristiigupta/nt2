@@ -115,31 +115,31 @@
   display: block;
 }
 
+
 /* ===============================
-   📱 MOBILE
+   📱 MOBILE — FINAL OVERRIDE FIX
 ================================ */
 @media (max-width: 768px) {
   .hero-carousel {
-    max-height: none;
+    height: 45vh !important;
+    max-height: 45vh !important;
+  }
+
+  .slide {
+    height: 100% !important;
+    position: relative;
   }
 
   .slide-img {
-    max-height: none;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;  /* 🔑 uniform height */
   }
 
   .carousel-arrow {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     font-size: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .slide {
-    display: flex;
-    align-items: center; /* 🔑 centers arrows to image height */
-  }
-
-  .carousel-arrow {
-    top: auto;
-    transform: none;
-  }
-}
