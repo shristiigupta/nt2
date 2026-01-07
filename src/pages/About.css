@@ -368,3 +368,34 @@
     height: 180px;
   }
 }
+
+/* ---------- FORCE VIDEO RESPONSIVENESS ON SMALL SCREENS ---------- */
+@media (max-width: 600px) {
+
+  /* About page top videos */
+  .about-section-1 .video-container iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Treatment demo videos */
+  .treatment-video {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Stack videos vertically instead of side by side */
+  .about-section-1 .video-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .treatment-list-video .video-section {
+    flex-direction: column;
+    align-items: center;
+  }
+}
