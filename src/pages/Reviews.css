@@ -249,3 +249,31 @@
     right: 5px;
   }
 }
+
+
+/* ================= CUSTOMER REVIEWS (NORMAL VIDEO STYLE) ================= */
+
+.customer-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.customer-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reuse pioneer-card sizing for customer videos */
+.customer-carousel .pioneer-card img {
+  height: 160px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .customer-carousel .pioneer-card {
+    width: 180px;
+  }
+}

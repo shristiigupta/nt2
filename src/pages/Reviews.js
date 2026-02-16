@@ -5,6 +5,7 @@ import { logVisitor } from "./visitorLogger";
 
 const Reviews = () => {
   const pioneerCarousel = useRef(null);
+  const customerCarousel = useRef(null);
 
   const [customerReviews, setCustomerReviews] = useState([]);
   const [pioneerVideos, setPioneerVideos] = useState([]);
@@ -40,9 +41,6 @@ const Reviews = () => {
           (item) => item.Category === "pioneer_reviews"
         );
 
-        console.log("✅ Loaded customer reviews:", customer.length);
-        console.log("✅ Loaded pioneers:", pioneers.length);
-
         setCustomerReviews(customer);
         setPioneerVideos(pioneers);
       })
@@ -73,17 +71,21 @@ const Reviews = () => {
   }, []);
 
   /* ---- SCROLL HANDLERS ---- */
-  const scrollLeft = () => {
-    if (pioneerCarousel.current) {
-      pioneerCarousel.current.scrollBy({ left: -400, behavior: "smooth" });
+  const scrollLeft = (ref) => {
+    if (ref.current) {
+      ref.current.scrollBy({ left: -400, behavior: "smooth" });
     }
   };
 
-  const scrollRight = () => {
-    if (pioneerCarousel.current) {
-      pioneerCarousel.current.scrollBy({ left: 400, behavior: "smooth" });
+  const scrollRight = (ref) => {
+    if (ref.current) {
+      ref.current.scrollBy({ left: 400, behavior: "smooth" });
     }
   };
+
+  /* ---- NORMALIZE YOUTUBE URL ---- */
+  const getWatchUrl = (video) =>
+    `https://www.youtube.com/watch?v=${video.youtube_id}`;
 
   return (
     <div className="reviews-page">
@@ -94,19 +96,19 @@ const Reviews = () => {
         <div className="carousel-container">
           <button
             className="scroll-btn left"
-            onClick={() =>
-              document
-                .querySelector(".shorts-section")
-                ?.scrollBy({ left: -300, behavior: "smooth" })
-            }
+            onClick={() => scrollLeft(customerCarousel)}
           >
             &#10094;
           </button>
 
-          <div className="shorts-section">
+          <div className="carousel customer-carousel" ref={customerCarousel}>
             {customerReviews.map((video, index) => (
-              <div key={index} className="short-card">
-                <a href={video.video_link} target="_blank" rel="noreferrer">
+              <div key={index} className="pioneer-card">
+                <a
+                  href={getWatchUrl(video)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <img
                     src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
                     alt={`Customer Review ${index + 1}`}
@@ -119,11 +121,7 @@ const Reviews = () => {
 
           <button
             className="scroll-btn right"
-            onClick={() =>
-              document
-                .querySelector(".shorts-section")
-                ?.scrollBy({ left: 300, behavior: "smooth" })
-            }
+            onClick={() => scrollRight(customerCarousel)}
           >
             &#10095;
           </button>
@@ -147,14 +145,21 @@ const Reviews = () => {
         </h1>
 
         <div className="carousel-container">
-          <button className="scroll-btn left" onClick={scrollLeft}>
+          <button
+            className="scroll-btn left"
+            onClick={() => scrollLeft(pioneerCarousel)}
+          >
             &#10094;
           </button>
 
           <div className="carousel" ref={pioneerCarousel}>
             {pioneerVideos.map((video, index) => (
               <div key={index} className="pioneer-card">
-                <a href={video.video_link} target="_blank" rel="noreferrer">
+                <a
+                  href={getWatchUrl(video)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <img
                     src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
                     alt={`Pioneer Video ${index + 1}`}
@@ -165,7 +170,10 @@ const Reviews = () => {
             ))}
           </div>
 
-          <button className="scroll-btn right" onClick={scrollRight}>
+          <button
+            className="scroll-btn right"
+            onClick={() => scrollRight(pioneerCarousel)}
+          >
             &#10095;
           </button>
         </div>
