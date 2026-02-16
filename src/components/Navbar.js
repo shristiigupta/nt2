@@ -6,21 +6,26 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Initialize Google Translate
+    const LANGUAGES =
+      "en,hi,es,fr,de,it,pt,ru,ja,ko,zh-CN,zh-TW,ar,bn,gu,kn,ml,mr,ta,te,ur";
+
     window.googleTranslateElementInit = () => {
+      // Desktop translate
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,hi",
+          includedLanguages: LANGUAGES,
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
         },
         "google_translate_element"
       );
+
+      // Mobile translate
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,hi",
+          includedLanguages: LANGUAGES,
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
         },
@@ -38,7 +43,7 @@ function Navbar() {
     } else if (window.google && window.google.translate) {
       setTimeout(() => {
         window.googleTranslateElementInit();
-      }, 500); // delay to ensure menu div exists
+      }, 300);
     }
   }, []);
 
@@ -68,36 +73,43 @@ function Navbar() {
           <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
         </li>
         <li>
-          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>Patient's <br />Corner</NavLink>
+          <NavLink to="/Diseases" onClick={() => setIsMenuOpen(false)}>
+            Patient's <br /> Corner
+          </NavLink>
         </li>
-
         <li>
-          <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>Neurotherapist  <br /> Corner</NavLink>
+          <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>
+            Neurotherapist <br /> Corner
+          </NavLink>
         </li>
-
         <li>
           <NavLink to="/reviews" onClick={() => setIsMenuOpen(false)}>
             Customer <br /> Reviews
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>
+            Residential <br /> Arrangements
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>
+            Appointment
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
+            Contact Us
+          </NavLink>
+        </li>
 
-        <li>
-          <NavLink to="/residential" onClick={() => setIsMenuOpen(false)}>Residential <br /> Arrangements</NavLink>
-        </li>
-        <li>
-          <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>Appointment</NavLink>
-        </li>
-        <li>
-          <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
-        </li>
-
-        {/* Google Translate Mobile */}
+        {/* Mobile Translate */}
         <li className="translate-mobile">
           <div id="google_translate_mobile"></div>
         </li>
       </ul>
 
-      {/* Desktop Google Translate */}
+      {/* Desktop Translate */}
       <div className="desktop-right">
         <div id="google_translate_element" className="translate-dropdown"></div>
       </div>

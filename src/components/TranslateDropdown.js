@@ -17,7 +17,7 @@ function CustomTranslate() {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,hi",
+          // ❌ removed includedLanguages → allows ALL languages
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
         },
@@ -26,26 +26,39 @@ function CustomTranslate() {
 
       // Add placeholder "Select Language" at the top of dropdown
       const observer = new MutationObserver(() => {
-        const select = document.querySelector("#google_translate_element select");
+        const select = document.querySelector(
+          "#google_translate_element select"
+        );
+
         if (select && !select.dataset.placeholderSet) {
           select.dataset.placeholderSet = "true";
+
           const firstOption = document.createElement("option");
           firstOption.text = "Select Language";
           firstOption.value = "";
           firstOption.selected = true;
           firstOption.disabled = true;
+
           select.prepend(firstOption);
         }
       });
 
-      observer.observe(document.getElementById("google_translate_element"), {
-        childList: true,
-        subtree: true,
-      });
+      observer.observe(
+        document.getElementById("google_translate_element"),
+        {
+          childList: true,
+          subtree: true,
+        }
+      );
     };
   }, []);
 
-  return <div id="google_translate_element" style={{ margin: "0 10px" }}></div>;
+  return (
+    <div
+      id="google_translate_element"
+      style={{ margin: "0 10px" }}
+    ></div>
+  );
 }
 
 export default CustomTranslate;
