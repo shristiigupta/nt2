@@ -4,6 +4,7 @@ import "./Gallery.css";
 const Gallery = () => {
   const [videos, setVideos] = useState([]);
 
+  /* -------- PAGE TITLE -------- */
   useEffect(() => {
     document.title = "Gallery | Santulan Holistic Solutions";
   }, []);
@@ -12,7 +13,7 @@ const Gallery = () => {
   const getEmbedUrl = (url) => {
     if (!url) return null;
 
-    // ✅ Already embed → DO NOT TOUCH
+    // Already embed → do not touch
     if (url.includes("/embed/")) {
       return url.includes("autoplay")
         ? url
@@ -34,63 +35,60 @@ const Gallery = () => {
     return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0`;
   };
 
-  /* -------- FETCH FROM GIST -------- */
-  const fetchGallery = () => {
-    fetch(
-      `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?ts=${Date.now()}`,
-      { cache: "no-store" }
-    )
-      .then((res) => res.json())
-      .then((data) => {
+  /* -------- FETCH GALLERY (INITIAL + AUTO REFRESH) -------- */
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await fetch(
+          `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?ts=${Date.now()}`,
+          { cache: "no-store" }
+        );
+
+        const data = await res.json();
         const collected = [];
 
         Object.entries(data).forEach(([title, item]) => {
           // Hindi video
           if (item.video_hindi) {
             const src = getEmbedUrl(item.video_hindi);
-            if (src)
-              collected.push({
-                title,
-                src,
-                lang: "Hindi",
-              });
+            if (src) {
+              collected.push({ title, src, lang: "Hindi" });
+            }
           }
 
           // English video
           if (item.video_english) {
             const src = getEmbedUrl(item.video_english);
-            if (src)
-              collected.push({
-                title,
-                src,
-                lang: "English",
-              });
+            if (src) {
+              collected.push({ title, src, lang: "English" });
+            }
           }
 
           // Customer reviews / pioneers / others
           if (item.video_link) {
             const src = getEmbedUrl(item.video_link);
-            if (src)
+            if (src) {
               collected.push({
                 title,
                 src,
                 lang: item.Category?.replaceAll("_", " ") || "Video",
               });
+            }
           }
         });
 
         setVideos(collected);
-      })
-      .catch((err) => console.error("Gallery error:", err));
-  };
+      } catch (err) {
+        console.error("Gallery error:", err);
+      }
+    };
 
-  useEffect(() => {
+    // initial load
     fetchGallery();
-  }, []);
 
-  /* 🔁 Auto-refresh → new Gist videos appear automatically */
-  useEffect(() => {
-    const timer = setInterval(fetchGallery, 600000); // 10 min
+    // auto refresh every 10 minutes
+    const timer = setInterval(fetchGallery, 600000);
+
     return () => clearInterval(timer);
   }, []);
 
