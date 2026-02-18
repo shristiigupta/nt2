@@ -15,6 +15,18 @@ const About = () => {
   document.title = "About | Santulan Holistic Solutions";
 }, []);
 
+
+  useEffect(() => {
+  fetch("/.netlify/functions/log-visit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      pageVisited: window.location.pathname
+    })
+  });
+}, []);
+
+
   useEffect(() => {
     logVisitor("About Page");
     incrementVisit("About Page");

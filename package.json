@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@supabase/supabase-js": "^2.96.0",
     "cra-template": "1.2.0",
     "es-toolkit": "^1.41.0",
     "html2canvas": "^1.4.1",
