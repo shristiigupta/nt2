@@ -4,10 +4,6 @@ const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 export const logVisitor = async (pageName) => {
   try {
-    const res = await fetch("https://ipwho.is/");
-    const data = await res.json();
-
-    // ✅ Strict 24-hour format (no AM/PM, no seconds)
     const now = new Date();
     const formattedDate = now.toLocaleString("en-GB", {
       hour12: false,
@@ -18,33 +14,57 @@ export const logVisitor = async (pageName) => {
       minute: "2-digit",
     });
 
-    if (!data.success) {
-      console.error("IP API failed:", data.message);
-      return;
-    }
-
-    const visitorInfo = {
-      ip: data.ip,
-      city: data.city,
-      region: data.region,
-      country: data.country,
-      org: data.connection?.isp,
-      timezone: data.timezone?.id,
+    let visitorInfo = {
+      ip: "Unknown",
+      city: "Unknown",
+      region: "Unknown",
+      country: "Unknown",
+      org: "Unknown",
+      timezone: "Unknown",
       date: formattedDate,
       pageVisited: pageName,
     };
+
+    // Fetch IP data
+    try {
+      const res = await fetch("https://ipwho.is/");
+      const data = await res.json();
+
+      if (data && data.success) {
+        visitorInfo = {
+          ip: data.ip || "Unknown",
+          city: data.city || "Unknown",
+          region: data.region || "Unknown",
+          country: data.country || "Unknown",
+          org: data.connection?.isp || "Unknown",
+          timezone: data.timezone?.id || "Unknown",
+          date: formattedDate,
+          pageVisited: pageName,
+        };
+      } else {
+        console.warn("IP API failed:", data?.message);
+      }
+    } catch (ipError) {
+      console.warn("IP fetch failed:", ipError);
+    }
 
     // Get existing logs
     const currentRes = await fetch(`${BASE_URL}/latest`, {
       headers: { "X-Master-Key": API_KEY },
     });
+
     const currentData = await currentRes.json();
     const logs = currentData.record?.logs || [];
 
-    // ✅ Add newest visitor to top
+    // Add newest visitor
     logs.unshift(visitorInfo);
 
-    // Update the bin
+    // Limit logs to prevent bin overflow (VERY IMPORTANT)
+    if (logs.length > 300) {
+      logs.pop();
+    }
+
+    // Update bin
     await fetch(BASE_URL, {
       method: "PUT",
       headers: {
@@ -54,8 +74,8 @@ export const logVisitor = async (pageName) => {
       body: JSON.stringify({ logs }),
     });
 
-
     console.log("Visitor logged:", visitorInfo);
+
   } catch (err) {
     console.error("Error logging visitor:", err);
   }
