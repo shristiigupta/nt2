@@ -4,7 +4,8 @@ const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 export const logVisitor = async (pageName) => {
   try {
-    const res = await fetch("https://ipapi.co/json/");
+    // ✅ Using ipinfo instead of ipapi
+    const res = await fetch("https://ipinfo.io/json");
     const data = await res.json();
 
     // ✅ Strict 24-hour format (no AM/PM, no seconds)
@@ -21,10 +22,12 @@ export const logVisitor = async (pageName) => {
     const visitorInfo = {
       ip: data.ip,
       city: data.city,
-      region: data.region,
-      country: data.country_name,
+      region: data.region,        // Tamil Nadu
+      country: data.country,      // IN
       org: data.org,
       timezone: data.timezone,
+      latitude: data.loc?.split(",")[0],   // 12.9695
+      longitude: data.loc?.split(",")[1],  // 79.1455
       date: formattedDate,
       pageVisited: pageName,
     };
@@ -33,10 +36,11 @@ export const logVisitor = async (pageName) => {
     const currentRes = await fetch(`${BASE_URL}/latest`, {
       headers: { "X-Master-Key": API_KEY },
     });
+
     const currentData = await currentRes.json();
     const logs = currentData.record?.logs || [];
 
-    // ✅ Add newest visitor to top
+    // Add newest visitor on top
     logs.unshift(visitorInfo);
 
     // Update the bin
@@ -49,8 +53,8 @@ export const logVisitor = async (pageName) => {
       body: JSON.stringify({ logs }),
     });
 
-
     console.log("Visitor logged:", visitorInfo);
+
   } catch (err) {
     console.error("Error logging visitor:", err);
   }
