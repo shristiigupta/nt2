@@ -18,13 +18,18 @@ export const logVisitor = async (pageName) => {
       minute: "2-digit",
     });
 
+    if (!data.success) {
+      console.error("IP API failed:", data.message);
+      return;
+    }
+
     const visitorInfo = {
       ip: data.ip,
       city: data.city,
       region: data.region,
-      country: data.country_name,
-      org: data.org,
-      timezone: data.timezone,
+      country: data.country,
+      org: data.connection?.isp,
+      timezone: data.timezone?.id,
       date: formattedDate,
       pageVisited: pageName,
     };
