@@ -4,7 +4,7 @@ const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 export const logVisitor = async (pageName) => {
   try {
-    const res = await fetch("https://ipapi.co/json/");
+    const res = await fetch("https://ipwho.is/");
     const data = await res.json();
 
     // ✅ Strict 24-hour format (no AM/PM, no seconds)

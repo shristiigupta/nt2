@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import "./HeroCarousel.css";
+import { incrementVisit } from "../pages/visitTracker";
+import { logVisitor } from "../pages/visitorLogger";
+
 
 export default function HeroCarousel({ autoPlay = true, interval = 5000 }) {
+  useEffect(() => {
+      incrementVisit("Home Page");
+      logVisitor("Home Page");
+    }, []);
   const [slides, setSlides] = useState([]);
   const [index, setIndex] = useState(0);
   const timerRef = useRef(null);

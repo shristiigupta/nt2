@@ -4,17 +4,19 @@ import { incrementVisit } from "./visitTracker";
 import { logVisitor } from "./visitorLogger";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Diseases = () => {
   const navigate = useNavigate();
   const [groupedDiseases, setGroupedDiseases] = useState({});
 
   useEffect(() => {
-  document.title = "Diseases Treated Page | Santulan Holistic Solutions";
+  document.title = "Patient's Corner Page | Santulan Holistic Solutions";
 }, []);
 
   useEffect(() => {
-    logVisitor("Diseases Treated Page");
-    incrementVisit("Diseases Treated Page");
+    logVisitor("Patient's Corner Page");
+    incrementVisit("Patient's Corner Page");
 
     fetch(
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`

@@ -1,8 +1,11 @@
 import React , { useEffect }  from "react";
 import { incrementVisit } from "../pages/visitTracker"
+import { logVisitor } from "../pages/visitorLogger";
 
 function HeroSection() {
   useEffect(() => {
+    document.title = "Home Page | Santulan Holistic Solutions";
+    logVisitor("Home Page");
     incrementVisit("Home Page");
   }, []);
   return (
