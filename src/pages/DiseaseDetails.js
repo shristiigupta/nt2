@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./DiseaseDetails.css";
+import { logVisitor } from "./visitorLogger";
 
 const DiseaseDetails = () => {
   const { name } = useParams();
@@ -10,6 +11,10 @@ const DiseaseDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    // ✅ Log visitor with disease name
+    logVisitor(`Disease - ${diseaseName}`);
+
     fetch(
       `https://gist.githubusercontent.com/santulanneurotherapy/12eb2e48bcb2084e437bafda086a3c25/raw/diseases_description.json?nocache=${Date.now()}`
     )
@@ -22,7 +27,8 @@ const DiseaseDetails = () => {
         console.error("Error loading Gist:", err);
         setLoading(false);
       });
-  }, []);
+
+  }, [diseaseName]);
 
   if (loading) return <p style={{ textAlign: "center" }}>Loading...</p>;
 
@@ -37,7 +43,6 @@ const DiseaseDetails = () => {
 
       <div className="content-layout">
 
-        {/* HINDI VIDEO */}
         {details.video_hindi && (
           <div className="video-section">
             <iframe
@@ -51,7 +56,6 @@ const DiseaseDetails = () => {
           </div>
         )}
 
-        {/* ENGLISH VIDEO */}
         {details.video_english && (
           <div className="video-section">
             <iframe
@@ -65,7 +69,6 @@ const DiseaseDetails = () => {
           </div>
         )}
 
-        {/* PDF PREVIEW */}
         {details.pdf && (
           <div className="pdf-section">
             <iframe
