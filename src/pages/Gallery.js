@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./Gallery.css";
+import { logVisitor } from "./visitorLogger";
+import { incrementVisit } from "./visitTracker";
 
 const Gallery = () => {
   const [videos, setVideos] = useState([]);
 
   /* -------- PAGE TITLE -------- */
   useEffect(() => {
+    logVisitor("Gallery");
+    incrementVisit("Gallery");
     document.title = "Gallery | Santulan Holistic Solutions";
   }, []);
 
