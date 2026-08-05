@@ -49,7 +49,9 @@ const Contact = () => {
                     <p><strong>LinkedIn: </strong><a href="https://www.linkedin.com/in/visgup/" target="_blank" rel="noopener noreferrer"> https://www.linkedin.com/in/visgup/ </a></p>
                     <p><strong>Facebook: </strong><a href="https://www.facebook.com/share/17StcvJdqp/" target="_blank" rel="noopener noreferrer"> https://www.facebook.com/share/17StcvJdqp/ </a></p>
                     <p><strong>Instagram: </strong><a href="https://www.instagram.com/santulanholisticsolutions" target="_blank" rel="noopener noreferrer">https://www.instagram.com/santulanholisticsolutions</a></p>
-                    <p><strong>Open hours:</strong> 8.00 AM to 7.00 PM (by appointment only)</p>
+                    <p><strong>Open Hours:</strong></p>
+                    <p>Monday – Friday: 10:00 AM – 5:00 PM</p>
+                    <p>Saturday – Sunday: Closed</p>
                     <p>
                         <a href="/gallery" >
                             <strong>Gallery</strong>

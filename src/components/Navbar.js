@@ -77,11 +77,14 @@ function Navbar() {
             Patient's <br /> Corner
           </NavLink>
         </li>
+        {/* 
         <li>
           <NavLink to="/forneurotherapist" onClick={() => setIsMenuOpen(false)}>
             Neurotherapist <br /> Corner
           </NavLink>
         </li>
+        */}
+
         <li>
           <NavLink to="/reviews" onClick={() => setIsMenuOpen(false)}>
             Customer <br /> Reviews
@@ -92,11 +95,14 @@ function Navbar() {
             Residential <br /> Arrangements
           </NavLink>
         </li>
+        {/*
         <li>
           <NavLink to="/appointment" onClick={() => setIsMenuOpen(false)}>
             Appointment
           </NavLink>
         </li>
+        */}
+        
         <li>
           <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
             Contact Us
