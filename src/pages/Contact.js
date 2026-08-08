@@ -7,8 +7,8 @@ import { logVisitor } from "./visitorLogger";
 const Contact = () => {
 
     useEffect(() => {
-  document.title = "Contact Page | Santulan Holistic Solutions";
-}, []);
+        document.title = "Contact Page | Santulan Holistic Solutions";
+    }, []);
 
     const [mapLoaded, setMapLoaded] = useState(false);
 
@@ -38,6 +38,10 @@ const Contact = () => {
                 <div className="contact-info">
                     <h1>Contact Us</h1>
                     <br />
+                    <p>
+                        <strong>Open hours:</strong> 10AM - 5PM (Mon–Fri) & Sat–Sun:{" "}
+                        <span className="note">Closed</span>
+                    </p>
 
                     <p><strong>Phone No.: </strong>8130608275</p>
                     <p><strong>Email:</strong> santulan.neurotherapy@gmail.com </p>
@@ -49,48 +53,45 @@ const Contact = () => {
                     <p><strong>LinkedIn: </strong><a href="https://www.linkedin.com/in/visgup/" target="_blank" rel="noopener noreferrer"> https://www.linkedin.com/in/visgup/ </a></p>
                     <p><strong>Facebook: </strong><a href="https://www.facebook.com/share/17StcvJdqp/" target="_blank" rel="noopener noreferrer"> https://www.facebook.com/share/17StcvJdqp/ </a></p>
                     <p><strong>Instagram: </strong><a href="https://www.instagram.com/santulanholisticsolutions" target="_blank" rel="noopener noreferrer">https://www.instagram.com/santulanholisticsolutions</a></p>
-                    <p><strong>Open Hours:</strong></p>
-                    <p>Monday – Friday: 10:00 AM – 5:00 PM</p>
-                    <p>Saturday – Sunday: Closed</p>
-                    <p>
-                        <a href="/gallery" >
-                            <strong>Gallery</strong>
-                        </a>
-                    </p>
 
-                </div>
-
-                {/* RIGHT: MAP */}
-                <div className="map-wrapper">
-                    <div className="map-card">
-                        {mapLoaded ? (
-                            <>
-                                <iframe
-                                    title="Santulan Holistic Solutions"
-                                    src="https://www.google.com/maps?q=Santulan%20Holistic%20Solutions%2C%202021%2C%20Sector%2016A%2C%20Vasundhara%2C%20Ghaziabad%2C%20Uttar%20Pradesh&output=embed"
-                                    allowFullScreen
-                                    loading="lazy"
-                                ></iframe>
-
-                                <div className="map-footer">
-                                    <a
-                                        href={googleMapsHref}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="map-link"
-                                    >
-                                        Open in Google Maps
-                                    </a>
-                                </div>
-                            </>
-                        ) : (
-                            <div className="map-placeholder">🗺️ Loading Map...</div>
-                        )}
-                    </div>
-                </div>
+                    <a href="/gallery" >
+                        <strong>Gallery</strong>
+                    </a>
+    
 
             </div>
+
+            {/* RIGHT: MAP */}
+            <div className="map-wrapper">
+                <div className="map-card">
+                    {mapLoaded ? (
+                        <>
+                            <iframe
+                                title="Santulan Holistic Solutions"
+                                src="https://www.google.com/maps?q=Santulan%20Holistic%20Solutions%2C%202021%2C%20Sector%2016A%2C%20Vasundhara%2C%20Ghaziabad%2C%20Uttar%20Pradesh&output=embed"
+                                allowFullScreen
+                                loading="lazy"
+                            ></iframe>
+
+                            <div className="map-footer">
+                                <a
+                                    href={googleMapsHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="map-link"
+                                >
+                                    Open in Google Maps
+                                </a>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="map-placeholder">🗺️ Loading Map...</div>
+                    )}
+                </div>
+            </div>
+
         </div>
+        </div >
     );
 };
 

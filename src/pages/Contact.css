@@ -10,6 +10,14 @@
   justify-content: center;
 }
 
+.note {
+  margin-top: 2rem;
+  color: #aa1c1c;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
 .contact-section {
   display: grid;
   grid-template-columns: 1fr 1.1fr;

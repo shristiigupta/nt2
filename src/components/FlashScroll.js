@@ -1,21 +1,22 @@
+
 import React from "react";
 import "./FlashScroll.css";
 
 export default function FlashScroll() {
   const messages = [
-    /*<>Consultation <span className="blink-text">FREE</span></>,*/
-    "Therapy Fees: Customized Packages available as per condition of patient",
+    "Therapy Fees: Rs. 500/-",
   ];
 
   return (
     <div className="flash-scroll">
       <div className="scroll-content">
-        {[...messages, ...messages].map((msg, i) => (
-          <span key={i} className="scroll-item">
+        {[...messages, ...messages, ...messages, ...messages].map((msg, i) => (
+          <div className="scroll-item" key={i}>
             {msg}
-          </span>
+          </div>
         ))}
       </div>
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+
 .flash-scroll {
   width: 100%;
   position: relative;
@@ -12,31 +13,40 @@
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.4px;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* animated gradient background */
+/* Animated gradient background */
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* scrolling text container */
+/* Scrolling text container */
 .scroll-content {
   display: flex;
+  align-items: center;
   white-space: nowrap;
-  animation: scroll-left 8s linear infinite;
+  width: max-content;
+  animation: scroll-left 14s linear infinite;
 }
 
-/* each message item */
+/* Each message */
 .scroll-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-right: 80px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  margin-right: 180px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* Continuous scrolling animation */
@@ -44,8 +54,9 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-25%);
   }
 }
 
@@ -60,40 +71,8 @@
     height: 36px;
     font-size: 0.85rem;
   }
+
   .scroll-item {
-    margin-right: 50px;
+    margin-right: 100px;
   }
 }
-
-/* blinking text */
-.blink-text {
-  color: #ffeb3b;
-  font-weight: bold;
-  animation: blink 1s step-start infinite;
-  text-shadow: 0 0 6px rgba(255, 235, 59, 0.8);
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-
-.blink-text {
-  color: #fff700;
-  font-weight: bold;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    text-shadow: 0 0 6px #fff700, 0 0 12px #ffea00;
-  }
-  50% {
-    opacity: 0.4;
-    text-shadow: none;
-  }
-}
-
