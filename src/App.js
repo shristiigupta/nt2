@@ -22,6 +22,7 @@ import FlashScroll from "./components/FlashScroll";
 import Gallery from "./pages/Gallery";
 import VisitorLogPage from "./pages/VisitorLogPage";
 import RouteTracker from "./RouteTracker";
+import DQrcode from "./pages/DQrcode";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/forneurotherapist" element={<Neurotherapist />} />
         <Route path="/forneurotherapist/:name" element={<NeuroDetails />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/dqrcode" element={<DQrcode />} /> 
 
       </Routes>
     </Router>
