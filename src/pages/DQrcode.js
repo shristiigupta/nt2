@@ -12,16 +12,16 @@ function DQrcode() {
         return res.json();
       })
       .then((data) => {
-        const redirectUrl = data.redirect?.url;
+        const redirectUrl = data.qrcode_redirect_link;
 
         if (redirectUrl) {
           window.location.replace(redirectUrl);
         } else {
-          console.error("Redirect URL not found in Gist");
+          console.error("qrcode_redirect_link not found in Gist");
         }
       })
       .catch((err) => {
-        console.error("Error loading redirect URL:", err);
+        console.error("Error loading Gist:", err);
       });
   }, []);
 
