@@ -286,10 +286,10 @@ const Reviews = () => {
               const comments =
                 youtubeComments[video.youtube_id] || [];
 
-              // Show only first 3 initially
+              // Show only first 2 initially
               const visibleComments = expandedComments[video.youtube_id]
                 ? comments
-                : comments.slice(0, 3);
+                : comments.slice(0, 2);
 
               return (
                 <div
