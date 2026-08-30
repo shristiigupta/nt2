@@ -387,7 +387,7 @@ const Reviews = () => {
 
                   {/* VIEW MORE */}
 
-                  {comments.length > 3 && (
+                  {comments.length > 2 && (
 
                     <button
                       className="view-comments-btn"
@@ -398,7 +398,7 @@ const Reviews = () => {
 
                       {expandedComments[video.youtube_id]
                         ? "View Less"
-                        : `View More (${comments.length - 3} more)`}
+                        : `View More (${comments.length - 2} more)`}
 
                     </button>
 
