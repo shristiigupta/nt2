@@ -4,7 +4,7 @@ import "./FlashScroll.css";
 
 export default function FlashScroll() {
   const messages = [
-    "Therapy Fees: Rs. 500/-",
+    "Therapy fee (30 minutes): ₹ 500/-",
   ];
 
   return (
